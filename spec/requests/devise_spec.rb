@@ -64,4 +64,16 @@ RSpec.describe 'Device', type: :request do
       expect(controller.current_user).to be_nil
     end
   end
+
+  describe 'Check email confirmable' do
+    let!(:user) { FactoryGirl.build(:user, email: "user1@example.org",
+                                    password: "very-secret",
+                                    password_confirmation:"very-secret" ) }
+
+    it { expect(ActionMailer::Base.deliveries.count).to eq(0) }
+
+    it 'should increase ActionMailer::Base.deliveries.count' do
+      expect{ post(user_registration_path(user: user.attributes)) }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+  end
 end
