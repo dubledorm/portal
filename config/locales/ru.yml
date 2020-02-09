@@ -1,0 +1,14 @@
+ru:
+  activerecord:
+    models:
+      user:
+        one: Пользователь
+        other: Пользователи
+    attributes:
+      user:
+        current_sign_in_at: Время текущего входа
+        sign_in_count: Всего раз входил
+        email: Email
+        password: Пароль
+        created_at: Создан
+        updated_at: Изменён
