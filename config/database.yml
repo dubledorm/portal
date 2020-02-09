@@ -60,8 +60,8 @@ development:
 test:
   <<: *default
   database: portal_test
-  username: portal_test_user
-  password: portal_test_password
+  username: azirumga
+  password: iselPodij
 
 
 # As with config/credentials.yml, you never want to store sensitive information,
