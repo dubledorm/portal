@@ -83,6 +83,9 @@ gem 'has_scope'
 gem 'whenever', require: false
 gem 'awesome_print'
 
+# Обработка изображения для active_storage
+gem 'image_processing', '~> 1.2'
+
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
