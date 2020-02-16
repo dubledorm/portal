@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     root to: "secret#index", as: :authenticated_root
   end
 
-
-  get '/auth/:service/callback', to: 'services#create', as: :auth_callback
-  resources :services, :only => [:index, :create, :destroy]
+  namespace 'auth' do
+    resources :services, :only => [:index, :create, :destroy]
+  end
+  get '/auth/:service/callback', to: 'auth/services#create', as: :auth_callback
 
   root to: 'home#index'
 end

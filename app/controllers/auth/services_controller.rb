@@ -1,4 +1,4 @@
-class ServicesController < ApplicationController
+class Auth::ServicesController < ApplicationController
   include OmniAuthConcern
 
  # before_filter :authenticate_user!, :except => [:create]
