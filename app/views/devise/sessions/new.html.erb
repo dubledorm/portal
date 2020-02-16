@@ -1,4 +1,5 @@
 <h2>Log in</h2>
+<h3>Sign in with your CommunityGuides account -- OR -- use an authentication service</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -22,5 +23,14 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+
+<div id="remote">
+  <div id="terms" class="box">
+    <%= link_to "Terms of Service", "#" %>
+  </div>
+  <div id="services" class="box">
+    <a href="/auth/facebook" class="services"><%= image_tag "facebook_64.png", :size => "64x64",  :alt => "Facebook" %>Facebook</a>
+  </div>
+</div>
 
 <%= render "devise/shared/links" %>

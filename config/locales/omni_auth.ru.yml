@@ -1,0 +1,9 @@
+ru:
+  get_auth_data:
+    provider_name_error: 'Не могу найти провайдера с имененм %{provider_name}'
+    provider_bad_aut_data: 'Провайден %{provider_name} вернул не полные данные о пользователе. А именно, должны быть заполнены поля  :uid и :provider'
+  sign_in:
+    error_during: 'Ошибка при попытке логина пользователя под именем %{user_name}'
+    error_service_exists: 'Пользователь с такими данными провайдера %{provider_name} уже существует, но для другово пользователя системы'
+  create_user:
+    need_email: 'Переданные от провайдера %{provider_name} данные должны содержать поле email. Иначе нет возможности содать пользователя'

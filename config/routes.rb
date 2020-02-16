@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
 
 
-  match '/auth/facebook/callback' => 'services#create', :via => :get
-  resources :services, :only => [:index, :create]
+  get '/auth/:service/callback', to: 'services#create', as: :auth_callback
+  resources :services, :only => [:index, :create, :destroy]
 
   root to: 'home#index'
 end
