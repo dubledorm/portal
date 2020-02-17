@@ -24,7 +24,7 @@ class Auth::ServicesController < ApplicationController
       aut_data = get_auth_data(omniauth, service_route)
       sign_in_or_sign_up(aut_data)
       redirect_to authenticated_root_path
-    rescue OmniAuthConcern::OmniAuthError => e
+    rescue Auth::OmniAuthError => e
       flash[:error] = e.message
       redirect_to new_user_session_path
     end
