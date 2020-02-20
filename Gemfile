@@ -89,6 +89,8 @@ gem 'image_processing', '~> 1.2'
 # Авторизация через сторонние системы
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-vkontakte'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,5 +1,6 @@
 ru:
   get_auth_data:
+    omniauth_nil_error: 'Передан nil вместо блока данных провайдера %{provider_name}'
     provider_name_error: 'Не могу найти провайдера с имененм %{provider_name}'
     provider_bad_aut_data: 'Провайден %{provider_name} вернул не полные данные о пользователе. А именно, должны быть заполнены поля  :uid и :provider'
   sign_in:

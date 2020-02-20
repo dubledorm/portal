@@ -3,6 +3,9 @@ module OmniAuthConcern
 
   # Преобразовать данные от провайдера к единой структуре
   def get_auth_data(omniauth, service_route)
+    raise Auth::OmniAuthError, I18n.t('get_auth_data.omniauth_nil_error',
+                                      provider_name: service_route) if omniauth.nil?
+
     Auth::ServiceDescrManager.new(service_route).get_auth_data(omniauth)
   end
 
