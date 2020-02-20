@@ -40,5 +40,7 @@ yarn-debug.log*
 
 .ruby-gemset
 
+.env.development
+
 
 
