@@ -1,0 +1,6 @@
+%div
+  = form_with(url: auth_callback_do_url, method: "get") do
+    = hidden_field_tag(:service_route, @service_route)
+    = hidden_field_tag(:omniauth, @omniauth_json)
+    = text_field_tag(:email)
+    = submit_tag('save')

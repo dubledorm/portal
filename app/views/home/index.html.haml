@@ -1,6 +1,10 @@
 %h1
-  Hello, Rails!
-
+  Home page.
+%div
+  - if user_signed_in?
+    = "Current user: #{current_user.email}"
+  - else
+    = 'User does not sign in'
 %div
   %p
     = link_to('logout', destroy_user_session_path, method: :delete) if user_signed_in?

@@ -24,6 +24,7 @@ module OmniAuthConcern
 
     # Зарегистрировать нового пользователя
     if service.nil?
+      raise Auth::OmniAuthEmailBlank if aut_data[:email].blank?
       user = nil
       # Может быть есть пользователь с таким email
       user = User.find_by_email(aut_data[:email]) unless aut_data[:email].blank?
