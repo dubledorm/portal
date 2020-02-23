@@ -43,10 +43,10 @@ module Auth::ServicesDescr
                  uid: '',
                  provider: '' }
 
-      result[:email] =  omniauth['extra']['user_hash']['email'] if omniauth['extra']['user_hash']['email']
-      result[:name] =  omniauth['extra']['user_hash']['name'] if omniauth['extra']['user_hash']['name']
-      result[:uid] =  omniauth['extra']['user_hash']['id'] if omniauth['extra']['user_hash']['id']
-      result[:provider] =  omniauth['provider'] if omniauth['provider']
+      result[:email] =  omniauth['extra']['raw_info']['email']
+      result[:name] =  omniauth['extra']['raw_info']['name']
+      result[:uid] =  omniauth['extra']['raw_info']['id']
+      result[:provider] =  omniauth['provider']
       result
     end
 

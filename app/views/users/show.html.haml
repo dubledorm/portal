@@ -1,0 +1,69 @@
+%div
+  %table
+    %tr
+      %th
+        Attributes
+      %th
+        Values
+    - @resource.attributes.each do |attribute|
+      %tr
+        %td
+          = @resource.class.name.constantize.human_attribute_name(attribute[0])
+        %td
+          = attribute[1]
+
+<br/>
+
+%div
+  %table
+    %tr
+      %th
+        Provider
+      %th
+        uid
+      %th
+        email
+      %th
+        name
+    - @services.each do |service|
+      %tr
+        %td
+          = service.provider
+        %td
+          = service.uid
+        %td
+          = service.uemail
+        %td
+          = service.uname
+
+<br/>
+
+%div
+  %table
+    %tr
+      %th
+        Sign in
+    - @resource.class.omniauth_providers.each do |provider|
+      %tr
+        %td
+          = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(@resource.class.name.underscore, provider)
+<br/>
+
+%div
+  %table
+    %tr
+      %td
+        - if !@resource.user_confirmed?
+          = "Need confirm email during #{@resource.unconfirmed_days_still_available} days"
+      %td
+        = link_to "Didn't receive confirmation instructions?", new_confirmation_path(@resource.class.name.underscore)
+    %tr
+      %td
+        Change password, delete user
+      %td
+        = link_to 'Change password', edit_user_registration_path(@resource.class.name.underscore)
+    %tr
+      %td
+        logout
+      %td
+        = link_to('logout', destroy_user_session_path, method: :delete) if user_signed_in?

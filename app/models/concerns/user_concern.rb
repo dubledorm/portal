@@ -7,4 +7,12 @@ module UserConcern
   def get_avatar
     self.avatar.variant(resize_to_limit: [AVATAR_SIZE[:width], AVATAR_SIZE[:height]])
   end
+
+  def user_confirmed?
+    !self.confirmed_at.nil?
+  end
+
+  def unconfirmed_days_still_available
+    (((self.created_at + User.allow_unconfirmed_access_for) - Time.now) / 1.day).to_i
+  end
 end
