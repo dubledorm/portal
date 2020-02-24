@@ -3,7 +3,9 @@ require 'auth/omni_auth_error'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include OmniAuthConcern
+  layout 'application'
 
+  # Создать точки входа для всех провайдеров
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
@@ -22,27 +24,61 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # It provides central callback for OmniAuth
   def do_omniauth
-    if params.has_key?(:service_route)
-      @service_route = params.required(:service_route)
-      omniauth = JSON.parse(params.required(:omniauth))
-      email = params.required(:email)
-      omniauth['extra']['raw_info']['email'] = email
-    else
-      @service_route = params.required(:action)
-      omniauth = request.env['omniauth.auth']
-    end
-
     begin
-      aut_data = get_auth_data(omniauth, @service_route)
-      ap(aut_data)
-      sign_in_or_sign_up(aut_data)
-      redirect_to authenticated_root_path
-    rescue Auth::OmniAuthEmailBlank
-      @omniauth_json = omniauth.to_json
-      render 'devise/sessions/additional_parameters'
-    rescue Auth::OmniAuthError => e
+      aut_data = get_auth_data(request.env['omniauth.auth'], action_name)
+      service = Service.find_by_provider_and_uid(aut_data[:provider], aut_data[:uid])
+
+
+      if user_signed_in?                                     # Если пользователь уже вошёл под EMail (Например)
+        create_service_and_redirect(service, aut_data)
+        return
+      end
+
+      unless service.nil?
+        # Войти на основании найденного сервиса
+        sign_in_and_redirect(service)
+        return
+      end
+
+      session[:aut_data] = aut_data
+      redirect_to service_sign_up_users_path  # Переходим на ввод дополнительных параметров
+
+    rescue Auth::OmniAuthBadProviderData, Auth::OmniAuthError => e
       flash[:error] = e.message
       redirect_to new_user_session_path
     end
+  end
+
+  def service_sign_up_users
+    aut_data = session[:aut_data].to_h.symbolize_keys
+    @user = User.new(email: aut_data[:email],
+                     password: '',
+                     password_confirmation: '')
+  end
+
+  def create_user_and_service
+    begin
+      aut_data = session[:aut_data].to_h.symbolize_keys
+      aut_data = merge_auth_data_with_additional_parameters(aut_data, user_params.to_h.symbolize_keys)
+      user = nil
+      ActiveRecord::Base.transaction do
+        # Может быть есть пользователь с таким email
+        user = User.find_by_email(aut_data[:email]) unless aut_data[:email].blank?
+        user = create_user(aut_data) if user.nil?
+        create_service(user, aut_data)
+      end
+      sign_in(:user, user)
+      redirect_to authenticated_root_path
+
+    rescue Auth::OmniAuthError, ActiveRecord::RecordInvalid => e
+      flash[:error] = e.message
+      redirect_to :service_sign_up_users
+    end
+  end
+
+  private
+
+  def user_params
+    params.required(:user).permit(:email, :password, :password_confirmation)
   end
 end

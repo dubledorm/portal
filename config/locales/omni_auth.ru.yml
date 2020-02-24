@@ -2,9 +2,12 @@ ru:
   get_auth_data:
     omniauth_nil_error: 'Передан nil вместо блока данных провайдера %{provider_name}'
     provider_name_error: 'Не могу найти провайдера с имененм %{provider_name}'
-    provider_bad_aut_data: 'Провайден %{provider_name} вернул не полные данные о пользователе. А именно, должны быть заполнены поля  :uid и :provider'
+    provider_bad_aut_data: 'Провайдер %{provider_name} вернул не полные данные о пользователе. А именно, должны быть заполнены поля  :uid и :provider'
+    provider_data_error: 'Ошибка при обработке данных от провайдера %{provider_name}. Данные от провайдера %{data}. Сообщение об ошибке %{message}'
   sign_in:
     error_during: 'Ошибка при попытке логина пользователя под именем %{user_name}'
     error_service_exists: 'Пользователь с такими данными провайдера %{provider_name} уже существует, но для другово пользователя системы'
   create_user:
     need_email: 'Переданные от провайдера %{provider_name} данные должны содержать поле email. Иначе нет возможности содать пользователя'
+    need_password: 'Переданные от провайдера %{provider_name} данные должны содержать поле password. Иначе нет возможности содать пользователя'
+    need_password_confirmation: 'Переданные от провайдера %{provider_name} данные должны содержать поле password_confirmation. Иначе нет возможности содать пользователя'

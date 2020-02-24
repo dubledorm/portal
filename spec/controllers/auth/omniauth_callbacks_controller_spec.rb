@@ -8,11 +8,19 @@ RSpec.describe OmniauthCallbacksController, :type => :controller do
     request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
-  it_should_behave_like 'auth service' do
+  it_should_behave_like 'do_omniauth' do
     let!(:controller_action) { :facebook }
     let!(:request_env) { { 'provider' => 'facebook',
                            'extra' => { 'user_hash' => { 'email' => 'test@email.info',
                                                          'name' => 'test_name',
                                                          'id' => 'uid123' } } } }
+  end
+
+  it_should_behave_like 'create_user_and_service' do
+    let!(:controller_action) { :create_user_and_service }
+    let!(:session) { { 'aut_data' => { 'email' => 'test@email.info',
+                                       'name' => 'test_name',
+                                       'id' => 'uid123',
+                                       'provider' => 'facebook' } } }
   end
 end
