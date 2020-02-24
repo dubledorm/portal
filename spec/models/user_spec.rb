@@ -11,4 +11,12 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
   end
+
+  describe 'cascade delete of services' do
+    let!(:user) {FactoryGirl.create :user}
+    let!(:service1) {FactoryGirl.create :service, user: user}
+    let!(:service2) {FactoryGirl.create :service, user: user}
+
+    it { expect{ user.destroy }.to change(Service, :count).by(-2) }
+  end
 end
