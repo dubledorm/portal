@@ -37,7 +37,7 @@ shared_examples 'do_omniauth' do
     context 'when user already exists and has another service' do
       let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
       let!(:service) { FactoryGirl.create(:service, uemail: 'test@email.info',
-                                          provider: 'vkontakte', user: user) }
+                                          provider: controller_action.to_s + '_another', user: user) }
 
       it_should_behave_like 'redirect to service_sign_up_users'
       it_should_behave_like 'set session'
@@ -53,7 +53,7 @@ shared_examples 'do_omniauth' do
     context 'when user already exists and signed in and service exists' do
       let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
       let!(:service) { FactoryGirl.create(:service, uemail: 'another_email@email.info',
-                                          provider: 'facebook',
+                                          provider: controller_action.to_s,
                                           uid: 'uid123',
                                           user: user) }
       before :each do
@@ -76,7 +76,7 @@ shared_examples 'do_omniauth' do
       let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
       let!(:another_user) { FactoryGirl.create(:user, email: 'another_user@email.info') }
       let!(:service) { FactoryGirl.create(:service, uemail: 'another_email@email.info',
-                                          provider: 'facebook',
+                                          provider: controller_action.to_s,
                                           uid: 'uid123',
                                           user: another_user) }
       before :each do

@@ -16,6 +16,32 @@ RSpec.describe OmniauthCallbacksController, :type => :controller do
                                                          'id' => 'uid123' } } } }
   end
 
+  it_should_behave_like 'do_omniauth' do
+    let!(:controller_action) { :facebook }
+    let!(:request_env) { { 'provider' => 'facebook',
+                           'extra' => { 'user_hash' => { 'email' => nil,
+                                                         'name' => 'test_name',
+                                                         'id' => 'uid123' } } } }
+  end
+
+  it_should_behave_like 'do_omniauth' do
+    let!(:controller_action) { :github }
+    let!(:request_env) { { 'provider' => 'github',
+                           'extra' => { 'raw_info' => { 'email' => nil,
+                                                         'name' => 'test_name',
+                                                         'id' => 'uid123' } } } }
+  end
+
+  it_should_behave_like 'do_omniauth' do
+    let!(:controller_action) { :vkontakte }
+    let!(:request_env) { { 'provider' => 'vkontakte',
+                           'extra' => { 'raw_info' => { 'email' => nil,
+                                                        'last_name' => 'last_name',
+                                                        'first_name' => 'first_name',
+                                                        'id' => 'uid123' } } } }
+  end
+
+
   it_should_behave_like 'create_user_and_service' do
     let!(:controller_action) { :create_user_and_service }
     let!(:session) { { 'aut_data' => { 'email' => 'test@email.info',
