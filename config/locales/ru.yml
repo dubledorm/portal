@@ -4,6 +4,9 @@ ru:
       user:
         one: Пользователь
         other: Пользователи
+      tag:
+        one: Тэг
+        other: Тэги
     attributes:
       user:
         current_sign_in_at: Время текущего входа
@@ -12,3 +15,19 @@ ru:
         password: Пароль
         created_at: Создан
         updated_at: Изменён
+      tag:
+        name: Имя
+        tag_type: Тип
+        title: Название
+        created_at: Создан
+        updated_at: Изменён
+
+    errors:
+      models:
+        tag:
+          attributes:
+            name:
+              taken: Имя тэга должно быть уникально в пределах типа
+              blank: Имя тэга должно быть заполнено
+            tag_type:
+              blank: Тип тэга должен быть заполнен
