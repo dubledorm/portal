@@ -3,7 +3,6 @@ require 'auth/omni_auth_error'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include OmniAuthConcern
-  layout 'application'
 
   # Создать точки входа для всех провайдеров
   def self.provides_callback_for(provider)
