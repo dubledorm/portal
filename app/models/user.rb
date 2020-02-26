@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include UserConcern
+  include TaggableConcern
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

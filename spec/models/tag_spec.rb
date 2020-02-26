@@ -10,6 +10,9 @@ RSpec.describe Tag, type: :model do
     # Validations
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:tag_type) }
+
+    it { should have_many(:tags_on_objects) }
+    it { should have_many(:users) }
   end
 
   describe 'uniqness name' do

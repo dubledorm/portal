@@ -10,6 +10,9 @@ RSpec.describe User, type: :model do
     # Validations
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email) }
+
+    it { should have_many(:tags_on_objects) }
+    it { should have_many(:tags) }
   end
 
   describe 'cascade delete of services' do
