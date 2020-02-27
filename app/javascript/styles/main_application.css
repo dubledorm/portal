@@ -1,0 +1,8 @@
+a, a:link, a:visited {
+    /*color: $link-color;*/
+    text-decoration: none;
+}
+
+h1 {
+    color: black;
+}
