@@ -74,6 +74,8 @@ group :development do
   gem 'rubocop-rails'
 end
 
+gem 'activeadmin'
+
 gem 'haml'
 gem 'devise'
 gem 'cancancan'
