@@ -1,0 +1,26 @@
+.section
+  %table
+    %thead
+      %tr
+        %th
+          = Service.human_attribute_name(:provider)
+        %th
+          = Service.human_attribute_name(:uid)
+        %th
+          = Service.human_attribute_name(:uname)
+        %th
+          = Service.human_attribute_name(:uemail)
+
+    %tbody
+      - services.each do |service|
+        %tr
+          %td
+            = link_to service.provider, admin_service_path(service)
+          %td
+            = service.uid
+          %td
+            = service.uname
+          %td
+            = service.uemail
+
+

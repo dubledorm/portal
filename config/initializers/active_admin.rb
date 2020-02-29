@@ -143,7 +143,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  config.batch_actions = false
 
   # == Controller Filters
   #
@@ -244,6 +244,17 @@ ActiveAdmin.setup do |config|
   #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
   #     end
   #   end
+
+  config.namespace :admin do |admin|
+    include ApplicationHelper
+
+    admin.build_menu :default do |menu|
+      menu.add label: I18n.t('menu.resources'), id: :resources, priority: 10
+      menu.add label: I18n.t('menu.configure'), id: :configure, priority: 30
+    end
+  end
+
+
 
   # == Download Links
   #
