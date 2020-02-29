@@ -9,5 +9,6 @@ class User < ApplicationRecord
 
   has_many :services, :dependent => :destroy
   has_many :galleries, :dependent => :destroy
+  has_many :pictures, through: :galleries
   has_one_attached :avatar
 end

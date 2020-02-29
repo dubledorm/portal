@@ -8,6 +8,7 @@ RSpec.describe Gallery, type: :model do
     it { expect(gallery).to be_valid }
 
     it { should belong_to(:user) }
+    it { should have_many(:pictures) }
 
     it { should validate_presence_of(:state) }
   end
