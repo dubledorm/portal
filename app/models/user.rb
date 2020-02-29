@@ -8,5 +8,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, omniauth_providers: [:github, :facebook, :vkontakte]
 
   has_many :services, :dependent => :destroy
+  has_many :galleries, :dependent => :destroy
   has_one_attached :avatar
 end

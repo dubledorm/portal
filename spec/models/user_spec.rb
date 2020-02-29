@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
 
     it { should have_many(:tags_on_objects) }
     it { should have_many(:tags) }
+    it { should have_many(:galleries) }
   end
 
   describe 'cascade delete of services' do

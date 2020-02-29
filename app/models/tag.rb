@@ -8,7 +8,7 @@ class Tag < ApplicationRecord
   # Список типов должен расширяться в соответствии с требованиями
   #
 
-  TAG_TYPES = %w(ordinal category)
+  TAG_TYPES = %w(ordinal category).freeze
 
   has_many :tags_on_objects, dependent: :destroy
   has_many :users, through: :tags_on_objects, source: :taggable, source_type: 'User'
