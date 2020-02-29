@@ -40,6 +40,8 @@ ru:
         updated_at: Изменён
 
     errors:
+      messages:
+        record_invalid: Record Invalid - попытка создать запись с ошибоными значениями полей
       models:
         tag:
           attributes:
@@ -48,3 +50,4 @@ ru:
               blank: Имя тэга должно быть заполнено
             tag_type:
               blank: Тип тэга должен быть заполнен
+              inclusion: Тип тэга может принимать значения ordinal, category
