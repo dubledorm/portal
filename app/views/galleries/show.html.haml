@@ -8,4 +8,4 @@
       .picture
         = image_tag picture.image
 
-  = link_to 'new', '#'
+  = link_to 'new', new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)

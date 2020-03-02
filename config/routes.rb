@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   authenticated(:user) do
     resources :users, :only => [:show] do
-      resources :galleries
+      resources :galleries do
+        resources :pictures
+      end
     end
     root to: "secret#index", as: :authenticated_root
   end

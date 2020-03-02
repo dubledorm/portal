@@ -14,7 +14,7 @@ class GalleriesController < ApplicationController
   end
 
   def create
-      @resource = Gallery.create!(gallery_params.merge({ state: 'active' }))
+      @resource = Gallery.create(gallery_params.merge({ state: 'active' }))
       if @resource.persisted?
         redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
         return
