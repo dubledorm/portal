@@ -1,0 +1,8 @@
+= form_with(model: [@user, @resource], local: true) do |f|
+  = @resource.errors.full_messages
+  = f.hidden_field(:user_id)
+  %p
+    = f.label(:name)
+    = f.text_field(:name)
+  %p
+    = f.submit('save')

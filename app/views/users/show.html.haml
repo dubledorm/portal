@@ -1,16 +1,4 @@
-%div
-  %table
-    %tr
-      %th
-        Attributes
-      %th
-        Values
-    - @resource.attributes.each do |attribute|
-      %tr
-        %td
-          = @resource.class.name.constantize.human_attribute_name(attribute[0])
-        %td
-          = attribute[1]
+= render('shared/show_attributes')
 
 <br/>
 
@@ -67,3 +55,13 @@
         logout
       %td
         = link_to('logout', destroy_user_session_path, method: :delete) if user_signed_in?
+
+<br/>
+%h2
+  Galleries
+%div
+  %table
+    - @resource.galleries.each do |gallery|
+      %tr
+        %td
+          = link_to gallery.name, user_gallery_path(user_id: @resource.id, id: gallery.id)

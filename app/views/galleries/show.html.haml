@@ -1,0 +1,11 @@
+= render('shared/show_attributes')
+%div
+  %h2
+    Pictures
+
+  - @resource.pictures.each do |picture|
+    - if picture.image.attached?
+      .picture
+        = image_tag picture.image
+
+  = link_to 'new', '#'

@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     post '/users/auth/create_user_and_service', to: 'omniauth_callbacks#create_user_and_service', as: :create_user_and_service
   end
 
-  authenticated(:admin) do
-    resources :users, :only => [:show]
+  authenticated(:user) do
+    resources :users, :only => [:show] do
+      resources :galleries
+    end
     root to: "secret#index", as: :authenticated_root
   end
 

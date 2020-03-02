@@ -43,6 +43,11 @@ ru:
       messages:
         record_invalid: Record Invalid - попытка создать запись с ошибоными значениями полей
       models:
+        gallery:
+          attributes:
+            state:
+              blank: Должно быть заполнено
+              inclusion: Может принимать значния active
         tag:
           attributes:
             name:

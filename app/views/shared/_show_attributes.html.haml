@@ -1,0 +1,13 @@
+%div
+  %table
+    %tr
+      %th
+        Attributes
+      %th
+        Values
+    - @resource.attributes.each do |attribute|
+      %tr
+        %td
+          = @resource.class.name.constantize.human_attribute_name(attribute[0])
+        %td
+          = attribute[1]
