@@ -1,0 +1,11 @@
+.admin_image_full_preview
+  .image
+    = attached_image_tag(picture, { width: 100, height: 100 })
+  .image_title
+    = picture.name
+  .image_descrption
+    = picture.description
+  .image_tools.action_items
+    %span.action_item
+      = link_to('View',  admin_picture_path(id: picture.id, back: request.url))
+      = link_to('Edit',  edit_admin_picture_path(id: picture.id, back: request.url), class: 'action_item')

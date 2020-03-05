@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_193639) do
+ActiveRecord::Schema.define(version: 2020_03_04_132521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,27 @@ ActiveRecord::Schema.define(version: 2020_02_29_193639) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "post_type", null: false
+    t.bigint "gallery_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "event_date"
+    t.boolean "seo_flag", default: false
+    t.text "content"
+    t.string "title"
+    t.string "state", null: false
+    t.string "seo_keywords"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_date"], name: "index_blogs_on_event_date"
+    t.index ["gallery_id"], name: "index_blogs_on_gallery_id"
+    t.index ["post_type"], name: "index_blogs_on_post_type"
+    t.index ["seo_flag"], name: "index_blogs_on_seo_flag"
+    t.index ["state"], name: "index_blogs_on_state"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -125,5 +146,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_193639) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blogs", "galleries"
+  add_foreign_key "blogs", "users"
   add_foreign_key "pictures", "galleries"
 end

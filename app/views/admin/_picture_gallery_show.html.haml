@@ -1,0 +1,5 @@
+.section
+  = link_to 'New picture', new_admin_picture_path(the_picture: { gallery_id: gallery.id }, back: defined?(back) ? back : nil ), class: 'button'
+.section
+  - gallery.pictures.each do |picture|
+    = render 'admin/picture_preview', picture: picture

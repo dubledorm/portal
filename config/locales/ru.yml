@@ -1,6 +1,9 @@
 ru:
   activerecord:
     models:
+      blog:
+        one: Заметка
+        other: Заметки
       user:
         one: Пользователь
         other: Пользователи
@@ -11,6 +14,21 @@ ru:
         one: Сервис
         other: Сервисы
     attributes:
+      blog:
+        user: Пользователь
+        post_type: Тип
+        gallery: Галерея
+        event_date: Дата события
+        seo_flag: Seo флаг
+        content: Содержимое
+        title: Заголовок
+        state: Состояние
+        seo_keywords: Ключевые слова
+        description: Описание
+        created_at: Создан
+        updated_at: Изменён
+        main_image: Главная картинка
+        tags: Тэги
       service:
         user: Пользователь
         provider: Провайдер

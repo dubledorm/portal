@@ -1,0 +1,16 @@
+#language: ru
+ru:
+  activerecord:
+    values:
+      blog:
+        post_type:
+          article: Статья
+          event: Событие
+          news_article: Новость
+        state:
+          active: Рабочая
+          deleted: Удалена
+          draft: Черновик
+
+
+
