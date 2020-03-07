@@ -131,6 +131,19 @@ GEM
       activemodel-serializers-xml (>= 1.0)
       activesupport (>= 5.0)
       request_store (>= 1.0)
+    elasticsearch (7.4.0)
+      elasticsearch-api (= 7.4.0)
+      elasticsearch-transport (= 7.4.0)
+    elasticsearch-api (7.4.0)
+      multi_json
+    elasticsearch-model (7.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.0.0)
+    elasticsearch-transport (7.4.0)
+      faraday
+      multi_json
     erubi (1.9.0)
     factory_girl (2.6.4)
       activesupport (>= 2.3.9)
@@ -431,6 +444,8 @@ DEPENDENCIES
   devise
   dotenv-rails
   draper
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails (~> 1.7.0)
   haml
   has_scope
