@@ -33,5 +33,7 @@ RSpec.describe Blog, type: :model do
     it { expect(Blog.search('Блог').records.count).to eq(3) }
     it { expect(Blog.search('блоги').records.count).to eq(3) }
     it { expect(Blog.search('заметка').records.count).to eq(2) }
+    it { expect(Blog.search('заметка язык').records.count).to eq(2) }
+
   end
 end

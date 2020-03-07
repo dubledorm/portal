@@ -13,7 +13,7 @@ RSpec.describe Tag, type: :model do
 
     it { should have_many(:tags_on_objects) }
     it { should have_many(:users) }
-    it { should have_many(:tags) }
+    it { should have_many(:blogs) }
   end
 
   describe 'tag_type' do
