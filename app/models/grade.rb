@@ -20,4 +20,6 @@ class Grade < ApplicationRecord
   validates :grade_type, presence: true, inclusion: { in: GRADE_TYPES }
   validates :user, uniqueness: { scope: [:object, :grade_type] }
   validates :grade_value, allow_nil: true, numericality: { greater_than: 0, less_than_or_equal_to: GRADE_RANGE, only_integer: true }
+
+  scope :by_grade_type, ->(grade_type){ where(grade_type: grade_type) }
 end
