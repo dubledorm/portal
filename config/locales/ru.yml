@@ -13,6 +13,9 @@ ru:
       service:
         one: Сервис
         other: Сервисы
+      grade:
+        one: Оценка
+        other: Оценки
     attributes:
       blog:
         user: Пользователь
@@ -29,6 +32,14 @@ ru:
         updated_at: Изменён
         main_image: Главная картинка
         tags: Тэги
+      grade:
+        user: Пользователь
+        object: Объект
+        grade_type: Тип
+        grade_value: Оценка
+        content: Отзыв
+        created_at: Создан
+        updated_at: Изменён
       service:
         user: Пользователь
         provider: Провайдер
@@ -61,6 +72,14 @@ ru:
       messages:
         record_invalid: Record Invalid - попытка создать запись с ошибоными значениями полей
       models:
+        grade:
+          attributes:
+            grade_value:
+              greater_than: Должно быть больше 0
+              not_an_integer: Должно быть целым числом
+              less_than_or_equal_to: Превышает верхнее разрешённое значение
+            user:
+              taken: Оценку можно дать только один раз
         picture:
           attributes:
             state:

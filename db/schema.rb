@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_132521) do
+ActiveRecord::Schema.define(version: 2020_03_07_154750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,19 @@ ActiveRecord::Schema.define(version: 2020_03_04_132521) do
     t.index ["user_id"], name: "index_galleries_on_user_id"
   end
 
+  create_table "grades", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "object_type"
+    t.bigint "object_id"
+    t.text "content"
+    t.integer "grade_value"
+    t.string "grade_type"
+    t.index ["grade_type"], name: "index_grades_on_grade_type"
+    t.index ["grade_value"], name: "index_grades_on_grade_value"
+    t.index ["object_type", "object_id"], name: "index_grades_on_object_type_and_object_id"
+    t.index ["user_id"], name: "index_grades_on_user_id"
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -148,5 +161,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_132521) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "galleries"
   add_foreign_key "blogs", "users"
+  add_foreign_key "grades", "users"
   add_foreign_key "pictures", "galleries"
 end
