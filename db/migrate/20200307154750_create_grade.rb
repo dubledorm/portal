@@ -5,7 +5,7 @@ class CreateGrade < ActiveRecord::Migration[6.0]
       t.references :object, polymorphic: true
       t.text :content
       t.integer :grade_value
-      t.string :grade_type
+      t.string :grade_type, null: false
     end
 
     add_index :grades, :grade_value
