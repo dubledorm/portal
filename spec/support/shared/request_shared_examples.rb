@@ -24,3 +24,12 @@ RSpec.shared_examples 'get response 404' do
     ap(response.body)
   end
 end
+
+RSpec.shared_examples 'get response 400' do
+  it 'response' do
+    subject
+    expect(response).to have_http_status(400)
+    ap(response.body)
+  end
+end
+

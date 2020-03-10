@@ -65,3 +65,36 @@
       %tr
         %td
           = link_to gallery.name, user_gallery_path(user_id: @resource.id, id: gallery.id)
+<br/>
+%h2
+  Grades
+%div
+  %table
+    - @resource.grades.each do |grade|
+      %tr
+        %td
+          = link_to grade.id, edit_grade_path(grade)
+        %td
+          = grade.user.email
+        %td
+          = grade.grade_type
+        %td
+          = grade.grade_value
+        %td
+          = grade.content
+  <br/>
+  = link_to 'new grade', new_grade_path(user_id: current_user.id, grade_type: :quality, object: { object_id: @resource.id, object_type: 'User' })
+
+<br/>
+%h2
+  GradeAverages
+%div
+  %table
+    - @resource.grade_averages.each do |grade_average|
+      %tr
+        %td
+          = grade_average.id
+        %td
+          = grade_average.grade_type
+        %td
+          = grade_average.grade_value

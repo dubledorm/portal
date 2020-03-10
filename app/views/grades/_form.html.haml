@@ -1,0 +1,16 @@
+= form_with(model: @resource, local: true) do |f|
+  = @resource.errors.full_messages
+  = f.hidden_field(:grade_type)
+  = f.hidden_field(:object_type)
+  = f.hidden_field(:object_id)
+  = f.hidden_field(:user_id)
+
+  %p
+    = f.label(:grade_value)
+    = f.text_field(:grade_value)
+  %p
+    = f.label(:content)
+    = f.text_field(:content)
+
+  %p
+    = f.submit('save')

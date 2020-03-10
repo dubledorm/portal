@@ -16,6 +16,9 @@ ru:
       grade:
         one: Оценка
         other: Оценки
+      grade_average:
+        one: Средняя оценка
+        other: Средние оценки
     attributes:
       blog:
         user: Пользователь
@@ -32,6 +35,14 @@ ru:
         updated_at: Изменён
         main_image: Главная картинка
         tags: Тэги
+      grade_average:
+        user: Пользователь
+        object: Объект
+        grade_type: Тип
+        grade_value: Оценка
+        content: Отзыв
+        created_at: Создан
+        updated_at: Изменён
       grade:
         user: Пользователь
         object: Объект
@@ -80,6 +91,7 @@ ru:
               less_than_or_equal_to: Превышает верхнее разрешённое значение
             user:
               taken: Оценку можно дать только один раз
+              required: Должно быть заполнено
         picture:
           attributes:
             state:
