@@ -6,6 +6,8 @@ class CreateGrade < ActiveRecord::Migration[6.0]
       t.text :content
       t.integer :grade_value
       t.string :grade_type, null: false
+
+      t.timestamps
     end
 
     add_index :grades, :grade_value

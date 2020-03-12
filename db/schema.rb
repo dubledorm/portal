@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_064947) do
+ActiveRecord::Schema.define(version: 2020_03_12_194540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,34 @@ ActiveRecord::Schema.define(version: 2020_03_08_064947) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "articles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "gallery_id"
+    t.text "main_description"
+    t.text "short_description"
+    t.string "state", null: false
+    t.string "article_type", null: false
+    t.integer "min_quantity"
+    t.integer "max_quantity"
+    t.integer "min_age"
+    t.integer "max_age"
+    t.string "seo_description"
+    t.string "seo_keywords"
+    t.integer "duration_minutes"
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_type"], name: "index_articles_on_article_type"
+    t.index ["gallery_id"], name: "index_articles_on_gallery_id"
+    t.index ["max_age"], name: "index_articles_on_max_age"
+    t.index ["max_quantity"], name: "index_articles_on_max_quantity"
+    t.index ["min_age"], name: "index_articles_on_min_age"
+    t.index ["min_quantity"], name: "index_articles_on_min_quantity"
+    t.index ["name"], name: "index_articles_on_name"
+    t.index ["state"], name: "index_articles_on_state"
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "post_type", null: false
     t.bigint "gallery_id", null: false
@@ -99,6 +127,8 @@ ActiveRecord::Schema.define(version: 2020_03_08_064947) do
     t.integer "grade_value"
     t.integer "grade_count"
     t.string "grade_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["grade_type"], name: "index_grade_averages_on_grade_type"
     t.index ["grade_value"], name: "index_grade_averages_on_grade_value"
     t.index ["object_type", "object_id"], name: "index_grade_averages_on_object_type_and_object_id"
@@ -111,6 +141,8 @@ ActiveRecord::Schema.define(version: 2020_03_08_064947) do
     t.text "content"
     t.integer "grade_value"
     t.string "grade_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["grade_type"], name: "index_grades_on_grade_type"
     t.index ["grade_value"], name: "index_grades_on_grade_value"
     t.index ["object_type", "object_id"], name: "index_grades_on_object_type_and_object_id"
@@ -170,6 +202,8 @@ ActiveRecord::Schema.define(version: 2020_03_08_064947) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "galleries"
+  add_foreign_key "articles", "users"
   add_foreign_key "blogs", "galleries"
   add_foreign_key "blogs", "users"
   add_foreign_key "grades", "users"
