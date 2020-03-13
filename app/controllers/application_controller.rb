@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from ActionController::ParameterMissing, :with => :render_400
   rescue_from ActionController::BadRequest, :with => :render_400
+  rescue_from CanCan::AccessDenied, with: :render_403
+
+  # Нет прав длядоступа к объекту
+  def render_403(e)
+    Rails.logger.error(e.message)
+    render 'errors/403', status: :forbidden
+  end
 
   # страница не найдена
   def render_404(e)

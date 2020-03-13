@@ -11,18 +11,22 @@ class ArticlesController < ApplicationController
 
   def show
     get_resource
+    raise CanCan::AccessDenied unless can? :read, @resource
   end
 
   def index
+    raise CanCan::AccessDenied unless can? :read, Article
     get_collection
   end
 
   def new
+    raise CanCan::AccessDenied unless can? :new, Article
     @resource = Article.new(user_id: params.required(:user_id))
   end
 
   def edit
     get_resource
+    raise CanCan::AccessDenied unless can? :edit, @resource
   end
 
 
@@ -37,6 +41,7 @@ class ArticlesController < ApplicationController
 
   def update
     get_resource
+    raise CanCan::AccessDenied unless can? :update, @resource
     @resource.update(article_params)
     if @resource.errors.count > 0
       render :edit
