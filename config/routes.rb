@@ -18,10 +18,12 @@ Rails.application.routes.draw do
     end
 
     resources :grades
+    resources :articles
     root to: "secret#index", as: :authenticated_root
   end
 
   resources :grades, only: [:index, :show]
+  resources :articles, only: [:index, :show]
   root to: 'home#index'
 end
 

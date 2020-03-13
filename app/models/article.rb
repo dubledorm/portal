@@ -17,7 +17,13 @@ class Article < ApplicationRecord
   validates :min_age, :max_age, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :duration_minutes, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
-
+  scope :by_article_type, ->(article_type){ where(article_type: article_type) }
+  scope :by_state, ->(state){ where(state: state) }
+  scope :by_user, ->(user){ where(user: user) }
+  scope :greater_than_min_age, ->(min_age){ where('min_age <= ?', min_age) }
+  scope :less_than_max_age, ->(max_age){ where('max_age >= ?', max_age) }
+  scope :greater_than_min_quantity, ->(min_quantity){ where('min_quantity <= ?', min_quantity) }
+  scope :less_than_max_quantity, ->(max_quantity){ where('max_quantity >= ?', max_quantity) }
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks

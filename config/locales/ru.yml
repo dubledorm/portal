@@ -1,6 +1,10 @@
 ru:
   activerecord:
     models:
+      article:
+        one: 'Позиция номенклатуры'
+        two: 'Позиции номенклатуры'
+        other: 'Номенклатура'
       blog:
         one: Заметка
         other: Заметки
@@ -20,6 +24,27 @@ ru:
         one: Средняя оценка
         other: Средние оценки
     attributes:
+      article:
+        id: "Ид-р"
+        name: "Название"
+        user_id: Пользователь
+        gallery_id: Галерея
+        state: "Состояние"
+        state_s: "Состояние"
+        article_type: "Тип"
+        min_quantity: "Минимальный заказ"
+        max_quantity: "Максимальный заказ"
+        duration_minutes: "Длительность (мин.)"
+        min_age: "Минимальный возраст"
+        max_age: "Максимальный возраст"
+        short_description: "Краткое описание"
+        main_description: "Описание"
+        gallery: "Фотографии"
+        main_image: Картинка обложки
+        seo_description: "SEO описание"
+        seo_keywords: "SEO ключевые слова"
+        created_at: Создан
+        updated_at: Изменён
       blog:
         user: Пользователь
         post_type: Тип

@@ -1,0 +1,11 @@
+%div
+  %table
+    %tr
+      - locals[:object_class].columns.map(&:name).each do |attribute|
+        %th
+          = attribute
+    - @collection.each do |record|
+      %tr
+        - locals[:object_class].columns.map(&:name).each do |attribute|
+          %td
+            = record.send(attribute)
