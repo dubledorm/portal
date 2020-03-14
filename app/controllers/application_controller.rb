@@ -33,6 +33,49 @@ class ApplicationController < ActionController::Base
     render 'errors/500', status: 500
   end
 
+
+  def show
+    get_resource
+    raise CanCan::AccessDenied unless can? :read, @resource
+    yield if block_given?
+  end
+
+  def index
+    raise CanCan::AccessDenied unless can? :read, get_resource_class
+    get_collection
+    yield if block_given?
+  end
+
+  def new
+    raise CanCan::AccessDenied unless can? :new, get_resource_class
+    yield if block_given?
+  end
+
+  def create
+    raise CanCan::AccessDenied unless can? :create, get_resource_class
+    yield
+  end
+
+  def update
+    get_resource
+    raise CanCan::AccessDenied unless can? :update, @resource
+    yield
+  end
+
+  def destroy
+    get_resource
+    raise CanCan::AccessDenied unless can? :desctroy, @resource
+    ActiveRecord::Base.transaction do
+      @resource.destroy!
+    end
+  end
+
+  def edit
+    get_resource
+    raise CanCan::AccessDenied unless can? :edit, @resource
+  end
+
+
   protected
 
   def configure_permitted_parameters

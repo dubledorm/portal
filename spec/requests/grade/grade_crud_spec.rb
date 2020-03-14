@@ -17,10 +17,6 @@ RSpec.describe 'Grade', type: :request do
         subject { get(grades_path(grade_type: grade1.grade_type)) }
       end
 
-      # it_should_behave_like 'get response 400' do
-      #   subject { get(grades_path(grade_type: grade1.grade_type, object: 1)) }
-      # end
-
       it_should_behave_like 'get response 400' do
         subject { get(grades_path(grade_type: grade1.grade_type, object: {object_id: grade1.object_id})) }
       end
@@ -55,16 +51,46 @@ RSpec.describe 'Grade', type: :request do
   describe 'update#' do
     include DeviseSupport
     let!(:user1) { FactoryGirl.create :user }
-    let!(:grade) { FactoryGirl.create :grade, object: user1 }
-    let(:subject) { put(grade_path(grade), params: { grade: { grade_value: 1 } }) }
+
+    context 'when we are owner of the record' do
+      let(:grade) { FactoryGirl.create :grade, object: user1, user: @user }
+      let(:subject) { put(grade_path(grade), params: { grade: { grade_value: 1 } }) }
+
+      before :each do
+        sign_in_user
+        subject
+        grade.reload
+      end
+
+      it { expect(grade.grade_value).to eq(1) }
+      it { expect(GradeAverage.first.grade_value).to eq(1) }
+    end
+
+    context 'when we are not owner of the record' do
+      let!(:grade) { FactoryGirl.create :grade, object: user1 }
+
+      before :each do
+        sign_in_user
+      end
+
+      it_should_behave_like 'get response 403' do
+        subject { put(grade_path(grade), params: { grade: { grade_value: 1 } })  }
+      end
+    end
+  end
+
+  describe 'delete#' do
+    include DeviseSupport
+    let!(:user1) { FactoryGirl.create :user }
+    let(:grade) { FactoryGirl.create :grade, object: user1, user: @user }
+    let!(:grade1) { FactoryGirl.create :grade, object: user1 }
 
     before :each do
       sign_in_user
-      subject
-      grade.reload
+      grade.save
     end
 
-    it { expect(grade.grade_value).to eq(1) }
-    it { expect(GradeAverage.first.grade_value).to eq(1) }
+    it { expect{ delete(grade_path(grade)) }.to change(Grade, :count).by(-1) }
+    it { expect{ delete(grade_path(grade1)) }.to change(Grade, :count).by(0) }
   end
 end

@@ -9,45 +9,33 @@ class ArticlesController < ApplicationController
   has_scope :greater_than_min_quantity, as: :min_quantity
   has_scope :less_than_max_quantity, as: :max_quantity
 
-  def show
-    get_resource
-    raise CanCan::AccessDenied unless can? :read, @resource
-  end
-
-  def index
-    raise CanCan::AccessDenied unless can? :read, Article
-    get_collection
-  end
 
   def new
-    raise CanCan::AccessDenied unless can? :new, Article
-    @resource = Article.new(user_id: params.required(:user_id))
+    super do
+      @resource = Article.new(user_id: params.required(:user_id))
+    end
   end
-
-  def edit
-    get_resource
-    raise CanCan::AccessDenied unless can? :edit, @resource
-  end
-
 
   def create
-    @resource = Article.create(article_params)
-    unless @resource.persisted?
-      render :new
-      return
+    super do
+      @resource = Article.create(article_params)
+      unless @resource.persisted?
+        render :new
+        return
+      end
+      redirect_to article_path(@resource)
     end
-    redirect_to article_path(@resource)
   end
 
   def update
-    get_resource
-    raise CanCan::AccessDenied unless can? :update, @resource
-    @resource.update(article_params)
-    if @resource.errors.count > 0
-      render :edit
-      return
+    super do
+      @resource.update(article_params)
+      if @resource.errors.count > 0
+        render :edit
+        return
+      end
+      redirect_to article_path(@resource)
     end
-    redirect_to article_path(@resource)
   end
 
   private

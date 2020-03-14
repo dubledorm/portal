@@ -2,11 +2,14 @@ module BaseConcern
   extend ActiveSupport::Concern
 
   def get_resource
-    resource_class = controller_name.classify
-    @resource = resource_class.constantize.find(params.required(:id))
+    @resource = get_resource_class.find(params.required(:id))
   end
 
   def get_collection
-    @collection = apply_scopes(controller_name.classify.constantize).all
+    @collection = apply_scopes(get_resource_class).all
+  end
+
+  def get_resource_class
+    controller_name.classify.constantize
   end
 end

@@ -5,12 +5,17 @@ class Ability
 
   def initialize(user)
 
+    can :read, :all
+
     if user.nil?
-      can :read, Article
       return
     end
 
+
     can :manage, Article, user_id: user.id
+    can :manage, Grade, user_id: user.id
+    can :manage, GradeAverage, user_id: user.id
+    can :manage, User, id: user.id
 
 
     # Define abilities for the passed in user here. For example:
