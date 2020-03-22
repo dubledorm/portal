@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   include BaseConcern
 
-  rescue_from Exception, :with => :render_500
-  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
-  rescue_from ActionController::ParameterMissing, :with => :render_400
-  rescue_from ActionController::BadRequest, :with => :render_400
+  rescue_from Exception, with: :render_500
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+  rescue_from ActionController::ParameterMissing, with: :render_400
+  rescue_from ActionController::BadRequest, with: :render_400
   rescue_from CanCan::AccessDenied, with: :render_403
 
   # Нет прав длядоступа к объекту
@@ -64,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def destroy
     get_resource
-    raise CanCan::AccessDenied unless can? :desctroy, @resource
+    raise CanCan::AccessDenied unless can? :destroy, @resource
     ActiveRecord::Base.transaction do
       @resource.destroy!
     end
@@ -73,8 +73,8 @@ class ApplicationController < ActionController::Base
   def edit
     get_resource
     raise CanCan::AccessDenied unless can? :edit, @resource
+    yield if block_given?
   end
-
 
   protected
 

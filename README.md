@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Заготовка для разработки
 
-Things you may want to cover:
+Функцинальные возможности:
 
-* Ruby version
+* User - аутентификация через Device, с подтверждением почтового аккаунта.
 
-* System dependencies
+* Аутентификация через социальные сети с использованием модуля omniauth. Сейчас работает аутентификация через VK, GitHub, FaceBook
 
-* Configuration
+* Раздача прав доступа через cancan. Настройка на изменение собственных объектов и просмотр всех остальных кроме User. User просматривает только создатель.
 
-* Database creation
+* Настройка routes на различный набор маршрутов при аутентификации пользователя и без неё
 
-* Database initialization
+* Подключен active_store
 
-* How to run the test suite
+* Модели Gallery + Picture с сохранением картинок в active_store
 
-* Services (job queues, cache servers, search engines, etc.)
+* Тэгирование объектов. Модель Tag и концерн taggable_concern
 
-* Deployment instructions
+* Модель Blog для построения любых текстовых заметок
 
-* ...
+* Модель Article для постороения списка товаров и услуг
+
+* Подключен ElasticSearch для организации полнотекстового поиска. Настроены модели Blog и Article
+
+* Выставление оценок и оставление отзывов о любом объекте. Модели Grade, GradeAverage (усреднённая оценка по разным пользователям)
+grade_concern для подключения к объектам возможности выставлять оценки
+
+* ActiveAdmin для управления и администрирования
+
+* Базовый контроллер ApplicationController. Обрабатывает основные критические ошибки, предоставляет CRUD.
+
+* Контроллер Grade для с расчётом средних значений по оценкам объектов
+
+* Контроллер Article, предоставлет CRUD
+
+* Контроллеры Gallery, Picture, User
+
+* HomeController - root страница для не аутентифицированного доступа
+
+* SecretController - - root страница после аутентификации

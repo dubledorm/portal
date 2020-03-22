@@ -1,19 +1,20 @@
 # encoding: utf-8
 class GalleriesController < ApplicationController
-  def show
-    get_resource
-  end
-
-  def index
-    get_collection
-  end
-
   def new
-    @user = User.find(params.required(:user_id))
-    @resource = Gallery.new(user_id: params.required(:user_id))
+    super do
+      @user = User.find(params.required(:user_id))
+      @resource = Gallery.new(user_id: params.required(:user_id))
+    end
+  end
+
+  def edit
+    super do
+      @user = current_user
+    end
   end
 
   def create
+    super do
       @resource = Gallery.create(gallery_params.merge({ state: 'active' }))
       if @resource.persisted?
         redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
@@ -21,6 +22,18 @@ class GalleriesController < ApplicationController
       end
       @user = User.find(params[:user_id])
       render :new
+    end
+  end
+
+  def update
+    super do
+      @resource.update(gallery_params)
+      if @resource.errors.count > 0
+        render :edit
+        return
+      end
+      redirect_to gallery_path(@resource)
+    end
   end
 
   private

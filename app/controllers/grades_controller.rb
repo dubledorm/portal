@@ -19,11 +19,6 @@ class GradesController < ApplicationController
     end
   end
 
-  # def edit
-  #   get_resource
-  # end
-
-
   def create
     super do
       ActiveRecord::Base.transaction do
