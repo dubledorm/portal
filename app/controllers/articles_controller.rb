@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
   has_scope :greater_than_min_quantity, as: :min_quantity
   has_scope :less_than_max_quantity, as: :max_quantity
 
-
   def new
     super do
       @resource = Article.new(user_id: params.required(:user_id))
