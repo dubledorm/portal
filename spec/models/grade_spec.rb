@@ -37,4 +37,15 @@ RSpec.describe Grade, type: :model do
       it { expect(FactoryGirl.build(:grade, user: user1, object: blog)).to be_valid }
     end
   end
+
+  describe 'scope#' do
+    let!(:grade) {FactoryGirl.create :grade, grade_type: :quality }
+    let!(:grade1) {FactoryGirl.create :grade, grade_type: :interestingness }
+    let!(:grade2) {FactoryGirl.create :grade, grade_type: :politeness }
+
+    it { expect(Grade.by_grade_type(:quality).count).to eq(1) }
+    it { expect(Grade.by_grade_type(:interestingness).first).to eq(grade1) }
+    it { expect(Grade.by_object(grade2.object_id, grade2.object_type).first).to eq(grade2) }
+    it { expect(Grade.by_object(grade2.object_id, grade2.object_type).count).to eq(1) }
+  end
 end
