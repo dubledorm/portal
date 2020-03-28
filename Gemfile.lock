@@ -92,6 +92,10 @@ GEM
     autotest-rails-pure (4.1.2)
     autotest-standalone (4.5.11)
     awesome_print (1.8.0)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.5)
@@ -110,6 +114,7 @@ GEM
     chronic (0.10.2)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
@@ -145,6 +150,7 @@ GEM
       faraday
       multi_json
     erubi (1.9.0)
+    execjs (2.7.0)
     factory_girl (2.6.4)
       activesupport (>= 2.3.9)
     factory_girl_rails (1.7.0)
@@ -311,6 +317,12 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    react-rails (2.6.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.0)
@@ -470,6 +482,7 @@ DEPENDENCIES
   rack_session_access
   rails (~> 6.0.0.rc1)
   rails-controller-testing
+  react-rails
   rolify
   rspec-rails (~> 4.0.0.rc1)
   rubocop-rails

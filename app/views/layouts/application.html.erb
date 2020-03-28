@@ -7,11 +7,14 @@
 
     <%= stylesheet_pack_tag 'main_application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'tick_react' %>
+    <%= javascript_pack_tag 'hello_react' %>
   </head>
 
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    <div id = "root"></div>
   </body>
 </html>

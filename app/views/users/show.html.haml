@@ -66,6 +66,11 @@
         %td
           = link_to gallery.name, user_gallery_path(user_id: @resource.id, id: gallery.id)
 <br/>
+
+%h2
+  GradeAverage
+%div
+  = react_component('GradeAverage', { name: 'Качество', value: @resource.grade_averages.by_grade_type(:quality).first.grade_value })
 %h2
   Grades
 %div
