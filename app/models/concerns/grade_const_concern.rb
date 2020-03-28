@@ -3,6 +3,8 @@ module GradeConstConcern
   extend ActiveSupport::Concern
   included do
 
+    # Если меняется GRADE_TYPES, то надо изменить human_attribute_value.ru.yml,
+    # чтобы типы нормально отображались функцией human_attribute_value(:grade_type)
     GRADE_TYPES = %w(quality interestingness politeness).freeze
     GRADE_RANGE = 10
 

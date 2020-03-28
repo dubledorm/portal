@@ -1,5 +1,6 @@
 class Grade < ApplicationRecord
   include GradeConstConcern
+  include HumanAttributeValue
 
   # Grade(оценка) используются для оценки какого-то объекта.
   # Например выполненного заказа или Исполнителя зааказа

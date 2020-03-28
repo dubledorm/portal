@@ -68,10 +68,6 @@
 <br/>
 
 %h2
-  GradeAverage
-%div
-  = react_component('GradeAverage', { name: 'Качество', value: @resource.grade_averages.by_grade_type(:quality).first.grade_value })
-%h2
   Grades
 %div
   %table
@@ -82,7 +78,7 @@
         %td
           = grade.user.email
         %td
-          = grade.grade_type
+          = grade.human_attribute_value(:grade_type)
         %td
           = grade.grade_value
         %td
@@ -96,13 +92,8 @@
 %div
   %table
     - @resource.grade_averages.each do |grade_average|
-      %tr
-        %td
-          = grade_average.id
-        %td
-          = grade_average.grade_type
-        %td
-          = grade_average.grade_value
+      = react_component('GradeAverage', { name: grade_average.human_attribute_value(:grade_type), value: grade_average.grade_value })
+      <br/>
 <br/>
 %div
   = link_to 'New article', new_article_path(user_id: current_user.id)

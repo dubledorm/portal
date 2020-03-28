@@ -1,5 +1,6 @@
 class GradeAverage < ApplicationRecord
   include GradeConstConcern
+  include HumanAttributeValue
 
   # GradeAverage(cредняя оценка)
   # Вычисляется на основании выставленных оценок Grade, с учётом типа оценки grade_type
@@ -7,6 +8,11 @@ class GradeAverage < ApplicationRecord
   # Количество типов регулируется массивом GRADE_TYPES - его надо настроить под собственные нужды
   # Вычисляется и создаётся с помощью ActiveJob после добавления, изменения, удаления Grade
   # На один объект может быть выставлена только одна оценка одного типа
+  #
+  # Подключенный модуль HumanAttributeValue позволяет отображать grade_type по русски
+  # Для этого нужно прописать human_attribute_value.ru.yml
+  # после чего пользоваться функцией
+  # grade_average.human_attribute_value(:grade_type),
 
   belongs_to :object, polymorphic: true
 

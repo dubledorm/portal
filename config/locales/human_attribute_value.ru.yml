@@ -11,6 +11,15 @@ ru:
           active: Рабочая
           deleted: Удалена
           draft: Черновик
-
+      grade_average:
+        grade_type:
+          quality: Качество
+          interestingness: Интересность
+          politeness: Вежливость
+      grade:
+        grade_type:
+          quality: Качество
+          interestingness: Интересность
+          politeness: Вежливость
 
 
