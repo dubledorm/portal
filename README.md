@@ -31,7 +31,7 @@ grade_concern для подключения к объектам возможно
 
 * Базовый контроллер ApplicationController. Обрабатывает основные критические ошибки, предоставляет CRUD.
 
-* Контроллер Grade для с расчётом средних значений по оценкам объектов
+* Контроллер Grade для расчёта средних значений по оценкам объектов
 
 * Контроллер Article, предоставлет CRUD
 
@@ -39,4 +39,25 @@ grade_concern для подключения к объектам возможно
 
 * HomeController - root страница для не аутентифицированного доступа
 
-* SecretController - - root страница после аутентификации
+* SecretController - root страница после аутентификации
+
+* React, подключен react-rails. Пример компонента в javascript/components
+
+## React
+Для создание нового компонента проще использовать генератор 
+  rails g react:component HelloWorld greeting:string
+
+The generator also accepts options:
+
+  --es6: use class ComponentName extends React.Component
+  
+  --coffee: use CoffeeScript
+
+## GradeAverage и Grade
+Подробно описаны в исходниках.
+
+К модели, на которую хотим выставлять оценки подключить концерн GradeConcern
+
+Типы оценок выставить под требования в массие GRADE_TYPES в GradeConstConcern.
+Для того, чтобы типы оценок выводить в нужной локали нужно выставить в файле human_attribute_value.ru.yml 
+их соответствия.
