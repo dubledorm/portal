@@ -2,6 +2,14 @@
 ru:
   activerecord:
     values:
+      article:
+        article_type:
+          service: Услуга
+          product: Товар
+        state:
+          active: Активно
+          deleted: Удалено
+          draft: Черновик
       blog:
         post_type:
           article: Статья
