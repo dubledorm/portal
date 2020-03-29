@@ -6,9 +6,9 @@ class Blog < ApplicationRecord
   BLOG_STATES = %w(active deleted draft).freeze
 
   belongs_to :user
-  belongs_to :gallery
+  belongs_to :gallery, optional: true # Может быть добавлнена галерея с картинками
 
-  has_one_attached :main_image
+  has_one_attached :main_image # Может иметь одну основную картинку
 
   validates :post_type, :state, :title, presence: true
   validates :post_type, inclusion: { in: BLOG_TYPES }

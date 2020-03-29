@@ -6,9 +6,9 @@ class Article < ApplicationRecord
   ARTICLE_STATES = %w(active deleted draft).freeze
 
   belongs_to :user
-  belongs_to :gallery, optional: true
+  belongs_to :gallery, optional: true # Может быть добавлнена галерея с картинками
 
-  has_one_attached :main_image
+  has_one_attached :main_image        # Может иметь одну основную картинку
 
   validates :article_type, :state, :name, presence: true
   validates :article_type, inclusion: { in: ARTICLE_TYPES }
