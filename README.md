@@ -106,7 +106,7 @@ include GradeConcern
 
 ### Подключение картинок
 
-* Весь статический медиа контент кладём в папку images. Можно разбить её на подрарки.
+* Весь статический медиа контент кладём в папку images. Можно разбить её на подпапки.
 
 * Для формирования правильных URL из view нужно использовать хелпер asset_pack_path
 
@@ -115,6 +115,13 @@ include GradeConcern
 <link rel="shortcut icon" type="image/x-icon" href="<% asset_pack_path 'media/images/favicon.ico' %>" />
 
 При этом, префикс маршрута media/ надо добавлять в ручную.
+
+* Для вывода картинок использовать хелпер image_pack_tag
+Например:
+
+<%= image_pack_tag 'media/images/libra/libra-logo1.png', title: 'Libra',  alt: 'Libra' %>
+
+Правильный маршрут до картинки можно найтив файле manifest.json
 
 
 ### Подключение css
