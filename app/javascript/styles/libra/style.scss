@@ -315,7 +315,7 @@ h1 span, h2 span, h3 span, h4 span, h5 span, h6 span { color: #919303; }
 #nav .megamenu ul.sub-menu li ul li:first-child { padding-top: 0 }
 /*indicators*/
 #nav a.sf-with-ul{ min-width:1px; padding-right: 15px; }
-#nav .sf-sub-indicator{display:block; width:8px; height:5px; text-indent:-999em; background: url('../../images/libra/menu/menu-arrow.png') bottom left; position:absolute; top:16px; right:13px; }
+#nav .sf-sub-indicator{display:block; width:8px; height:5px; text-indent:-999em; background: url('../../images/libra/menu/menu-arrow.png') bottom left; position:absolute; top:16px; right:1px; }
 #nav a:focus >.sf-sub-indicator, 
 #nav a:hover >.sf-sub-indicator, 
 #nav a:active >.sf-sub-indicator, 
