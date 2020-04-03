@@ -1,0 +1,24 @@
+<section id="recent-works">
+  <div class="container">
+    <div class="center fadeInDown">
+      <h2>Recent Works</h2>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+    </div>
+
+    <div class="row">
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-1.png'}) %>
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-2.png'}) %>
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-3.png'}) %>
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-4.png'}) %>
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-5.png'}) %>
+      <%= render('layouts/template_parts/pretty_photo', locals: { image_url: 'images/portfolio/item-6.png'}) %>
+    </div>
+    <!--/.row-->
+    <div class="clearfix text-center">
+      <br>
+      <br>
+      <%= link_to 'Show More', '#', class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <!--/.container-->
+</section>

@@ -1,0 +1,10 @@
+<div class="col-xs-12 col-sm-6 col-md-4 single-work">
+  <div class="recent-work-wrap">
+    <%= image_tag locals[:image_url], class: 'img-responsive', alt: '' %>
+    <div class="overlay">
+      <div class="recent-work-inner">
+        <a class="preview" href=<%= asset_url(locals[:image_url]) %> rel="prettyPhoto"><i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
