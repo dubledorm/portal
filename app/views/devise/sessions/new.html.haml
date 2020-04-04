@@ -6,17 +6,26 @@
     text: I18n.t('forms.login.title_text', sign_up: link_to(I18n.t('forms.login.sign_up_word'), new_user_registration_path)) })
 
     .row.contact-wrap
-      .status.alert.alert-success{:style => "display: none"}
+      -# Сообщения об ошибках
+      = render('shared/alert_notice')
+
+      -# Вход для зарегистрированных пользоватеоей
       .col-sm-5.col-sm-offset-1
         = render('login_form')
+
+      -# Регистрация и решение проблем
       .col-sm-5
-        %div
-          = render('email_service_links')
         %div
           %h3
             = I18n.t('forms.login.not_registration')
           .center
-            = link_to(I18n.t('forms.login.sign_up_word'), new_user_registration_path)
+            = link_to(I18n.t('forms.login.sign_up_word'), new_user_registration_path, class: 'btn btn-success')
+        %div
+          %hr
+          %h3
+            = I18n.t('forms.login.troubles')
+          = render('email_service_links')
+
 
 %section#term-of-service
   = render('shared/terms_of_service_short')
