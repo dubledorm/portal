@@ -8,7 +8,7 @@ module Auth
                               'vkontakte' => Auth::ServicesDescr::Vkontakte.new }.freeze
 
     def initialize(service_descr_type)
-      @service_descr = KNOWN_SERVICES_DESCR[service_descr_type]
+      @service_descr = KNOWN_SERVICES_DESCR[service_descr_type.to_s]
       @service_descr_name = service_descr_type.capitalize
       raise Auth::OmniAuthError, I18n.t('get_auth_data.provider_name_error',
                                   provider_name: service_descr_name) if service_descr.nil?

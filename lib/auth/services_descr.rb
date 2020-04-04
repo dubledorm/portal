@@ -30,7 +30,7 @@ module Auth::ServicesDescr
     end
 
     def icon_name
-      'facebook_64.png'
+      'fa-facebook'
     end
   end
 
@@ -51,7 +51,7 @@ module Auth::ServicesDescr
     end
 
     def icon_name
-      'github_64.png'
+      'fa-github'
     end
   end
 
@@ -71,7 +71,7 @@ module Auth::ServicesDescr
     end
 
     def icon_name
-      'vkontakte_64.png'
+      'fa-vk'
     end
   end
 end

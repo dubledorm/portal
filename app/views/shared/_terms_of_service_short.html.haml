@@ -1,0 +1,15 @@
+.container
+  .center.fadeInDown
+    %h2
+      = I18n.t('forms.login.terms_of_service')
+    %p.lead
+      = simple_format(I18n.t('forms.login.service_preview'))
+  .blog
+    .row.col-md-8
+      .blog-item
+        .blog-content
+          %h3
+            = simple_format(I18n.t('terms_of_service_main_short'))
+          = link_to 'blog-item.html', class: 'readmore' do
+            = I18n.t('read_more')
+            %i.fa.fa-long-arrow-right

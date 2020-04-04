@@ -1,0 +1,22 @@
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('forms.login.title') })
+
+%section#contact-page
+  .container
+    = render('layouts/template_parts/large_title', locals: { title: I18n.t('forms.login.large_title'),
+    text: I18n.t('forms.login.title_text', sign_up: link_to(I18n.t('forms.login.sign_up_word'), new_user_registration_path)) })
+
+    .row.contact-wrap
+      .status.alert.alert-success{:style => "display: none"}
+      .col-sm-5.col-sm-offset-1
+        = render('login_form')
+      .col-sm-5
+        %div
+          = render('email_service_links')
+        %div
+          %h3
+            = I18n.t('forms.login.not_registration')
+          .center
+            = link_to(I18n.t('forms.login.sign_up_word'), new_user_registration_path)
+
+%section#term-of-service
+  = render('shared/terms_of_service_short')

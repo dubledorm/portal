@@ -1,0 +1,6 @@
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  = link_to I18n.t('forms.login.do_not_receive_confirmation_email'), new_confirmation_path(resource_name)
+
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  %br
+  = link_to I18n.t('forms.login.do_not_receive_unlock_instruction'), new_unlock_path(resource_name)

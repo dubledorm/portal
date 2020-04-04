@@ -2,3 +2,6 @@ ru:
   menu:
     resources: Ресурсы
     configure: Настройка
+  main_menu:
+    login: Войти
+    logout: Выйти
