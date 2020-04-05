@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_194540) do
+ActiveRecord::Schema.define(version: 2020_04_05_135509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_194540) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "post_type", null: false
-    t.bigint "gallery_id", null: false
+    t.bigint "gallery_id"
     t.bigint "user_id", null: false
     t.datetime "event_date"
     t.boolean "seo_flag", default: false

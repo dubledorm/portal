@@ -64,4 +64,11 @@ RSpec.describe GradeConcern, type: :model do
     it { expect(User.sort_by_grade(:quality).pluck(:id)).to eq([user3.id, user2.id, user1.id ]) }
     it { expect(User.sort_by_grade(:quality, :asc).pluck(:id)).to eq([user1.id, user2.id, user3.id ]) }
   end
+
+  describe 'delete object with grade' do
+    let!(:blog) {FactoryGirl.create :blog}
+    let!(:grade) {FactoryGirl.create :grade, object: blog }
+
+    it { expect{ blog.destroy! }.to change(Blog, :count).by(-1) }
+  end
 end

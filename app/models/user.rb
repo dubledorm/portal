@@ -8,8 +8,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :omniauthable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, omniauth_providers: [:github, :facebook, :vkontakte]
 
-  has_many :services, :dependent => :destroy
-  has_many :galleries, :dependent => :destroy
+  has_many :services, dependent: :destroy
+  has_many :galleries, dependent: :destroy
   has_many :pictures, through: :galleries
+  has_many :articles, dependent: :destroy
+  has_many :blogs, dependent: :destroy
+
+
   has_one_attached :avatar
 end
