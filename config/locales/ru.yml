@@ -90,6 +90,7 @@ ru:
         email: Email
         password: Пароль
         password_confirmation: Подтверждение пароля
+        current_password: Текущий пароль
         created_at: Создан
         updated_at: Изменён
         confirmation_token: Токен для подтверждения
@@ -149,4 +150,5 @@ ru:
             password_confirmation:
               blank: Поле Подтверждение пароля должно быть заполнено
               confirmation: Подтверждение пароля не совпадает с паролем
-
+            current_password:
+              blank: Поле Текущий пароль должно быть заполнено

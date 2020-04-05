@@ -1,0 +1,27 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), name: 'sign-up-form', class: 'main-contact-form.contact-form') do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
+  .form-group
+    = f.label :password
+    %i
+      = "(#{I18n.t('forms.edit_user.leave_blank')})"
+    = f.password_field :password, autocomplete: 'new-password', class: 'form-control'
+    - if @minimum_password_length
+      %br/
+      %em
+        = @minimum_password_length
+        = I18n.t('forms.edit_user.characters_min')
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'
+  .form-group
+    = f.label :current_password
+    %i
+      = "(#{I18n.t('forms.edit_user.need_current_password')})"
+    = f.password_field :current_password, autocomplete: 'current_password', class: 'form-control'
+    %hr
+
+  .form-group
+    %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
+      = I18n.t('forms.edit_user.change')
