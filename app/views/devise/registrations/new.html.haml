@@ -1,0 +1,14 @@
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('forms.sign_up.title') })
+
+%section#contact-page
+  .container
+    = render('layouts/template_parts/large_title', locals: { title: I18n.t('forms.sign_up.large_title'),
+    text: I18n.t('forms.sign_up.title_text') })
+
+    .row.contact-wrap
+      -# Сообщения об ошибках
+      = render('shared/alert_notice')
+
+      -# Форма регистрации
+      .col-sm-5.col-sm-offset-1
+        = render('sign_up_form')

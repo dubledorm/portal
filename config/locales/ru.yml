@@ -89,6 +89,7 @@ ru:
         sign_in_count: Всего раз входил
         email: Email
         password: Пароль
+        password_confirmation: Подтверждение пароля
         created_at: Создан
         updated_at: Изменён
         confirmation_token: Токен для подтверждения
@@ -138,7 +139,14 @@ ru:
         user:
           attributes:
             email:
-              blank: Поле Email должно быть заполнено
+              blank: Поле EMail должно быть заполнено
+              taken: Такой EMail уже используется
             confirmation_token:
               blank: Не заполнен confirmation_token
+            password:
+              blank: Поле Пароль должно быть заполнено
+              too_short: Пароль слишком короткий
+            password_confirmation:
+              blank: Поле Подтверждение пароля должно быть заполнено
+              confirmation: Подтверждение пароля не совпадает с паролем
 
