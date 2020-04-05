@@ -72,6 +72,28 @@ shared_examples 'do_omniauth' do
       it_should_behave_like 'should not add service to user'
     end
 
+    context 'when user already exists and signed in and service exists and we add another service' do
+      let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
+      let!(:service) { FactoryGirl.create(:service, uemail: 'another_email@email.info',
+                                          provider: controller_action.to_s + '_another_service',
+                                          uid: 'uid123',
+                                          user: user) }
+      before :each do
+        sign_in(user)
+      end
+
+      it_should_behave_like 'redirect to authenticated_root'
+
+      # НЕ должен создавать пользователя
+      it_should_behave_like 'should not create user'
+
+      # должен создавать service
+      it_should_behave_like 'should create service'
+
+      # должен присоединять service к user
+      it_should_behave_like 'should add service to user'
+    end
+
     context 'when user already exists and signed in and service exists but for another user' do
       let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
       let!(:another_user) { FactoryGirl.create(:user, email: 'another_user@email.info') }
@@ -113,6 +135,8 @@ shared_examples 'do_omniauth' do
       # Должен присоединять service к user
       it_should_behave_like 'should add service to user'
     end
+
+
   end
 end
 
@@ -130,43 +154,17 @@ shared_examples 'create_user_and_service' do
     let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
     let!(:user_param_hash) { { email: 'test@email.info', password: '123456', password_confirmation: '123456' } }
 
-
-    it_should_behave_like 'create_user_and_service redirect to authenticated_root'
-
-    # НЕ должен создавать пользователя
-    it_should_behave_like 'create_user_and_service should not create user'
-
-    # Должен создавать service
-    it_should_behave_like 'create_user_and_service should create service'
-
-    # Должен присоединять service
-    it_should_behave_like 'create_user_and_service should add service to user'
-
-  end
-
-  context 'when user already exists and has another service' do
-    let!(:user) { FactoryGirl.create(:user, email: 'test@email.info') }
-    let!(:service) { FactoryGirl.create(:service, uemail: 'test@email.info',
-                                        provider: 'vkontakte',
-                                        user: user) }
-    let!(:user_param_hash) { { email: 'test@email.info', password: '123456', password_confirmation: '123456' } }
-
-
-    it_should_behave_like 'create_user_and_service redirect to authenticated_root'
+    it_should_behave_like 'create_user_and_service redirect to service_sign_up_users'
 
     # НЕ должен создавать пользователя
     it_should_behave_like 'create_user_and_service should not create user'
 
-    # Должен создавать service
-    it_should_behave_like 'create_user_and_service should create service'
+    # НЕ Должен создавать service
+    it_should_behave_like 'create_user_and_service should not create service'
 
-    # Должен присоединять service к user
-    it_should_behave_like 'create_user_and_service should add service to user'
+    # НЕ Должен присоединять service
+    it_should_behave_like 'create_user_and_service should not add service to user'
 
-    it 'user will be have 2 services' do
-      get controller_action, params: { user: user_param_hash }
-      expect(user.services.count).to eq(2)
-    end
   end
 
   context 'when bad parameters' do

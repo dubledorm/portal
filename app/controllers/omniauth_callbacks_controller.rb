@@ -65,7 +65,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       ActiveRecord::Base.transaction do
         # Может быть есть пользователь с таким email
         user = User.find_by_email(aut_data[:email]) unless aut_data[:email].blank?
-        user = create_user(aut_data) if user.nil?
+        raise Auth::OmniAuthError, I18n.t('create_user.email_taken') unless user.nil?
+
+        user = create_user(aut_data)
         create_service(user, aut_data)
       end
       sign_in(:user, user)
