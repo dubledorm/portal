@@ -17,6 +17,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     provides_callback_for provider
   end
 
+  # -----------------------------------------
+
   def failure
     redirect_to root_path
   end
