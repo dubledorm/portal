@@ -1,0 +1,24 @@
+.form-group
+  = f.label :nick_name
+  = f.text_field :nick_name, autocomplete: 'nick_name', class: 'form-control'
+
+.form-group
+  .row
+    .col-md-7
+      = f.label :avatar
+      = f.file_field :avatar
+    .col-md-5
+      - if resource.avatar.attached?
+        .picture
+          = image_tag resource.avatar, width: '100'
+
+.form-group
+  = f.label :current_password
+  %i
+    = "(#{I18n.t('forms.edit_user.need_current_password')})"
+  = f.password_field :current_password, autocomplete: 'current_password', class: 'form-control'
+  %hr
+
+.form-group
+  %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
+    = I18n.t('forms.edit_user.change')

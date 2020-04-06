@@ -1,99 +1,18 @@
-= render('shared/show_attributes')
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('user.show.title') })
 
-<br/>
+%section#contact-page
+  .container
+    = render('layouts/template_parts/large_title', locals: { title: I18n.t('user.show.large_title'),
+    text: I18n.t('user.show.title_text') })
 
-%div
-  %table
-    %tr
-      %th
-        Provider
-      %th
-        uid
-      %th
-        email
-      %th
-        name
-    - @services.each do |service|
-      %tr
-        %td
-          = service.provider
-        %td
-          = service.uid
-        %td
-          = service.uemail
-        %td
-          = service.uname
+    .row.contact-wrap
+      -# Сообщения об ошибках
+      = render('shared/resource_alert_notice')
 
-<br/>
+      -# Текущие настройки
+      .col-sm-5.col-sm-offset-1
+        = render('show_profile')
 
-%div
-  %table
-    %tr
-      %th
-        Sign in
-    - @resource.class.omniauth_providers.each do |provider|
-      %tr
-        %td
-          = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(@resource.class.name.underscore, provider)
-<br/>
-
-%div
-  %table
-    %tr
-      %td
-        - if !@resource.user_confirmed?
-          = "Need confirm email during #{@resource.unconfirmed_days_still_available} days"
-      %td
-        = link_to "Didn't receive confirmation instructions?", new_confirmation_path(@resource.class.name.underscore)
-    %tr
-      %td
-        Change password, delete user
-      %td
-        = link_to 'Change password', edit_user_registration_path(@resource.class.name.underscore)
-    %tr
-      %td
-        logout
-      %td
-        = link_to('logout', destroy_user_session_path, method: :delete) if user_signed_in?
-
-<br/>
-%h2
-  Galleries
-%div
-  %table
-    - @resource.galleries.each do |gallery|
-      %tr
-        %td
-          = link_to gallery.name, user_gallery_path(user_id: @resource.id, id: gallery.id)
-<br/>
-
-%h2
-  Grades
-%div
-  %table
-    - @resource.grades.each do |grade|
-      %tr
-        %td
-          = link_to grade.id, edit_grade_path(grade)
-        %td
-          = grade.user.email
-        %td
-          = grade.human_attribute_value(:grade_type)
-        %td
-          = grade.grade_value
-        %td
-          = grade.content
-  <br/>
-  = link_to 'new grade', new_grade_path(user_id: current_user.id, grade_type: :quality, object: { object_id: @resource.id, object_type: 'User' })
-
-<br/>
-%h2
-  GradeAverages
-%div
-  %table
-    - @resource.grade_averages.each do |grade_average|
-      = react_component('GradeAverage', { name: grade_average.human_attribute_value(:grade_type), value: grade_average.grade_value })
-      <br/>
-<br/>
-%div
-  = link_to 'New article', new_article_path(user_id: current_user.id)
+      -# Команды и уведомления
+      .col-sm-5
+        = render('show_commands')
