@@ -43,6 +43,12 @@ grade_concern для подключения к объектам возможно
 
 * React, подключен react-rails. Пример компонента в javascript/components
 
+## Devise
+  Сгенерированы контроллеры, но оставлены пустыми.
+  
+  Подключен только registrations_controller. В нём переопределён метод after_update_path_for. Чтобы после
+  редактирования профиля пользователя переходить в профиль пользователя, а не на главную страницу.
+
 ## React
 Для создание нового компонента проще использовать генератор 
   rails g react:component HelloWorld greeting:string
