@@ -15,3 +15,7 @@
                 .inline_a
                   = link_to omniauth_authorize_path(User, service[0]) do
                     %i{ class: "fa fa-plus" }
+
+    - if (Auth::ServiceDescrManager::KNOWN_SERVICES_DESCR.keys - @resource.services.map(&:provider)).any?
+      .pull-right.bottom-comment
+        = I18n.t('user.show.add_service')
