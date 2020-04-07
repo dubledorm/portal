@@ -4,9 +4,12 @@
   .row
     .col-sm-12
       %ul{ class: 'blog_archieve' }
-        - locals[:services].each do |service|
+        - Auth::ServiceDescrManager::KNOWN_SERVICES_DESCR.each do |service|
           %li
-            %i{ class: "fa fa-facebook" }
-            = service.provider
+            %i{ class: "fa #{service[1].icon_name}" }
+            = service[0]
             %span{ class: 'pull-right' }
-              %i{ class: "fa fa-check" }
+              - if @resource.services.find_all{ |elem| elem.service_type == service[0] }.any?
+                %i{ class: "fa fa-check" }
+              - else
+                = link_to 'Подключить', '#'
