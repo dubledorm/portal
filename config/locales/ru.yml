@@ -145,6 +145,7 @@ ru:
               taken: Такой EMail уже используется
             confirmation_token:
               blank: Не заполнен confirmation_token
+              invalid: Не тправильный confirmation_token
             password:
               blank: Поле Пароль должно быть заполнено
               too_short: Пароль слишком короткий

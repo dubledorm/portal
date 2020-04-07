@@ -1,13 +1,14 @@
-%div
-  = form_with(model: @user, url: create_user_and_service_url, method: "post") do |f|
-    %p
-      = f.label(:email)
-      = f.text_field(:email)
-    %p
-      = f.label(:password)
-      = f.password_field(:password)
-    %p
-      = f.label(:password_confirmation)
-      = f.password_field(:password_confirmation)
-    %p
-      = submit_tag('save')
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('forms.additional_parameters.title') })
+
+%section#contact-page
+  .container
+    = render('layouts/template_parts/large_title', locals: { title: I18n.t('forms.additional_parameters.large_title'),
+    text: I18n.t('forms.additional_parameters.title_text') })
+
+    .row.contact-wrap
+      -# Сообщения об ошибках
+      = render('devise/shared/device_alert_notice')
+
+      -# Форма регистрации
+      .col-sm-5.col-sm-offset-1
+        = render('additional_form')

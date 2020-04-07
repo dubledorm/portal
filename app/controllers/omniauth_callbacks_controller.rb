@@ -74,7 +74,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to authenticated_root_path
 
     rescue Auth::OmniAuthError, ActiveRecord::RecordInvalid => e
-      flash[:error] = e.message
+      flash[:alert] = e.message
       redirect_to :service_sign_up_users
     end
   end
