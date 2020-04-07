@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_active_menu_items
   include BaseConcern
+  include MenuConcern
 
   rescue_from Exception, with: :render_500
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
@@ -81,5 +83,9 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar, :nick_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :nick_name])
+  end
+
+  def set_active_menu_items
+    @active_menu_items = menu_action_items
   end
 end
