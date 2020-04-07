@@ -19,4 +19,8 @@ module UserConcern
   def name
     self.email
   end
+
+  def has_service?(provider_name)
+    self.services.by_provider(provider_name).any?
+  end
 end

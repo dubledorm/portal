@@ -12,6 +12,10 @@ module Auth::ServicesDescr
     def icon_name
       raise NotImplementedError
     end
+
+    def service_name
+      raise NotImplementedError
+    end
   end
 
   class Facebook < BaseServiceDescr
@@ -31,6 +35,10 @@ module Auth::ServicesDescr
 
     def icon_name
       'fa-facebook'
+    end
+
+    def service_name
+      'Facebook'
     end
   end
 
@@ -53,6 +61,10 @@ module Auth::ServicesDescr
     def icon_name
       'fa-github'
     end
+
+    def service_name
+      'GitHub'
+    end
   end
 
   class Vkontakte < BaseServiceDescr
@@ -72,6 +84,10 @@ module Auth::ServicesDescr
 
     def icon_name
       'fa-vk'
+    end
+
+    def service_name
+      'VKontakte'
     end
   end
 end
