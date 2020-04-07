@@ -17,3 +17,20 @@
   display: inline-block;
   margin-bottom: 15px;
 }
+
+// Вертикальный список строк со ссылками
+.three_column_list {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+}
+
+.three_column_list li a {
+  color: #989898;
+  display: block;
+  font-weight: 300;
+}
+
+.three_column_list li:first-child {
+  padding-top: 0;
+}

@@ -1,9 +1,9 @@
-.widget.archieve
+.widget
   %h3
     = I18n.t('social_networks')
   .row
     .col-sm-12
-      %ul{ class: 'blog_archieve' }
+      %ul{ class: 'three_column_list' }
         - Auth::ServiceDescrManager::KNOWN_SERVICES_DESCR.each do |service|
           %li
             %i{ class: "fa #{service[1].icon_name}" }
@@ -12,5 +12,6 @@
               - if @resource.has_service?(service[0])
                 %i{ class: "fa fa-check" }
               - else
-                = link_to omniauth_authorize_path(User, service[0]) do
-                  %i{ class: "fa fa-plus" }
+                .inline_a
+                  = link_to omniauth_authorize_path(User, service[0]) do
+                    %i{ class: "fa fa-plus" }
