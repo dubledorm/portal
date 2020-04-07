@@ -2,7 +2,12 @@
   = I18n.t('user.show.need_change_profile')
 .center
   = link_to(I18n.t('user.show.change'), edit_user_registration_path, class: 'btn btn-success')
-%h3
-  = I18n.t('user.show.need_mail_confirmation')
-.center
-  = link_to(I18n.t('user.show.resend_confirmation'), new_confirmation_path(User), class: 'btn btn-success')
+
+- unless @resource.user_confirmed?
+  .warning
+    = I18n.t('user.show.confirm_email', days: @resource.unconfirmed_days_still_available)
+  %br
+  %h3
+    = I18n.t('user.show.need_mail_confirmation')
+  .center
+    = link_to(I18n.t('user.show.resend_confirmation'), new_confirmation_path(User), class: 'btn btn-success')
