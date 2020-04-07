@@ -93,4 +93,13 @@ RSpec.describe User, type: :model do
     it { expect{ user2.delete_tag('tag2') }.to change(user2.tags, :count).by(-1) }
     it { expect{ user2.delete_tag('tag2') }.to change(Tag, :count).by(0) }
   end
+
+  describe 'has_service?#' do
+    let!(:user) {FactoryGirl.create :user_with_services}
+
+    it { expect(user.has_service?('github')).to eq(true) }
+    it { expect(user.has_service?('facebook')).to eq(true) }
+    it { expect(user.has_service?('vkontakte')).to eq(false) }
+
+  end
 end

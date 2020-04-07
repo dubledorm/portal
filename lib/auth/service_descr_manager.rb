@@ -30,6 +30,10 @@ module Auth
       service_descr.icon_name
     end
 
+    def service_name
+      service_descr.service_name
+    end
+
     private
     attr_accessor :service_descr, :service_descr_name
   end
