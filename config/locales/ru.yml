@@ -100,6 +100,7 @@ ru:
         reset_password_sent_at: Дата отправки сброса пароля
         services: Подключенные сервисы
         nick_name: Nickname
+        categories: Категории
       tag:
         name: Имя
         tag_type: Тип

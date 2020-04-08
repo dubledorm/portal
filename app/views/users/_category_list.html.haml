@@ -1,11 +1,11 @@
 .widget.category
   %h3
-    = User.human_attribute_name(:tags)
+    = User.human_attribute_name(:categories)
   .row
     .col-sm-12
-      - if @resource.tags.any?
+      - if @resource.category_tags.any?
         %ul{ class: 'three_column_list' }
-          - @resource.tags.each do |category|
+          - @resource.category_tags.each do |category|
             %li
               = category.tags_name
       -else
@@ -14,6 +14,6 @@
             Нет категорий
     .bottom
       .pull-right
-        = link_to('Изменить', '#', class: 'btn btn-primary')
+        = link_to('Изменить', '#', class: 'btn btn-success')
     .pull-right.bottom-comment
       = I18n.t('user.show.categories_footer')
