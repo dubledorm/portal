@@ -7,4 +7,8 @@ FactoryGirl.define do
   factory :user_with_services, parent: :user do |au|
     services { [ FactoryGirl.create(:service), FactoryGirl.create(:service, provider: 'github') ] }
   end
+
+  factory :user_with_categories, parent: :user do |au|
+    tags { [ FactoryGirl.create(:tag), FactoryGirl.create(:tag_category) ] }
+  end
 end
