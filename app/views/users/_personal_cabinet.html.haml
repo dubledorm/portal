@@ -1,0 +1,8 @@
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('user.show.title_cabinet') })
+%section#cabinet-page
+  .container.blog
+    .row
+      .col-md-8
+        = render('left_part_cabinet')
+      %aside.col-md-4
+        = render('right_part_cabinet')

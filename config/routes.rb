@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   authenticated(:user) do
-    resources :users, :only => [:show] do
+    resources :users, :only => [:show, :update] do
       resources :galleries do
         resources :pictures
       end

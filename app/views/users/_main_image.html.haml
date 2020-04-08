@@ -1,0 +1,12 @@
+.blog-item
+  = link_to asset_path('images/blog1.png') do
+    = image_tag('images/blog1.png', class: 'img-responsive img-blog', width: "100%", alt: "")
+  .blog-content
+    = render('change_image')
+    %a.blog_cat{:href => "#"} UI/UX DESIGN
+    %h2
+      %a{:href => "blog-item.html"} Consequat bibendum quam liquam viverra
+    %h3 Curabitur quis libero leo, pharetra mattis eros. Praesent consequat libero eget dolor convallis vel rhoncus magna scelerisque. Donec nisl ante, elementum eget posuere a, consectetur a metus. Proin a adipiscing sapien. Suspendisse vehicula porta lectus vel semper. Nullam sapien elit, lacinia eu tristique non.posuere at mi. Morbi at turpis id urna ullamcorper ullamcorper.
+    %a.readmore{:href => "blog-item.html"}
+      Read More
+      %i.fa.fa-long-arrow-right
