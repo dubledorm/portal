@@ -3,7 +3,7 @@ class Tag < ApplicationRecord
   # Тэги используются для пометки объектов
   # Для этого используются тэги с типом ordinal
   # Также, тэгами могут быть реализованы другие группировки объектов
-  # Например по категориям
+  # Например по категориям (пример реализации в CategoryConcern)
   # В этом случае нужно использовать тэги с соответствующим типом (category)
   # Список типов должен расширяться в соответствии с требованиями
   #
@@ -22,5 +22,7 @@ class Tag < ApplicationRecord
   validates :name, uniqueness: { scope: :tag_type }
   validates :tag_type, inclusion: { in: TAG_TYPES }
 
+  scope :by_tag_type, ->(tag_type){ where(tag_type: tag_type) }
   scope :ordinal, ->{ where(tag_type: 'ordinal') }
+  scope :category, ->{ where(tag_type: 'category') }
 end

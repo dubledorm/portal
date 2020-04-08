@@ -11,7 +11,11 @@ module TaggableConcern
     has_many :tags, through: :tags_on_objects
 
     scope :by_tag, ->(tag_name){ joins(:tags).where(tags: { name: tag_name, tag_type: 'ordinal' }) }
-  end  
+  end
+
+  def ordinal_tags
+    tags.ordinal
+  end
 
   def tags_names
     tags.ordinal.pluck(:name).join(', ')
@@ -31,7 +35,7 @@ module TaggableConcern
   end
 
   def delete_tag(tag_name)
-    tag = self.tags.find_by_name(tag_name)
+    tag = self.tags.ordinal.find_by_name(tag_name)
     if tag
       self.tags.delete(tag)
       tag.destroy if tag.tags_on_objects.count == 0
