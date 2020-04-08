@@ -25,4 +25,5 @@ class Tag < ApplicationRecord
   scope :by_tag_type, ->(tag_type){ where(tag_type: tag_type) }
   scope :ordinal, ->{ where(tag_type: 'ordinal') }
   scope :category, ->{ where(tag_type: 'category') }
+  scope :by_user, ->(user_id){ joins(:users).where( users: { id: user_id })}
 end

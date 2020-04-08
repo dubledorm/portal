@@ -250,6 +250,7 @@ ActiveAdmin.setup do |config|
 
     admin.build_menu :default do |menu|
       menu.add label: I18n.t('menu.resources'), id: :resources, priority: 10
+      menu.add label: I18n.t('menu.controls'), id: :controls, priority: 20
       menu.add label: I18n.t('menu.configure'), id: :configure, priority: 30
     end
   end

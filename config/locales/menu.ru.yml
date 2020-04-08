@@ -1,8 +1,12 @@
 ru:
   menu:
     resources: Ресурсы
-    configure: Настройка
+    configure: Настройка Админки
+    controls: Управление
   main_menu:
     login: Войти
     logout: Выйти
     profile: Я
+  admin_menu:
+    categories: Категории
+    attributes: Атрибуты

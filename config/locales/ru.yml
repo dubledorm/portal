@@ -8,6 +8,9 @@ ru:
       blog:
         one: Заметка
         other: Заметки
+      category:
+        one: Категория
+        other: Категории
       user:
         one: Пользователь
         other: Пользователи
