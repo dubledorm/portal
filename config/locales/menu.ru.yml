@@ -1,4 +1,8 @@
 ru:
   menu:
     resources: Ресурсы
-    configure: Настройка
+    configure: Настройка Админки
+    controls: Управление
+  admin_menu:
+    categories: Категории
+    attributes: Атрибуты
