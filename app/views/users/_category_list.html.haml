@@ -7,7 +7,7 @@
         %ul{ class: 'three_column_list' }
           - @resource.category_tags.each do |category|
             %li
-              = category.tags_name
+              = category.title
       -else
         .blank_list
           %p

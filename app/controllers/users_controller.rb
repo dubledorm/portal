@@ -9,12 +9,23 @@ class UsersController < ApplicationController
 
   def update
     super do
-      byebug
+      ActiveRecord::Base.transaction do
+        # Категории
+        if params.required(:user)[:categories].present?
+          params.required(:user)[:categories].keys.each do |category_name|
+            @resource.add_category(category_name)
+          end
+        end
+      end
       redirect_to user_path(id: @resource.id, mode: 'cabinet')
     end
   end
 
   def menu_action_items
     ['user']
+  end
+
+  def user_params
+    params.required(:user).permit(:main_image, :categories)
   end
 end
