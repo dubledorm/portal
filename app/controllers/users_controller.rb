@@ -11,9 +11,12 @@ class UsersController < ApplicationController
     super do
       ActiveRecord::Base.transaction do
         # Категории
-        if params.required(:user)[:categories].present?
-          params.required(:user)[:categories].keys.each do |category_name|
-            @resource.add_category(category_name)
+        if params[:category].present?
+          @resource.clear_categories
+          if params[:user].present? && params[:user][:categories].present?
+            params[:user][:categories].keys.each do |category_name|
+              @resource.add_category(category_name)
+             end
           end
         end
       end
