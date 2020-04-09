@@ -6,7 +6,7 @@
           %li
             = label_tag(category.title)
             %span.pull-right
-              = check_box_tag("user[categories][#{category.name}]")
+              = check_box_tag("user[categories][#{category.name}]", 'checked', @resource.has_category?(category.name))
       .col-sm-5
         %li
           = label_tag(:pet_kot)
