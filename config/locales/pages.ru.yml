@@ -45,6 +45,8 @@ ru:
       leave_blank: Не заполняйте если не меняете пароль
       characters_min: символов минимум
       need_current_password: введите пароль для подтверждения изменений
+      large_title_categories: Категории
+      large_title_text: 'Выберите категории в которых вы хотите, чтобы вас находили потенциальные заказчики.'
     additional_parameters:
       title: 'Email/пароль'
       large_title: 'Параметры'

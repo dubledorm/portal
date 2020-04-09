@@ -14,6 +14,6 @@
             Нет категорий
     .bottom
       .pull-right
-        = link_to('Изменить', '#', class: 'btn btn-success')
+        = link_to('Изменить', edit_user_path(@resource), class: 'btn btn-success')
     .pull-right.bottom-comment
       = I18n.t('user.show.categories_footer')

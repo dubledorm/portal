@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def update
     super do
+      byebug
       redirect_to user_path(id: @resource.id, mode: 'cabinet')
     end
   end
