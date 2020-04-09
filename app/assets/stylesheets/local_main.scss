@@ -29,6 +29,7 @@
   color: #989898;
   display: block;
   font-weight: 300;
+  padding: 18px 0;
 }
 
 .three_column_list li:first-child {
@@ -60,4 +61,13 @@
 
 .bottom .btn-success {
   color: #FFFFFF;
+}
+
+
+// Галерея
+
+.blog_gallery a.readmore {
+  color: #989898;
+  -webkit-transition: .4s;
+  transition: .4s;
 }

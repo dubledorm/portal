@@ -7,7 +7,7 @@
         %ul{ class: 'three_column_list' }
           - @resource.category_tags.sort_by{ |category| category.title }.each do |category|
             %li
-              = category.title
+              = link_to category.title, '#'
       -else
         .blank_list
           %p
