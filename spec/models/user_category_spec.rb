@@ -31,6 +31,11 @@ RSpec.describe User, type: :model do
       it { expect{ user.delete_category('category1') }.to change(Tag, :count).by(0) }
 
       it { expect{ user.delete_category('category126') }.to raise_error(StandardError) }
+
+      it { expect(user.has_category?('category1')).to eq(true) }
+      it { expect(user.has_category?('category2')).to eq(false) }
+      it { expect(user.has_category?('abrakadabra')).to eq(false) }
+
     end
   end
 end

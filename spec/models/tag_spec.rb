@@ -46,4 +46,21 @@ RSpec.describe Tag, type: :model do
     it { expect(Tag.by_user(user1).first.name).to eq('new_name') }
 
   end
+
+  describe 'has_tag' do
+    let!(:user) { FactoryGirl.create :user }
+    let!(:tag1) { FactoryGirl.create :tag, name: 'tag1' }
+    let!(:tag2) { FactoryGirl.create :tag, name: 'tag2' }
+    let!(:tag3) { FactoryGirl.create :tag, name: 'tag3' }
+
+    before :each do
+      user.add_tag('tag1')
+      user.add_tag('tag3')
+    end
+
+    it { expect(user.has_tag?('tag1')).to eq(true) }
+    it { expect(user.has_tag?('tag2')).to eq(false) }
+    it { expect(user.has_tag?('abrakadabra')).to eq(false) }
+
+  end
 end

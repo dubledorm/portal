@@ -30,4 +30,8 @@ module CategoryConcern
 
     self.tags.delete(category)
   end
+
+  def has_category?(category_name)
+    !self.category_tags.find_by_name(category_name).nil?
+  end
 end
