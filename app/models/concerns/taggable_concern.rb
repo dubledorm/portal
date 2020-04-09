@@ -41,4 +41,8 @@ module TaggableConcern
       tag.destroy if tag.tags_on_objects.count == 0
     end
   end
+
+  def has_tag?(tag_name)
+    !self.ordinal_tags.find_by_name(tag_name).nil?
+  end
 end
