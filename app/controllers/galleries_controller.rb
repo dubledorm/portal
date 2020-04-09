@@ -15,10 +15,15 @@ class GalleriesController < ApplicationController
 
   def create
     super do
-      @resource = Gallery.create(gallery_params.merge({ state: 'active' }))
-      if @resource.persisted?
-        redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
-        return
+      @resource = Gallery.new(gallery_params.merge({ state: 'active' }))
+      unless @resource.name.blank?
+        @resource.save
+        if @resource.persisted?
+          redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
+          return
+        end
+      else
+        @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
       end
       @user = User.find(params[:user_id])
       render :new
@@ -40,5 +45,9 @@ class GalleriesController < ApplicationController
 
   def gallery_params
     params.required(:gallery).permit(:name, :description, :user_id)
+  end
+
+  def need_gallery_name
+    raise ActiveRecord::RecordInvalid, 'Need name' if params.required(:gallery)[:name].blank?
   end
 end

@@ -18,6 +18,8 @@ class Ability
     can :manage, Grade, user_id: user.id
     can :manage, GradeAverage, user_id: user.id
     can :manage, Gallery, user_id: user.id
+    can :manage, Picture, user_id: user.id
+
 
 
 
