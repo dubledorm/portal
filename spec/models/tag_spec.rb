@@ -47,7 +47,7 @@ RSpec.describe Tag, type: :model do
 
   end
 
-  describe 'has_tag' do
+  describe 'has_tag, add_tag' do
     let!(:user) { FactoryGirl.create :user }
     let!(:tag1) { FactoryGirl.create :tag, name: 'tag1' }
     let!(:tag2) { FactoryGirl.create :tag, name: 'tag2' }
@@ -61,6 +61,12 @@ RSpec.describe Tag, type: :model do
     it { expect(user.has_tag?('tag1')).to eq(true) }
     it { expect(user.has_tag?('tag2')).to eq(false) }
     it { expect(user.has_tag?('abrakadabra')).to eq(false) }
+
+    it { expect(TagsOnObject.count).to eq(2) }
+    it { expect{ user.add_tag('tag1') }.to change(TagsOnObject, :count).by(0) }
+    it { expect{ user.add_tag('tag2') }.to change(TagsOnObject, :count).by(1) }
+
+    it { expect{ user.clear_tags }.to change(TagsOnObject, :count).by(-2) }
 
   end
 end

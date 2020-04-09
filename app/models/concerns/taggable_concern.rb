@@ -28,7 +28,7 @@ module TaggableConcern
   def add_tag(tag_name, tag_title = nil)
     tag = Tag.ordinal.find_by_name(tag_name)
     if tag
-      self.tags << tag
+      self.tags << tag unless self.has_tag?(tag_name)
     else
       self.tags.create!(name: tag_name, tag_type: 'ordinal', title: tag_title)
     end
@@ -44,5 +44,12 @@ module TaggableConcern
 
   def has_tag?(tag_name)
     !self.ordinal_tags.find_by_name(tag_name).nil?
+  end
+
+  def clear_tags
+    tag_names = self.ordinal_tags.map(&:name)
+    tag_names.each do |tag_name|
+      self.delete_tag(tag_name)
+    end
   end
 end

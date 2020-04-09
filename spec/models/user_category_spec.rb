@@ -36,6 +36,11 @@ RSpec.describe User, type: :model do
       it { expect(user.has_category?('category2')).to eq(false) }
       it { expect(user.has_category?('abrakadabra')).to eq(false) }
 
+      it { expect(TagsOnObject.count).to eq(2) }
+      it { expect{ user.add_category('category1') }.to change(TagsOnObject, :count).by(0) }
+      it { expect{ user.add_category('category2') }.to change(TagsOnObject, :count).by(1) }
+
+      it { expect{ user.clear_categories }.to change(TagsOnObject, :count).by(-2) }
     end
   end
 end
