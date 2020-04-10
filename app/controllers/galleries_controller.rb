@@ -32,14 +32,22 @@ class GalleriesController < ApplicationController
 
   def update
     super do
+      @user = User.find(params[:user_id])
+      if gallery_params[:name].blank?
+        @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
+        render :edit
+        return
+      end
+
       @resource.update(gallery_params)
       if @resource.errors.count > 0
         render :edit
         return
       end
-      redirect_to gallery_path(@resource)
+      redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
     end
   end
+
 
   private
 
@@ -47,7 +55,4 @@ class GalleriesController < ApplicationController
     params.required(:gallery).permit(:name, :description, :user_id)
   end
 
-  def need_gallery_name
-    raise ActiveRecord::RecordInvalid, 'Need name' if params.required(:gallery)[:name].blank?
-  end
 end
