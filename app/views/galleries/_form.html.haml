@@ -1,17 +1,16 @@
 = form_with(model: [@user, @resource], local: true) do |f|
   = f.hidden_field(:user_id)
-  .col-sm-11.col-sm-offset-1
-    = cover_gallery(@resource)
-  .col-sm-11.col-sm-offset-1
+  .col-xs-12.col-md-4.col-md-push-8
+    .form-group
+      = cover_gallery(@resource)
+      = f.file_field(:image_for_cover, class: 'form-control')
+  .col-xs-12.col-md-8.col-md-pull-4
     .form-group
       = f.label(:name)
       = f.text_field(:name, class: 'form-control', required: true)
     .form-group
       = f.label(:description)
       = f.text_area(:description, class: 'form-control')
-    .form-group
-      = f.label(:image_for_cover)
-      = f.file_field(:image_for_cover, class: 'form-control')
     .form-group
       %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
         = I18n.t('forms.gallery_new.create')
