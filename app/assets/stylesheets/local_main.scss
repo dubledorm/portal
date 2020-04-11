@@ -87,3 +87,33 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.cover_gallery {
+  background-size: cover;
+  width: 285px;
+  height: 290px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#header-gallery .cover {
+  float:right!important;
+//  margin-right: -15px;
+}
+
+#header-gallery .description {
+  padding-left: 15px;
+  min-height: 50px;
+}
+
+#header-gallery .description h4 {
+  color: #989898;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+#header-gallery h2 {
+  margin-top: 0;
+  font-size: 22px;
+}

@@ -1,0 +1,13 @@
+#header-gallery
+  .col-12.col-sm-12.col-md-8
+    %h2
+      = Gallery.human_attribute_name(:description)
+    .description
+      = gallery_description(@resource)
+    %hr
+    %h2
+      = Gallery.human_attribute_name(:tags)
+    = render('shared/show_tags_panel', locals: { resource: @resource })
+  .col-12.col-sm-12.col-md-4.hidden-sm.hidden-xs
+    .cover
+      = cover_gallery(@resource)

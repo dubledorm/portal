@@ -1,6 +1,6 @@
 = render('layouts/template_parts/small_title', locals: { title: I18n.t('gallery.show.title') })
 
-%section#portfolio
+%section#gallery
   .container
     = render('layouts/template_parts/large_title',
     locals: { title: @resource.name.blank? ? I18n.t('gallery.show.large_title') :  @resource.name,
