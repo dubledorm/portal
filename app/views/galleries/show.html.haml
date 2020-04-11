@@ -4,7 +4,7 @@
   .container
     = render('layouts/template_parts/large_title',
     locals: { title: @resource.name.blank? ? I18n.t('gallery.show.large_title') :  @resource.name,
-    text: @resource.description })
+    text: '' })
 
     .row.contact-wrap
       -# Сообщения об ошибках

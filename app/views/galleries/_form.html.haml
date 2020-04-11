@@ -1,9 +1,14 @@
 = form_with(model: [@user, @resource], local: true) do |f|
   = f.hidden_field(:user_id)
-  .col-sm-5.col-sm-offset-1
+  .col-sm-11.col-sm-offset-1
+    = cover_gallery(@resource)
+  .col-sm-11.col-sm-offset-1
     .form-group
       = f.label(:name)
       = f.text_field(:name, class: 'form-control', required: true)
+    .form-group
+      = f.label(:description)
+      = f.text_area(:description, class: 'form-control')
     .form-group
       = f.label(:image_for_cover)
       = f.file_field(:image_for_cover, class: 'form-control')
