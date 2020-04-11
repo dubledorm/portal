@@ -5,7 +5,7 @@
     - locals[:galleries].each do |gallery|
       %li
         = link_to user_gallery_path(user_id: gallery.user_id, id: gallery.id) do
-          = gallery_cover_small(gallery)
+          = cover_gallery_small(gallery)
   = link_to 'blog-item.html', class: :readmore do
     Read More
     %i{ class: 'fa fa-long-arrow-right' }

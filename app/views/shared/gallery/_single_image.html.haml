@@ -1,6 +1,6 @@
 .portfolio-item.apps.col-xs-12.col-sm-4.col-md-3.single-work
   .recent-work-wrap
-    .image_in_gallery{ style: "background-image: url('#{url_for(locals[:image].variant(resize_to_limit: [600, 600]))}');" }
+    = cover_image(locals[:image])
     .overlay
       .recent-work-inner
         = link_to url_for(locals[:image]), rel: 'prettyPhoto', class: 'preview' do
