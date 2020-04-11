@@ -71,3 +71,19 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
+
+.image_in_gallery {
+  background-size: cover;
+  width: inherit;
+  height: 290px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image_in_column_gallery {
+  background-size: cover;
+  width: 140px;
+  height: 128px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

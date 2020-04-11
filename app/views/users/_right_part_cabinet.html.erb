@@ -1,5 +1,5 @@
   <%= render('category_list') %>
-  <%= render('shared/gallery_column') %>
+  <%= render('shared/gallery_column', locals: { galleries: @resource.galleries }) %>
 
   <div class="widget search">
     <form role="form">

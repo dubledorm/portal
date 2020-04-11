@@ -16,7 +16,7 @@ class GalleriesController < ApplicationController
   def create
     super do
       @resource = Gallery.new(gallery_params.merge({ state: 'active' }))
-      unless @resource.name.blank?
+      if !@resource.name.blank?
         @resource.save
         if @resource.persisted?
           redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
@@ -52,7 +52,10 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-    params.required(:gallery).permit(:name, :description, :user_id)
+    params.required(:gallery).permit(:name, :description, :user_id, :image_for_cover)
   end
 
+  def menu_action_items
+    ['user']
+  end
 end

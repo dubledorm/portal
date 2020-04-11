@@ -59,6 +59,12 @@ ru:
       title_text: 'Введите название галереи.'
       create: Передать
       need_name: Нужно заполнить название галереи
+    gallery_show:
+      title: 'Галерея'
+      large_title: 'Просмотр галереи'
+      create: Добавить
+      need_name: Нужно заполнить название галереи
+      add: Добавить фото
     gallery_edit:
       title: 'Галерея'
       large_title: 'Редактировать'
@@ -78,3 +84,11 @@ ru:
       confirm_email: 'Внимание! Вам необходимо подтвердить свой адрес электронной почты в течении %{days} дней.'
       title_cabinet: 'Про себя'
       categories_footer: В этих категориях вас будут находить
+      galleries: Фото галереи
+  gallery:
+    show:
+      title: 'Галерея'
+      large_title: 'Просмотр галереи'
+      create: Добавить
+      need_name: Нужно заполнить название галереи
+      add: Добавить фото

@@ -1,11 +1,16 @@
-= render('shared/show_attributes')
-%div
-  %h2
-    Pictures
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('gallery.show.title') })
 
-  - @resource.pictures.each do |picture|
-    - if picture.image.attached?
-      .picture
-        = image_tag picture.image
+%section#portfolio
+  .container
+    = render('layouts/template_parts/large_title',
+    locals: { title: @resource.name.blank? ? I18n.t('gallery.show.large_title') :  @resource.name,
+    text: @resource.description })
 
-  = link_to 'new', new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)
+    .row.contact-wrap
+      -# Сообщения об ошибках
+      = render('shared/resource_alert_notice')
+
+    =render('show_gallery')
+    .row
+      = link_to I18n.t('gallery.show.add'), new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)
+

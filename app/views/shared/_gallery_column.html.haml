@@ -1,24 +1,11 @@
 .widget.blog_gallery
-  %h3 Our Gallery
+  %h3
+    = I18n.t('user.show.galleries')
   %ul.sidebar-gallery.clearfix
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-1.png', alt: '')
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-2.png', alt: '')
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-3.png', alt: '')
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-4.png', alt: '')
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-5.png', alt: '')
-    %li
-      = link_to '#' do
-        = image_tag('images/sidebar-g-6.png', alt: '')
+    - locals[:galleries].each do |gallery|
+      %li
+        = link_to user_gallery_path(user_id: gallery.user_id, id: gallery.id) do
+          = gallery_cover_small(gallery)
   = link_to 'blog-item.html', class: :readmore do
     Read More
     %i{ class: 'fa fa-long-arrow-right' }

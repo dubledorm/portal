@@ -5,5 +5,8 @@
       = f.label(:name)
       = f.text_field(:name, class: 'form-control', required: true)
     .form-group
+      = f.label(:image_for_cover)
+      = f.file_field(:image_for_cover, class: 'form-control')
+    .form-group
       %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
         = I18n.t('forms.gallery_new.create')
