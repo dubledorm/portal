@@ -1,0 +1,15 @@
+= form_with(model: [@user, @resource], local: true) do |f|
+  = f.hidden_field(:user_id)
+  = f.hidden_field(:article_type, value: :service)
+  = f.hidden_field(:state, value: :draft)
+
+  .col-md-5.col-md-offset-1
+    .form-group.required
+      = f.label(:name)
+      = f.text_field(:name, class: 'form-control')
+      .field_hint
+        Под этим именем вашу программу увидят заказчики
+
+    .form-group
+      %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
+        = I18n.t('forms.article_new.create')

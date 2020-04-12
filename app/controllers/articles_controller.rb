@@ -18,24 +18,25 @@ class ArticlesController < ApplicationController
 
   def create
     super do
-      @user = User.find(params[:user_id])
+      @user = User.find(params.required(:user_id))
       @resource = Article.create(article_params)
       unless @resource.persisted?
         render :new
         return
       end
-      redirect_to article_path(@resource)
+      redirect_to user_article_path(user_id: @user.id, id: @resource.id)
     end
   end
 
   def update
     super do
+      @user = User.find(params.required(:user_id))
       @resource.update(article_params)
       if @resource.errors.count > 0
         render :edit
         return
       end
-      redirect_to article_path(@resource)
+      redirect_to user_article_path(user_id: @user.id, id: @resource.id)
     end
   end
 

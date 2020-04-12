@@ -115,3 +115,25 @@
 
 .required label:after{content:' *'}
 
+.field_hint {
+  display: block;
+  color: #989898;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  text-align: left;
+}
+
+
+form input.form-control, textarea.form-control {
+  background-color: #eae5e5;
+  width: 100%;
+}
+
+//input#article_name.form-control {
+//  border: 10px;
+//  padding: 0 12px;
+//  border-color: #2e2e2e;
+//  box-shadow: none;
+//  height: 50px;
+//}
