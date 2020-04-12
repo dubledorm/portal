@@ -1,1 +1,13 @@
-= render('shared/show_attributes')
+= render('layouts/template_parts/small_title', locals: { title: I18n.t('article.show.title') })
+
+%section#contact-page
+  .container
+    = render('layouts/template_parts/large_title', locals: { title: I18n.t('article.show.large_title'),
+    text: I18n.t('article.show.title_text') })
+
+    .row.contact-wrap
+      -# Сообщения об ошибках
+      = render('shared/resource_alert_notice')
+
+    .page-blocks
+      = render('articles/article_name_bloсk')

@@ -1,0 +1,14 @@
+.block-item
+  .block-content#article_name
+    %h2
+      = @resource.name
+  .block-hidden-form{ data_name: 'article_name' }
+    = form_with(model: [@user, @resource], local: true) do |f|
+      = f.hidden_field(:user_id)
+      .form-group.required
+        = f.text_field(:name, class: 'form-control')
+        .field_hint
+          Под этим именем вашу программу увидят заказчики
+      .form-group
+        %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
+          = I18n.t('forms.article_new.create')
