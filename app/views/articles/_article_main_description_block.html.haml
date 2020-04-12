@@ -1,15 +1,15 @@
 .block-item
-  .block-content#article_name
+  .block-content#article_main_description
     .block-visible-data
       %h2
-        = @resource.name
-    .block-hidden-form{ 'data-params': { block_id: 'article_name' } }
+        = simple_format(@resource.decorate.main_description)
+    .block-hidden-form{ 'data-params': { block_id: 'article_main_description' } }
       = form_with(model: [@user, @resource]) do |f|
         = f.hidden_field(:user_id)
         .form-group.required
-          = f.text_field(:name, class: 'form-control')
+          = f.text_area(:main_description, class: 'form-control')
           .field_hint
-            Под этим именем вашу программу увидят заказчики
+            Описание программы
         %div
           = link_to('#', class: 'btn btn-cancel') do
             = I18n.t('cancel')
