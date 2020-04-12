@@ -11,14 +11,16 @@ Rails.application.routes.draw do
   end
 
   authenticated(:user) do
-    resources :users, :only => [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update] do
       resources :galleries do
         resources :pictures
       end
+
+      resources :articles
     end
 
     resources :grades
-    resources :articles
+    resources :articles, only: [:index, :show]
     root to: "secret#index", as: :authenticated_root
   end
 

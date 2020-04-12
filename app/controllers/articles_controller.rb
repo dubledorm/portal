@@ -11,12 +11,14 @@ class ArticlesController < ApplicationController
 
   def new
     super do
+      @user = User.find(params.required(:user_id))
       @resource = Article.new(user_id: params.required(:user_id))
     end
   end
 
   def create
     super do
+      @user = User.find(params[:user_id])
       @resource = Article.create(article_params)
       unless @resource.persisted?
         render :new

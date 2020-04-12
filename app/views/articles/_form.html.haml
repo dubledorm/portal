@@ -1,43 +1,45 @@
-= form_with(model: @resource, local: true) do |f|
-  = @resource.errors.full_messages
+= form_with(model: [@user, @resource], local: true) do |f|
   = f.hidden_field(:user_id)
+  .col-md-5.col-md-offset-1
+    .form-group
+      = f.label(:name)
+      = f.text_field(:name, class: 'form-control')
+    .form-group
+      = f.label(:article_type)
+      = f.select(:article_type, article_types_array, { selected: :service}, { class: 'form-control' })
+    .form-group
+      = f.label(:state)
+      = f.select(:state, article_states_array, { selected: :draft }, { class: 'form-control' })
+  .col-md-5
+    .form-group
+      = f.label(:min_quantity)
+      = f.number_field(:min_quantity, class: 'form-control')
+    .form-group
+      = f.label(:max_quantity)
+      = f.number_field(:max_quantity, class: 'form-control')
+    .form-group
+      = f.label(:min_age)
+      = f.number_field(:min_age, class: 'form-control')
+    .form-group
+      = f.label(:max_age)
+      = f.number_field(:max_age, class: 'form-control')
+    .form-group
+      = f.label(:duration_minutes)
+      = f.number_field(:duration_minutes, class: 'form-control')
+    .form-group
+      = f.label(:seo_description)
+      = f.text_field(:seo_description, class: 'form-control')
+    .form-group
+      = f.label(:seo_keywords)
+      = f.text_field(:seo_keywords, class: 'form-control')
+  .col-md-11.col-md-offset-1
+    .form-group
+      = f.label(:short_description)
+      = f.text_area(:short_description, class: 'form-control')
+    .form-group
+      = f.label(:main_description)
+      = f.text_area(:main_description, class: 'form-control')
 
-  %p
-    = f.label(:name)
-    = f.text_field(:name)
-  %p
-    = f.label(:article_type)
-    = f.text_field(:article_type)
-  %p
-    = f.label(:short_description)
-    = f.text_field(:short_description)
-  %p
-    = f.label(:main_description)
-    = f.text_field(:main_description)
-  %p
-    = f.label(:state)
-    = f.text_field(:state)
-  %p
-    = f.label(:min_quantity)
-    = f.text_field(:min_quantity)
-  %p
-    = f.label(:max_quantity)
-    = f.text_field(:max_quantity)
-  %p
-    = f.label(:min_age)
-    = f.text_field(:min_age)
-  %p
-    = f.label(:max_age)
-    = f.text_field(:max_age)
-  %p
-    = f.label(:duration_minutes)
-    = f.text_field(:duration_minutes)
-  %p
-    = f.label(:seo_description)
-    = f.text_field(:seo_description)
-  %p
-    = f.label(:seo_keywords)
-    = f.text_field(:seo_keywords)
-
-  %p
-    = f.submit('save')
+    .form-group
+      %button.btn.btn-primary.btn-lg{:name => "submit", :required => "required", :type => "submit"}
+        = I18n.t('forms.article_new.create')
