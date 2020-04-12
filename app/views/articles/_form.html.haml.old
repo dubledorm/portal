@@ -1,7 +1,7 @@
 = form_with(model: [@user, @resource], local: true) do |f|
   = f.hidden_field(:user_id)
   .col-md-5.col-md-offset-1
-    .form-group.required
+    .form-group
       = f.label(:name)
       = f.text_field(:name, class: 'form-control')
     .form-group
