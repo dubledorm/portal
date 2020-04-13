@@ -32,11 +32,17 @@ class ArticlesController < ApplicationController
     super do
       @user = User.find(params.required(:user_id))
       @resource.update(article_params)
-      if @resource.errors.count > 0
-        render :edit
-        return
+
+      respond_to do |format|
+        if @resource.errors.count == 0
+          format.html { redirect_to user_article_path(user_id: @user.id, id: @resource.id) }
+          format.js
+          format.json { render json: @resource, status: :updated, location: @resource }
+        else
+          format.html { render action: :edit }
+          format.json { render json: @resource.errors, status: :unprocessable_entity }
+        end
       end
-      redirect_to user_article_path(user_id: @user.id, id: @resource.id)
     end
   end
 

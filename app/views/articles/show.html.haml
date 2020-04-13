@@ -1,6 +1,6 @@
 = render('layouts/template_parts/small_title', locals: { title: I18n.t('article.show.title') })
 
-%section#contact-page
+%section#article-page
   .container
     = render('layouts/template_parts/large_title', locals: { title: I18n.t('article.show.large_title'),
     text: I18n.t('article.show.title_text') })
@@ -10,5 +10,4 @@
       = render('shared/resource_alert_notice')
 
     .page-blocks
-      = render('articles/article_name_bloсk')
-      = render('article_main_description_block')
+      = render('articles/show/article_show')

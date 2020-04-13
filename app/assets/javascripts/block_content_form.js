@@ -21,6 +21,10 @@ function toggle_block_content(e) {
 }
 
 $(document).ready(function() {
+    block_content_form_init();
+});
+
+function block_content_form_init() {
     $('.block-content .block-visible-data').on(
         'click',
         function(e) {
@@ -31,11 +35,17 @@ $(document).ready(function() {
     $('.block-content a.btn-cancel').on(
         'click',
         function(e) {
-           e.preventDefault();
-           toggle_block_content($(this));
+            e.preventDefault();
+            toggle_block_content($(this));
         }
     );
 
-});
+    $('.block-hidden-form').on(
+        'ajax:beforeSend',
+        function(e) {
+            toggle_block_content($(this));
+        }
+    );
+}
 
 //$(document).click(function(e){ console.log($(e.target).attr('id')) })

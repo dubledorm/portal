@@ -1,8 +1,9 @@
 .block-item
   .block-content#article_main_description
+    %h2
+      = Article.human_attribute_name(:main_description)
     .block-visible-data
-      %h2
-        = simple_format(@resource.decorate.main_description)
+      = simple_format(@resource.decorate.main_description)
     .block-hidden-form{ 'data-params': { block_id: 'article_main_description' } }
       = form_with(model: [@user, @resource]) do |f|
         = f.hidden_field(:user_id)
