@@ -1,2 +1,18 @@
-= render('articles/article_name_bloсk')
-= render('article_main_description_block')
+.col-md-12
+  = render('articles/show/string_block', locals: { field_name: :name })
+.col-md-12
+  = render('articles/show/text_area_block', locals: { field_name: :main_description })
+.col-md-12
+  = render('articles/show/text_area_block', locals: { field_name: :short_description })
+.col-xs-12.col-md-3
+  = render('articles/show/number_block', locals: { field_name: :min_quantity })
+.col-xs-12.col-md-3
+  = render('articles/show/number_block', locals: { field_name: :max_quantity })
+.col-xs-12.col-md-3
+  = render('articles/show/number_block', locals: { field_name: :min_age })
+.col-xs-12.col-md-3
+  = render('articles/show/number_block', locals: { field_name: :max_age })
+.col-md-12
+  = render('articles/show/string_block', locals: { field_name: :seo_keywords })
+.col-md-12
+  = render('articles/show/text_area_block', locals: { field_name: :seo_description })

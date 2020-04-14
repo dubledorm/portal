@@ -90,6 +90,14 @@ ru:
       categories_footer: В этих категориях вас будут находить
       galleries: Фото галереи
       my_programs: Программы
+      short_description_hint: Это описание видно в результатах поиска
+      main_description_hint: Описание программы
+      name_hint: Под этим именем вашу программу увидят заказчики
+      min_quantity_hint: ''
+      max_quantity_hint: ''
+      min_age_hint: ''
+      max_age_hint: ''
+
   gallery:
     show:
       title: 'Галерея'

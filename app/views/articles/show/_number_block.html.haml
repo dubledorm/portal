@@ -1,16 +1,16 @@
 .block-item
-  .block-content#article_name
+  .block-content{ id: 'article_' + locals[:field_name].to_s }
     %h2
-      = Article.human_attribute_name(:name)
+      = @resource.class.human_attribute_name(locals[:field_name])
     .block-visible-data
-      = simple_format(@resource.name)
-    .block-hidden-form{ 'data-params': { block_id: 'article_name' } }
+      = @resource.decorate.send(locals[:field_name])
+    .block-hidden-form{ 'data-params': { block_id: 'article_' + locals[:field_name].to_s } }
       = form_with(model: [@user, @resource]) do |f|
         = f.hidden_field(:user_id)
         .form-group.required
-          = f.text_field(:name, class: 'form-control')
+          = f.number_field(locals[:field_name], class: 'form-control')
           .field_hint
-            Под этим именем вашу программу увидят заказчики
+            = I18n.t("user.show.#{ locals[:field_name] }_hint")
         %div
           = link_to('#', class: 'btn btn-cancel') do
             = I18n.t('cancel')

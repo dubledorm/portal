@@ -1,0 +1,18 @@
+.block-item
+  .block-content{ id: 'article_' + locals[:field_name].to_s }
+    %h2
+      = @resource.class.human_attribute_name(locals[:field_name])
+    .block-visible-data
+      = simple_format(@resource.decorate.send(locals[:field_name]))
+    .block-hidden-form{ 'data-params': { block_id: 'article_' + locals[:field_name].to_s } }
+      = form_with(model: [@user, @resource]) do |f|
+        = f.hidden_field(:user_id)
+        .form-group.required
+          = f.text_area(locals[:field_name], class: 'form-control')
+          .field_hint
+            = I18n.t("user.show.#{ locals[:field_name] }_hint")
+        %div
+          = link_to('#', class: 'btn btn-cancel') do
+            = I18n.t('cancel')
+          %button.btn.btn-primary{:name => "submit", :required => "required", :type => "submit" }
+            = I18n.t('forms.article_new.create')
