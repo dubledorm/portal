@@ -16,3 +16,8 @@
   = render('articles/show/string_block', locals: { field_name: :seo_keywords })
 .col-md-12
   = render('articles/show/text_area_block', locals: { field_name: :seo_description })
+.col-md-12
+  = react_component 'InputString', { name: :name,
+  name_title: Article.human_attribute_name(:name),
+  submit_button_text: I18n.t('forms.article_new.create'),
+  record: @resource }
