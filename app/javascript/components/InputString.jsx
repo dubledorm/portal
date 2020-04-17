@@ -23,11 +23,6 @@ class FieldContent extends React.Component {
   }
 }
 
-class SubmitButton extends React.Component {
-  render() {
-    return <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.text}</button>;
-  }
-}
 
 class EditForm extends React.Component {
   constructor(props) {
@@ -59,10 +54,8 @@ class EditForm extends React.Component {
       this.props.onChangeMode(false);
   }
 
-  onSubmitError(error, textStatus){
- //     alert( "Ошибка: " + textStatus );
- //     alert( "Ошибка: " + JSON.parse(error.responseText)['name'] );
-      this.setState({ error_message: JSON.parse(error.responseText)['name']});
+  onSubmitError(error){
+      this.setState({ error_message: JSON.parse(error.responseText)[this.props.field_name]});
   }
 
   onCancel(event){
@@ -87,9 +80,9 @@ class EditForm extends React.Component {
             <div className="form-group required">
               <input type="text" name="login" className="form-control" value={this.state.local_value} onChange={this.onlocalChangeValue}/>
               {error_message}
-              <div className="field_hint">fdsdfng.dfng.dfn</div>
+              <div className="field_hint">{this.props.field_hint}</div>
             </div>
-            <a className="btn btn-cancel" href="#" onClick={this.onCancel}>Отменить</a>
+            <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
             <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
 
           </form>
@@ -124,6 +117,9 @@ class InputString extends React.Component {
     let context = null;
     if (edit_mode) {
       context = <EditForm submit_button_text={this.props.submit_button_text}
+                          cancel_button_text={this.props.cancel_button_text}
+                          field_name={this.props.name}
+                          field_hint={this.props.name_hint}
                           start_value={this.state.value}
                           url={this.props.url}
                           onChangeValue={this.onChangeValueHandler}
@@ -134,7 +130,7 @@ class InputString extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="block-item" id={"article1_" + this.state.name}>
+        <div className="block-item" id={"article_" + this.state.name}>
           <div className="block-content" >
             <FieldTitle name={this.state.name_title} />
             {context}
@@ -148,7 +144,11 @@ class InputString extends React.Component {
 InputString.propTypes = {
   name: PropTypes.string,
   name_title: PropTypes.string,
-  record: PropTypes.object
+  name_hint: PropTypes.string,
+  resource_class: PropTypes.string,
+  record: PropTypes.object,
+  cancel_button_text: PropTypes.string,
+  submit_button_text: PropTypes.string
 };
 
 
