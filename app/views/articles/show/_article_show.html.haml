@@ -25,3 +25,7 @@
   cancel_button_text: I18n.t('cancel'),
   url: user_article_url(user_id: @user.id, id: @resource.id),
   start_value: @resource.name }
+
+
+.col-md-12
+  = react_component 'InputString', input_options(@resource, :seo_keywords, user_article_url(user_id: @user.id, id: @resource.id))
