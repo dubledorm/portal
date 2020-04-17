@@ -32,17 +32,37 @@ class SubmitButton extends React.Component {
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {local_value: this.props.start_value};
+    this.state = {local_value: this.props.start_value, error_message: ''};
 
-    this.onChangeValue = this.onChangeValue.bind(this);
+    this.onlocalChangeValue = this.onlocalChangeValue.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
+    this.onSubmitError = this.onSubmitError.bind(this);
     this.onCancel = this.onCancel.bind(this);
   }
 
   onSubmit(event){
-    this.props.onChangeValue(this.state.local_value);
-    this.props.onChangeMode(false);
+      $.ajax({
+          type: "PUT",
+          url: this.props.url,
+          dataType: "json",
+          data: {article: { name: this.state.local_value } },
+          success: this.onSubmitSuccess,
+          error: this.onSubmitError
+      });
     event.preventDefault();
+  }
+
+  onSubmitSuccess(){
+      this.setState({ error_message: '' });
+      this.props.onChangeValue(this.state.local_value);
+      this.props.onChangeMode(false);
+  }
+
+  onSubmitError(error, textStatus){
+ //     alert( "Ошибка: " + textStatus );
+ //     alert( "Ошибка: " + JSON.parse(error.responseText)['name'] );
+      this.setState({ error_message: JSON.parse(error.responseText)['name']});
   }
 
   onCancel(event){
@@ -50,21 +70,27 @@ class EditForm extends React.Component {
     event.preventDefault();
   }
 
-  onChangeValue(event){
+  onlocalChangeValue(event){
     this.setState({local_value: event.target.value});
   }
 
 
   render() {
+      let error_message = '';
+      if (this.state.error_message) {
+          error_message = <div className="field_error">{this.state.error_message}</div>
+      }
+
     return (
         <div className="block-hidden-form1">
           <form onSubmit={this.onSubmit}>
             <div className="form-group required">
-              <input type="text" name="login" className="form-control" value={this.state.local_value} onChange={this.onChangeValue}/>
+              <input type="text" name="login" className="form-control" value={this.state.local_value} onChange={this.onlocalChangeValue}/>
+              {error_message}
               <div className="field_hint">fdsdfng.dfng.dfn</div>
             </div>
             <a className="btn btn-cancel" href="#" onClick={this.onCancel}>Отменить</a>
-            <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>;
+            <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
 
           </form>
         </div>);
@@ -99,6 +125,7 @@ class InputString extends React.Component {
     if (edit_mode) {
       context = <EditForm submit_button_text={this.props.submit_button_text}
                           start_value={this.state.value}
+                          url={this.props.url}
                           onChangeValue={this.onChangeValueHandler}
                           onChangeMode={this.onChangeModeHandler}/>
     } else {

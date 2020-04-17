@@ -20,3 +20,4 @@ import('../styles/main_application.css');// Support component names relative to 
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);
+

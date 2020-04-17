@@ -20,4 +20,5 @@
   = react_component 'InputString', { name: :name,
   name_title: Article.human_attribute_name(:name),
   submit_button_text: I18n.t('forms.article_new.create'),
+  url: user_article_url(user_id: @user.id, id: @resource.id),
   record: @resource }

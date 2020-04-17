@@ -60,6 +60,18 @@ The generator also accepts options:
   --es6: use class ComponentName extends React.Component
   
   --coffee: use CoffeeScript
+  
+### JQuery.ajax  
+  Запросы, передаваемые через ajax должны быть подписаны csrf токеном.
+  Для того, тобы это происходило, надо вызвать вот такой скрипт. 
+  Важно, что он должен вызываться после загрузки JQuery
+  
+    `$.ajaxSetup({   
+          headers: {       
+           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')           
+       }       
+    });`
+
 
 ## GradeAverage и Grade
 Подробно описаны в исходниках.
@@ -127,24 +139,21 @@ include GradeConcern
 директории шаблона. Маршрут относительно директории assets/stylesheets
 Например:
 
-  *= require_tree .
-   
-  *= require_tree ../corlate_assets
-  
-  *= require_self
+      *= require_tree .   
+      *= require_tree ../corlate_assets  
+      *= require_self
   
 * Ф файл application.html.erb присоединяем эти стили через хелпер
  
- <%= stylesheet_link_tag 'application', media: "all" %>
+      <%= stylesheet_link_tag 'application', media: "all" %>
  
  Этого достаточно. Все завсимости указываются в файле application.css, сюда не надо копировать все
  \<link href="css/ из файла шаблона
  
 * В файл assets/config/manifest.js добавляем две ссылки на директории со стилями и js
 
-//= link_directory ../corlate_assets/css .css
-
-//= link_directory ../corlate_assets/js .js
+      //= link_directory ../corlate_assets/css .css
+      //= link_directory ../corlate_assets/js .js
 
  _возможно это не обязательно._
  
@@ -152,18 +161,19 @@ include GradeConcern
 * Все java скрипты, указанные в шаблоне, подключаются к нужным view 
 (в первую очередь к application.html.erb) через хелпер
 
-<%= javascript_include_tag('js/jquery.js') %>
+      <%= javascript_include_tag('js/jquery.js') %>
 
 * Также, все java скрипты надо добавить в файл config/initializers/assets.rb в массив Rails.application.config.assets.precompile
 
 Например:
 
-Rails.application.config.assets.precompile += %w( js/jquery.js js/bootstrap.min.js js/jquery.prettyPhoto.js js/owl.carousel.min.js js/jquery.isotope.min.js js/main.js)
+    Rails.application.config.assets.precompile += %w( js/jquery.js js/bootstrap.min.js js/jquery.prettyPhoto.js js/owl.carousel.min.js js/jquery.isotope.min.js js/main.js)
 
 * Во view все img заменяем на image_tag
 
 * Все ссылки во view на статические ресурсы типа url('image.png') дополняем asset_url, т. е. получится
-url(<%= asset_url('image.png') %>)
+
+      url(<%= asset_url('image.png') %>)
 
 
 ## WebPacker
@@ -176,14 +186,14 @@ url(<%= asset_url('image.png') %>)
 
 Например:
 
-<link rel="shortcut icon" type="image/x-icon" href="<% asset_pack_path 'media/images/favicon.ico' %>" />
+     <link rel="shortcut icon" type="image/x-icon" href="<% asset_pack_path 'media/images/favicon.ico' %>" />
 
 При этом, префикс маршрута media/ надо добавлять в ручную.
 
 * Для вывода картинок использовать хелпер image_pack_tag
 Например:
 
-<%= image_pack_tag 'media/images/libra/libra-logo1.png', title: 'Libra',  alt: 'Libra' %>
+      <%= image_pack_tag 'media/images/libra/libra-logo1.png', title: 'Libra',  alt: 'Libra' %>
 
 Правильный маршрут до картинки можно найтив файле manifest.json
 
@@ -194,8 +204,11 @@ url(<%= asset_url('image.png') %>)
 
 * В файл application.js добавляет строчку для включения этого стиля в процесс компиляции
 
-Например: import('../styles/libra/css/reset');
-          import('../styles/libra/css/bootstrap');
+Например: 
+
+    import('../styles/libra/css/reset');
+    import('../styles/libra/css/bootstrap');
+    
 При этом, расширение файла не указываем.
 
 * Можно включать css, scss, sass
@@ -204,11 +217,11 @@ url(<%= asset_url('image.png') %>)
 
 Например: 
 
-<%= stylesheet_pack_tag 'libra/css/reset', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'libra/css/reset', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 * Чтобы проверить, что файлы нормально подключены можно запустить компиляцию:
 
-bundle exec rails assets:precompile
+      bundle exec rails assets:precompile
 
 Если всё хорошо, то процесс не выдаст ошибок
 
@@ -221,5 +234,5 @@ bundle exec rails assets:precompile
 
 Например:
 
-background: url('../../images/libra/slider/slider-shadow.png') no-repeat scroll center top transparent;
+    background: url('../../images/libra/slider/slider-shadow.png') no-repeat scroll center top transparent;
      

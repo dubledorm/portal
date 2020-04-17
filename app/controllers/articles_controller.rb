@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
         if @resource.errors.count == 0
           format.html { redirect_to user_article_path(user_id: @user.id, id: @resource.id) }
           format.js
-          format.json { render json: @resource, status: :updated, location: @resource }
+          format.json { render json: @resource, status: :ok, location: @resource }
         else
           format.html { render action: :edit }
           format.json { render json: @resource.errors, status: :unprocessable_entity }
