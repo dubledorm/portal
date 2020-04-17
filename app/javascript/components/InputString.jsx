@@ -90,6 +90,18 @@ class EditForm extends React.Component {
   }
 }
 
+EditForm.propTypes = {
+    start_value: PropTypes.string,
+    field_name: PropTypes.string,
+    field_hint: PropTypes.string,
+    url: PropTypes.string,
+    cancel_button_text: PropTypes.string,
+    submit_button_text: PropTypes.string,
+    onChangeValue: PropTypes.func,
+    onChangeMode: PropTypes.func
+};
+
+
 
 class InputString extends React.Component {
   constructor(props) {
