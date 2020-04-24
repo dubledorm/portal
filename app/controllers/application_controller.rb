@@ -32,7 +32,10 @@ class ApplicationController < ActionController::Base
   # внутрення ошибка сервера. не обработанная ошибка
   def render_500(e)
     Rails.logger.error(e.message)
-    render 'errors/500', status: 500
+   respond_to do |format|
+     format.html { render 'errors/500', status: 500 }
+     format.json { render json: [e.message], status: :unprocessable_entity }
+   end
   end
 
 

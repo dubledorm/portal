@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+
 class EditForm extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,8 @@ class EditForm extends React.Component {
     }
 
     onSubmitError(error){
-        this.setState({ error_message: JSON.parse(error.responseText)[this.props.field_name]});
+        let message = JSON.parse(error.responseText)
+        this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
     }
 
     onCancel(event){
@@ -52,7 +54,9 @@ class EditForm extends React.Component {
        let element_type = this.props.edit_element_type;
        let field_name = this.props.resource_class +'['+this.props.field_name+']';
        let inputComponentTypes = {
-            'string': <input type="text" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />
+            'string': <input type="text" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />,
+            'text': <textarea name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />,
+            'number': <input type="number" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />
        };
 
        let result = inputComponentTypes[element_type];
@@ -72,7 +76,7 @@ class EditForm extends React.Component {
 
         return (
             <div className="block-hidden-form1">
-                <form onSubmit={this.onSubmit} id={'my_form'}>
+                <form onSubmit={this.onSubmit} >
                     <div className="form-group required">
                         {this.createEditElement()}
                         {error_message}
