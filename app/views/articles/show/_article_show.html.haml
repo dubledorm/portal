@@ -16,7 +16,10 @@
   = render('articles/show/string_block', locals: { field_name: :seo_keywords })
 .col-md-12
   = render('articles/show/text_area_block', locals: { field_name: :seo_description })
+
 .col-md-12
+  Начало
+
   = react_component 'InputString', { name: :name,
   name_title: Article.human_attribute_name(:name),
   name_hint: I18n.t('article.show.name_hint'),
@@ -24,7 +27,8 @@
   submit_button_text: I18n.t('forms.article_new.create'),
   cancel_button_text: I18n.t('cancel'),
   url: user_article_url(user_id: @user.id, id: @resource.id),
-  start_value: @resource.name }
+  start_value: @resource.name,
+  edit_element_type: 'string' }
 
 
 .col-md-12

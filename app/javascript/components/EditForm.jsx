@@ -11,6 +11,8 @@ class EditForm extends React.Component {
         this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
         this.onSubmitError = this.onSubmitError.bind(this);
         this.onCancel = this.onCancel.bind(this);
+
+        this.input = React.createRef();
     }
 
     onSubmit(event){
@@ -18,8 +20,7 @@ class EditForm extends React.Component {
             type: "PUT",
             url: this.props.url,
             dataType: "json",
-            data: $("#my_form").serialize(),
-            //   data: `{this.props.resource_class: { name: this.state.local_value } }`,
+            data: { [this.props.resource_class]: { [this.props.field_name]: this.input.current.value }},
             success: this.onSubmitSuccess,
             error: this.onSubmitError
         });
@@ -28,7 +29,7 @@ class EditForm extends React.Component {
 
     onSubmitSuccess(){
         this.setState({ error_message: '' });
-        this.props.onChangeValue(this.state.local_value);
+        this.props.onChangeValue(this.input.current.value);
         this.props.onChangeMode(false);
     }
 
@@ -42,9 +43,26 @@ class EditForm extends React.Component {
     }
 
     onlocalChangeValue(event){
+        alert(event.target.value);
         this.setState({local_value: event.target.value});
     }
 
+
+    createEditElement() {
+       let element_type = this.props.edit_element_type;
+       let field_name = this.props.resource_class +'['+this.props.field_name+']';
+       let inputComponentTypes = {
+            'string': <input type="text" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />
+       };
+
+       let result = inputComponentTypes[element_type];
+
+       if (result === undefined) {
+           console.error(`Unknown element_type. The value ${element_type} is unknown.`);
+       }
+
+       return result;
+    }
 
     render() {
         let error_message = '';
@@ -52,13 +70,11 @@ class EditForm extends React.Component {
             error_message = <div className="field_error">{this.state.error_message}</div>
         }
 
-        let field_name = this.props.resource_class +'['+this.props.field_name+']';
-
         return (
             <div className="block-hidden-form1">
                 <form onSubmit={this.onSubmit} id={'my_form'}>
                     <div className="form-group required">
-                        <input type="text" name={field_name} className="form-control" value={this.state.local_value} onChange={this.onlocalChangeValue}/>
+                        {this.createEditElement()}
                         {error_message}
                         <div className="field_hint">{this.props.field_hint}</div>
                     </div>
@@ -79,7 +95,8 @@ EditForm.propTypes = {
     cancel_button_text: PropTypes.string,
     submit_button_text: PropTypes.string,
     onChangeValue: PropTypes.func,
-    onChangeMode: PropTypes.func
+    onChangeMode: PropTypes.func,
+    edit_element_type: PropTypes.string
 };
 
 export default EditForm

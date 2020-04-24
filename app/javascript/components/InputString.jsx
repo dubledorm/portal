@@ -47,6 +47,7 @@ class InputString extends React.Component {
 
   render () {
     const edit_mode = this.state.edit_mode;
+    const field_name = this.props.resource_class +'['+this.props.name+']';
 
     let context = null;
     if (edit_mode) {
@@ -58,7 +59,9 @@ class InputString extends React.Component {
                           start_value={this.state.value}
                           url={this.props.url}
                           onChangeValue={this.onChangeValueHandler}
-                          onChangeMode={this.onChangeModeHandler}/>
+                          onChangeMode={this.onChangeModeHandler}
+                          edit_element_type={this.props.edit_element_type} />;
+
     } else {
       context = <FieldContent content={this.state.value} onChangeMode={this.onChangeModeHandler} />
     }
@@ -83,7 +86,8 @@ InputString.propTypes = {
   resource_class: PropTypes.string,
   start_value: PropTypes.string,
   cancel_button_text: PropTypes.string,
-  submit_button_text: PropTypes.string
+  submit_button_text: PropTypes.string,
+  edit_element_type: PropTypes.string
 };
 
 
