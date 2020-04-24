@@ -20,14 +20,18 @@ class FieldContent extends React.Component {
     this.props.onChangeMode(true);
   }
 
+  createMarkup() {
+    return {__html: this.props.content};
+  }
+
   render() {
-    return <div className="block-visible-data" onClick={this.clickHandler}>{this.props.content}</div>;
+    return <div className="block-visible-data" onClick={this.clickHandler} dangerouslySetInnerHTML={this.createMarkup()} />;
   }
 }
 
 
 
-class InputString extends React.Component {
+class EditableField extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeModeHandler = this.onChangeModeHandler.bind(this);
@@ -48,7 +52,6 @@ class InputString extends React.Component {
 
   render () {
     const edit_mode = this.state.edit_mode;
-    const field_name = this.props.resource_class +'['+this.props.name+']';
 
     let context = null;
     if (edit_mode) {
@@ -80,7 +83,7 @@ class InputString extends React.Component {
   }
 }
 
-InputString.propTypes = {
+EditableField.propTypes = {
   name: PropTypes.string,
   name_title: PropTypes.string,
   name_hint: PropTypes.string,
@@ -92,4 +95,4 @@ InputString.propTypes = {
 };
 
 
-export default InputString
+export default EditableField
