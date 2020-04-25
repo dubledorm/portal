@@ -1,0 +1,29 @@
+.required label:after{content:' *'}
+
+form input.form-control, textarea.form-control {
+    background-color: #eae5e5;
+    width: 100%;
+}
+
+.rc-field-hint {
+    display: block;
+    color: #989898;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: italic;
+    text-align: left;
+}
+
+.rc-field-error {
+    display: block;
+    color: #EC5538;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: italic;
+    text-align: left;
+}
+
+.rc-fa-edit {
+    padding-left: 10px;
+    cursor: pointer;
+}

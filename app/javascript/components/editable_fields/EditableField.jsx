@@ -8,7 +8,7 @@ class FieldTitle extends React.Component {
   render() {
     return (
       <h2>{this.props.name}
-        <i className='fa fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />
+        <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />
       </h2>
     );
   }
@@ -25,7 +25,7 @@ class FieldContent extends React.Component {
   }
 
   render() {
-    return <div className="block-visible-data" dangerouslySetInnerHTML={this.createMarkup()} />;
+    return <div className="rc-block-visible-data" dangerouslySetInnerHTML={this.createMarkup()} />;
   }
 }
 
@@ -72,8 +72,8 @@ class EditableField extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="block-item" id={"article_" + this.state.name}>
-          <div className="block-content" >
+        <div className="rc-block-item" id={`${this.props.resource_class}_` + this.state.name}>
+          <div className="rc-block-content" >
             <FieldTitle name={this.state.name_title} onChangeMode={this.onChangeModeHandler} />
             {context}
           </div>

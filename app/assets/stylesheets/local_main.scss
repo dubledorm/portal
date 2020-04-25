@@ -113,7 +113,6 @@
   font-size: 22px;
 }
 
-.required label:after{content:' *'}
 
 .field_hint {
   display: block;
@@ -124,11 +123,6 @@
   text-align: left;
 }
 
-
-form input.form-control, textarea.form-control {
-  background-color: #eae5e5;
-  width: 100%;
-}
 
 .block-hidden-form {
   display: none;

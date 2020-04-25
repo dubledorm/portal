@@ -71,7 +71,7 @@ class EditForm extends React.Component {
     render() {
         let error_message = '';
         if (this.state.error_message) {
-            error_message = <div className="field_error">{this.state.error_message}</div>
+            error_message = <div className="rc-field-error">{this.state.error_message}</div>
         }
 
         return (
@@ -80,7 +80,7 @@ class EditForm extends React.Component {
                     <div className="form-group required">
                         {this.createEditElement()}
                         {error_message}
-                        <div className="field_hint">{this.props.field_hint}</div>
+                        <div className="rc-field-hint">{this.props.field_hint}</div>
                     </div>
                     <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
                     <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
