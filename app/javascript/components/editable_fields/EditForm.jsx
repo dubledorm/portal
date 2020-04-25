@@ -49,6 +49,9 @@ class EditForm extends React.Component {
         this.setState({local_value: event.target.value});
     }
 
+    componentDidMount() {
+        this.input.current.focus();
+    }
 
     createEditElement() {
        let element_type = this.props.edit_element_type;
