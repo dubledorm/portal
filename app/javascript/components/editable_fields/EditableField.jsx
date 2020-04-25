@@ -17,19 +17,15 @@ class FieldTitle extends React.Component {
 class FieldContent extends React.Component {
   constructor(props) {
     super(props);
-    this.clickHandler = this.clickHandler.bind(this);
   }
 
-  clickHandler() {
-    this.props.onChangeMode(true);
-  }
 
   createMarkup() {
     return {__html: this.props.content};
   }
 
   render() {
-    return <div className="block-visible-data" onClick={this.clickHandler} dangerouslySetInnerHTML={this.createMarkup()} />;
+    return <div className="block-visible-data" dangerouslySetInnerHTML={this.createMarkup()} />;
   }
 }
 
@@ -71,7 +67,7 @@ class EditableField extends React.Component {
                           edit_element_type={this.props.edit_element_type} />;
 
     } else {
-      context = <FieldContent content={this.state.value} onChangeMode={this.onChangeModeHandler} />
+      context = <FieldContent content={this.state.value} />
     }
 
     return (
