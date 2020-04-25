@@ -6,7 +6,11 @@ import EditForm from "./EditForm";
 
 class FieldTitle extends React.Component {
   render() {
-    return <h2>{this.props.name}</h2>;
+    return (
+      <h2>{this.props.name}
+        <i className='fa fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />
+      </h2>
+    );
   }
 }
 
@@ -74,7 +78,7 @@ class EditableField extends React.Component {
       <React.Fragment>
         <div className="block-item" id={"article_" + this.state.name}>
           <div className="block-content" >
-            <FieldTitle name={this.state.name_title} />
+            <FieldTitle name={this.state.name_title} onChangeMode={this.onChangeModeHandler} />
             {context}
           </div>
         </div>
