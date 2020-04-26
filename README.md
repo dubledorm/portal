@@ -61,6 +61,10 @@ The generator also accepts options:
   
   --coffee: use CoffeeScript
   
+  Пример react компонента находится в _javascript/components/editable_fields_
+  
+  Пример его использования в _views/articles/show/article_show.html.haml_
+  
 ### JQuery.ajax  
   Запросы, передаваемые через ajax должны быть подписаны csrf токеном.
   Для того, тобы это происходило, надо вызвать вот такой скрипт. 
@@ -73,6 +77,28 @@ The generator also accepts options:
     });`
 
 
+  Пример написания динамических форм с использованием jQuery можно посмотртеть в 
+  
+   _assets/javascripts/block_content_form.js_
+   
+   его используют партиалы:
+   
+   _views/articles/show/number_block.html.haml_
+
+   _views/articles/show/string_block.html.haml_
+
+   _views/articles/show/text_area_block.html.haml_
+   
+   и чтобы всё это работало нужен также 
+   
+   _views/articles/update.js.erb_
+   
+   
+   Сейчас рабочая версия использует react компоненты.
+   Если их заменить на указанные выше хелперы, то будет работать без react
+
+
+   
 ## GradeAverage и Grade
 Подробно описаны в исходниках.
 
