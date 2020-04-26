@@ -23,7 +23,7 @@ module ApplicationHelper
       submit_button_text: I18n.t('send'),
       cancel_button_text: I18n.t('cancel'),
       url: url,
-      start_value: resource.decorate.send(field_name).to_s,
+      start_value: resource.send(field_name).to_s,
       edit_element_type: elem_type,
       read_only: read_only }
   end
