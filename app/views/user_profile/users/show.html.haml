@@ -1,6 +1,6 @@
 = render('layouts/template_parts/small_title', locals: { title: I18n.t('user.show.title') })
 
-%section#contact-page
+%section#user-profile-page
   .container
     = render('layouts/template_parts/large_title', locals: { title: I18n.t('user.show.large_title'),
     text: I18n.t('user.show.title_text') })
@@ -9,10 +9,14 @@
       -# Сообщения об ошибках
       = render('shared/resource_alert_notice')
 
+    .page-blocks
       -# Текущие настройки
-      .col-sm-5.col-sm-offset-1
-        = render('show_profile')
+      = render('show_profile')
 
-      -# Команды и уведомления
-      .col-sm-5
-        = render('show_commands')
+      -#-# Текущие настройки
+      -#.col-sm-5.col-sm-offset-1
+      -#  = render('show_profile')
+      -#
+      -#-# Команды и уведомления
+      -#.col-sm-5
+      -#  = render('show_commands')

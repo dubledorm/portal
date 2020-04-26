@@ -1,0 +1,18 @@
+.col-md-12
+  .avatar-img
+    - if @resource.avatar.attached?
+      = image_tag @resource.avatar, width: '100'
+    - else
+      = image_tag('images/client2.jpg', alt: '')
+
+.col-md-12
+  = rc_string_field(@resource, :email, user_profile_user_url(id: @resource.id))
+
+.col-md-12
+  = rc_string_field(@resource, :nick_name, user_profile_user_url(id: @resource.id))
+
+%hr
+
+.col-md-12
+  .center
+    = render('shared/social_network_list', locals: { services: @resource.services })

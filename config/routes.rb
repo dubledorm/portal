@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   authenticated(:user) do
     resources :users, only: [:show, :edit, :update] do
+      get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile
+      put :profile, on: :member, to: 'user_profile/users#update'
+
+      get :cabinet, on: :member, to: 'user_cabinet/users#show', as: :user_cabinet
+
       resources :galleries do
         resources :pictures
       end
