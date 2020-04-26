@@ -22,7 +22,7 @@ class FieldContent extends React.Component {
 
 
   createMarkup() {
-    return {__html: this.props.content};
+    return {__html: this.props.content.split('\n').join('<br/>')};
   }
 
   render() {
