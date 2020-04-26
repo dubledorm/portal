@@ -6,10 +6,11 @@ import EditForm from "./EditForm";
 
 class FieldTitle extends React.Component {
   render() {
+    let button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />;
     return (
       <div className="rc-editable-field-title">
         <h2>{this.props.name}</h2>
-        <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />
+        {button}
       </div>
     );
   }
@@ -39,7 +40,8 @@ class EditableField extends React.Component {
     this.onChangeValueHandler = this.onChangeValueHandler.bind(this);
     this.state = { value: props.start_value,
         name_title: props.name_title,
-        edit_mode: false
+        edit_mode: false,
+        read_only: 'read_only' in props ? props.read_only : false
     }
   }
 
@@ -52,7 +54,7 @@ class EditableField extends React.Component {
   }
 
   render () {
-    const edit_mode = this.state.edit_mode;
+    const edit_mode = !this.state.read_only && this.state.edit_mode;
 
     let context = null;
     if (edit_mode) {
@@ -75,7 +77,7 @@ class EditableField extends React.Component {
       <React.Fragment>
         <div className="rc-block-item" id={`${this.props.resource_class}_` + this.state.name}>
           <div className="rc-block-content" >
-            <FieldTitle name={this.state.name_title} onChangeMode={this.onChangeModeHandler} />
+            <FieldTitle name={this.state.name_title} onChangeMode={this.onChangeModeHandler} read_only={this.state.read_only}/>
             {context}
           </div>
         </div>
@@ -92,7 +94,8 @@ EditableField.propTypes = {
   start_value: PropTypes.string,
   cancel_button_text: PropTypes.string,
   submit_button_text: PropTypes.string,
-  edit_element_type: PropTypes.string
+  edit_element_type: PropTypes.string,
+  read_only: PropTypes.bool
 };
 
 

@@ -6,7 +6,7 @@
       = image_tag('images/client2.jpg', alt: '')
 
 .col-md-12
-  = rc_string_field(@resource, :email, user_profile_user_url(id: @resource.id))
+  = rc_string_field(@resource, :email, user_profile_user_url(id: @resource.id), true)
 
 .col-md-12
   = rc_string_field(@resource, :nick_name, user_profile_user_url(id: @resource.id))

@@ -15,7 +15,7 @@ module ApplicationHelper
     records.partition{ |record| i +=1; i < half_records_count }
   end
 
-  def input_options(elem_type, resource, field_name, url)
+  def input_options(elem_type, resource, field_name, url, read_only = false)
     { name: field_name,
       name_title: resource.class.human_attribute_name(field_name),
       name_hint: I18n.t("#{resource.class.name.underscore}.show.#{field_name}_hint"),
@@ -24,18 +24,19 @@ module ApplicationHelper
       cancel_button_text: I18n.t('cancel'),
       url: url,
       start_value: resource.decorate.send(field_name).to_s,
-      edit_element_type: elem_type }
+      edit_element_type: elem_type,
+      read_only: read_only }
   end
 
-  def rc_string_field(resource, field_name, url)
-    react_component 'editable_fields/EditableField', input_options('string', resource, field_name, url)
+  def rc_string_field(resource, field_name, url, read_only = false)
+    react_component 'editable_fields/EditableField', input_options('string', resource, field_name, url, read_only)
   end
 
-  def rc_number_field(resource, field_name, url)
-    react_component 'editable_fields/EditableField', input_options('number', resource, field_name, url)
+  def rc_number_field(resource, field_name, url, read_only = false)
+    react_component 'editable_fields/EditableField', input_options('number', resource, field_name, url, read_only)
   end
 
-  def rc_text_field(resource, field_name, url)
-    react_component 'editable_fields/EditableField', input_options('text', resource, field_name, url)
+  def rc_text_field(resource, field_name, url, read_only = false)
+    react_component 'editable_fields/EditableField', input_options('text', resource, field_name, url, read_only)
   end
 end
