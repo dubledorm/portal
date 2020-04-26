@@ -78,7 +78,7 @@ class EditForm extends React.Component {
         }
 
         return (
-            <div className="block-hidden-form1">
+            <div className="rc-block-hidden-form">
                 <form onSubmit={this.onSubmit} >
                     <div className="form-group required">
                         {this.createEditElement()}

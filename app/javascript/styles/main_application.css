@@ -16,7 +16,7 @@ form input.form-control, textarea.form-control {
 
 a.btn-cancel {
     padding: 8px 20px;
-    margin: 10px 3px 0px 0px;
+    margin: 10px 0px 0px;
     min-width: 140px;
     text-align: center;
     border: 1px solid #D0D7DD;
@@ -56,4 +56,53 @@ a.btn-cancel {
     display: inline-block;
     padding-left: 10px;
     cursor: pointer;
+}
+
+.rc-block-hidden-form .btn-primary {
+    margin-left: 8px;
+}
+
+/* Список с кнопками */
+
+.three_column_list {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.three_column_list li {
+    height: 40px;
+    margin: 8px;
+    font-size: 16px;
+}
+
+.three_column_list li a {
+    display: inline;
+}
+
+.three_column_list li a.btn-primary {
+    color: white;
+}
+
+.three_column_list li:first-child {
+    padding-top: 0;
+}
+
+/* Предупреждение */
+.warning {
+    color: #cb9810;
+    font-size: 16px;
+    font-style: italic;
+    padding-bottom: 20px;
+}
+
+.warning .question {
+    color: #404040;
+    font-size: 14px;
+    font-style: normal;
+}
+
+.warning .btn-primary {
+    margin-left: 8px;
+    color: white;
 }
