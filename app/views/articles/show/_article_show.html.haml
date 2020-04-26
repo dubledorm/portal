@@ -1,43 +1,18 @@
 .col-md-12
-  = render('articles/show/string_block', locals: { field_name: :name })
+  = rc_string_field(@resource, :name, user_article_url(user_id: @user.id, id: @resource.id))
 .col-md-12
-  = render('articles/show/text_area_block', locals: { field_name: :main_description })
+  = rc_text_field(@resource, :main_description, user_article_url(user_id: @user.id, id: @resource.id))
 .col-md-12
-  = render('articles/show/text_area_block', locals: { field_name: :short_description })
+  = rc_text_field(@resource, :short_description, user_article_url(user_id: @user.id, id: @resource.id))
 .col-xs-12.col-md-3
-  = render('articles/show/number_block', locals: { field_name: :min_quantity })
+  = rc_number_field(@resource, :min_quantity, user_article_url(user_id: @user.id, id: @resource.id))
 .col-xs-12.col-md-3
-  = render('articles/show/number_block', locals: { field_name: :max_quantity })
+  = rc_number_field(@resource, :max_quantity, user_article_url(user_id: @user.id, id: @resource.id))
 .col-xs-12.col-md-3
-  = render('articles/show/number_block', locals: { field_name: :min_age })
+  = rc_number_field(@resource, :min_age, user_article_url(user_id: @user.id, id: @resource.id))
 .col-xs-12.col-md-3
-  = render('articles/show/number_block', locals: { field_name: :max_age })
+  = rc_number_field(@resource, :max_age, user_article_url(user_id: @user.id, id: @resource.id))
 .col-md-12
-  = render('articles/show/string_block', locals: { field_name: :seo_keywords })
+  = rc_string_field(@resource, :seo_keywords, user_article_url(user_id: @user.id, id: @resource.id))
 .col-md-12
-  = render('articles/show/text_area_block', locals: { field_name: :seo_description })
-
--#.col-md-12
--#  Начало
--#
--#  = react_component 'editable_fields/EditableField', { name: :name,
--#  name_title: Article.human_attribute_name(:name),
--#  name_hint: I18n.t('article.show.name_hint'),
--#  resource_class: @resource.class.name.underscore,
--#  submit_button_text: I18n.t('forms.article_new.create'),
--#  cancel_button_text: I18n.t('cancel'),
--#  url: user_article_url(user_id: @user.id, id: @resource.id),
--#  start_value: @resource.name,
--#  edit_element_type: 'string' }
-
-.col-md-12
-  = react_component 'editable_fields/EditableField', input_options('string', @resource, :name, user_article_url(user_id: @user.id, id: @resource.id))
-
-.col-md-12
-  = react_component 'editable_fields/EditableField', input_options('string', @resource, :seo_keywords, user_article_url(user_id: @user.id, id: @resource.id))
-
-.col-md-12
-  = react_component 'editable_fields/EditableField', input_options('number', @resource, :min_quantity, user_article_url(user_id: @user.id, id: @resource.id))
-
-.col-md-12
-  = react_component 'editable_fields/EditableField', input_options('text', @resource, :main_description, user_article_url(user_id: @user.id, id: @resource.id))
+  = rc_text_field(@resource, :seo_description, user_article_url(user_id: @user.id, id: @resource.id))

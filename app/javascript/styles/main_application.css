@@ -38,7 +38,13 @@ a.btn-cancel {
     text-align: left;
 }
 
-.rc-fa-edit {
+
+.rc-editable-field-title h2 {
+    display: inline-block;
+}
+
+.rc-editable-field-title .rc-fa-edit {
+    display: inline-block;
     padding-left: 10px;
     cursor: pointer;
 }

@@ -7,9 +7,10 @@ import EditForm from "./EditForm";
 class FieldTitle extends React.Component {
   render() {
     return (
-      <h2>{this.props.name}
+      <div className="rc-editable-field-title">
+        <h2>{this.props.name}</h2>
         <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />
-      </h2>
+      </div>
     );
   }
 }

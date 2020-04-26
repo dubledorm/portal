@@ -25,6 +25,17 @@ module ApplicationHelper
       url: url,
       start_value: resource.decorate.send(field_name).to_s,
       edit_element_type: elem_type }
+  end
 
+  def rc_string_field(resource, field_name, url)
+    react_component 'editable_fields/EditableField', input_options('string', resource, field_name, url)
+  end
+
+  def rc_number_field(resource, field_name, url)
+    react_component 'editable_fields/EditableField', input_options('number', resource, field_name, url)
+  end
+
+  def rc_text_field(resource, field_name, url)
+    react_component 'editable_fields/EditableField', input_options('text', resource, field_name, url)
   end
 end
