@@ -1,0 +1,43 @@
+= form_with(model: @resource, local: true) do |f|
+  = @resource.errors.full_messages
+  = f.hidden_field(:user_id)
+
+  %p
+    = f.label(:name)
+    = f.text_field(:name)
+  %p
+    = f.label(:article_type)
+    = f.text_field(:article_type)
+  %p
+    = f.label(:short_description)
+    = f.text_field(:short_description)
+  %p
+    = f.label(:main_description)
+    = f.text_field(:main_description)
+  %p
+    = f.label(:state)
+    = f.text_field(:state)
+  %p
+    = f.label(:min_quantity)
+    = f.text_field(:min_quantity)
+  %p
+    = f.label(:max_quantity)
+    = f.text_field(:max_quantity)
+  %p
+    = f.label(:min_age)
+    = f.text_field(:min_age)
+  %p
+    = f.label(:max_age)
+    = f.text_field(:max_age)
+  %p
+    = f.label(:duration_minutes)
+    = f.text_field(:duration_minutes)
+  %p
+    = f.label(:seo_description)
+    = f.text_field(:seo_description)
+  %p
+    = f.label(:seo_keywords)
+    = f.text_field(:seo_keywords)
+
+  %p
+    = f.submit('save')

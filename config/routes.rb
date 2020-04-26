@@ -15,10 +15,11 @@ Rails.application.routes.draw do
       resources :galleries do
         resources :pictures
       end
+
+      resources :articles, controller: 'user_customer/articles'
     end
 
     resources :grades
-    resources :articles
     root to: "secret#index", as: :authenticated_root
   end
 
