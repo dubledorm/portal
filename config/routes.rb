@@ -21,17 +21,16 @@ Rails.application.routes.draw do
         resources :pictures
       end
 
-      resources :articles
+      resources :articles, controller: 'user_customer/articles'
     end
 
     resources :grades
-    resources :articles, only: [:index, :show]
     root to: "secret#index", as: :authenticated_root
   end
 
   resources :grades, only: [:index, :show]
   resources :articles, only: [:index, :show]
-#  resources :galleries, only: [:index, :show]
+  resources :galleries, only: [:index, :show]
   root to: 'home#index'
 end
 
