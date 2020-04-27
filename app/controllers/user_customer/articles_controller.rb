@@ -2,7 +2,7 @@
 module UserCustomer
   class ArticlesController < ApplicationController
 
-    before_action find_user
+    before_action :find_user
 
     include ArticleConcern
 
@@ -37,12 +37,6 @@ module UserCustomer
             format.json { render json: @resource.errors, status: :unprocessable_entity }
           end
         end
-      end
-    end
-
-    def show
-      super do
-        @user = User.find(params.required(:user_id))
       end
     end
 
