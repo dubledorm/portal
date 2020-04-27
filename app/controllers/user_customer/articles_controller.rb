@@ -2,18 +2,18 @@
 module UserCustomer
   class ArticlesController < ApplicationController
 
+    before_action find_user
+
     include ArticleConcern
 
     def new
       super do
-        @user = User.find(params.required(:user_id))
-        @resource = Article.new(user_id: params.required(:user_id))
+        @resource = Article.new(user_id: @user.id)
       end
     end
 
     def create
       super do
-        @user = User.find(params.required(:user_id))
         @resource = Article.create(article_params)
         unless @resource.persisted?
           render :new
@@ -25,7 +25,6 @@ module UserCustomer
 
     def update
       super do
-        @user = User.find(params.required(:user_id))
         @resource.update(article_params)
 
         respond_to do |format|
@@ -53,6 +52,10 @@ module UserCustomer
       params.required(:article).permit(:name, :main_description, :short_description, :state, :article_type,
                                        :min_quantity, :max_quantity, :min_age, :max_age, :seo_description,
                                        :seo_keywords, :duration_minutes, :gallery_id, :user_id)
+    end
+
+    def find_user
+      @user = User.find(params.required(:user_id))
     end
   end
 end
