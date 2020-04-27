@@ -1,10 +1,7 @@
 .col-xs-12.col-md-6
+  = rc_avatar_field(@resource, :avatar, user_profile_user_url(id: @resource.id))
   .col-xs-12.col-md-6.center
-    .avatar-img
-      - if @resource.avatar.attached?
-        = image_tag @resource.avatar, width: '100'
-      - else
-        = image_tag('images/client2.jpg', alt: '')
+    = rc_avatar_field(@resource, :avatar, user_profile_user_url(id: @resource.id))
   .col-xs-12.col-md-6
     = rc_string_field(@resource, :email, user_profile_user_url(id: @resource.id), true)
   .col-xs-12

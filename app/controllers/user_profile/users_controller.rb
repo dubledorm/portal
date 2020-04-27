@@ -18,7 +18,7 @@ module UserProfile
     end
 
     def user_profile_params
-      params.required(:user).permit(:email, :main_image, :nick_name)
+      params.required(:user).permit(:email, :avatar, :nick_name)
     end
   end
 end

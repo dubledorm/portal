@@ -212,7 +212,8 @@ include GradeConcern
 
 Например:
 
-     <link rel="shortcut icon" type="image/x-icon" href="<% asset_pack_path 'media/images/favicon.ico' %>" />
+    <link rel="shortcut icon" type="image/x-icon" href="<% asset_pack_path 'media/images/favicon.ico' %>" />
+
 
 При этом, префикс маршрута media/ надо добавлять в ручную.
 

@@ -58,6 +58,7 @@ class EditForm extends React.Component {
        let field_name = this.props.resource_class +'['+this.props.field_name+']';
        let inputComponentTypes = {
             'string': <input type="text" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />,
+            'file': <input type="file" name={field_name} className="form-control" ref={this.input} />,
             'text': <textarea name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />,
             'number': <input type="number" name={field_name} className="form-control" defaultValue={this.props.start_value} ref={this.input} />
        };

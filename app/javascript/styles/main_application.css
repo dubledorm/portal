@@ -5,6 +5,13 @@
     margin-bottom: 15px;
 }
 
+.rc-editable-avatar-cover {
+    border: 3px solid #989898;
+    padding: 10px;
+    width: 130px;
+    margin: 0px 0px;
+}
+
 
 /*Формы и react компоненты*/
 .required label:after{content:' *'}
