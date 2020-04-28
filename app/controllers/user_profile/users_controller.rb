@@ -6,7 +6,7 @@ module UserProfile
       super do
         @resource.update(user_profile_params)
         if @resource.errors.count == 0
-          render json: @resource, status: :ok, location: @resource
+          render json: { avatar: url_for(@resource.avatar) }, status: :ok, location: @resource
         else
           render json: @resource.errors, status: :unprocessable_entity
         end
