@@ -10,7 +10,6 @@ class EditableAvatar extends React.Component {
   constructor(props) {
     super(props);
     this.onChangeModeHandler = this.onChangeModeHandler.bind(this);
-//    this.onChangeValueHandler = this.onChangeValueHandler.bind(this);
     this.onSelectFileHandler = this.onSelectFileHandler.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
@@ -20,6 +19,7 @@ class EditableAvatar extends React.Component {
       file: '',
       value: props.image_path,
       edit_mode: false,
+      error_message: '',
       read_only: 'read_only' in props ? props.read_only : false
     }
   }
@@ -28,10 +28,6 @@ class EditableAvatar extends React.Component {
   onChangeModeHandler(edit_mode) {
     this.setState({edit_mode: edit_mode});
   }
-
-  // onChangeValueHandler(value) {
-  //   this.setState({value: value});
-  // }
 
   onSelectFileHandler(value) {
     this.setState({file: value})
@@ -45,12 +41,12 @@ class EditableAvatar extends React.Component {
 
     let fd = new FormData;
 
-    fd.append('user[avatar]', this.state.file);
+    fd.append(`${this.props.resource_class}[${this.props.name}]`, this.state.file);
 
 
     $.ajax({
       type: "PUT",
-      url: 'profile',
+      url: this.props.url,
       dataType: "json",
       processData: false,
       contentType: false,
@@ -61,26 +57,34 @@ class EditableAvatar extends React.Component {
   }
   onSubmitSuccess(event){
     if ('avatar' in event) {
-      this.setState({value: event.avatar, file: '', edit_mode: false});
+      this.setState({value: event.avatar, file: '', edit_mode: false, error_message: ''});
     } else {
       console.error('The submit response does not have parameter avatar.')
     }
   }
 
   onSubmitError(error){
-    let message = JSON.parse(error.responseText)
-    console.error('Submit error. Message: ');
-    // this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+    let message = JSON.parse(error.responseText);
+    console.error('Submit error. Message: ' + message);
+    this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
   }
+
+
   render () {
     const edit_mode = !this.state.read_only && this.state.edit_mode;
     let content = null;
 
     if (edit_mode) {
       let btnSend = this.state.file === '' ? '' : <BtnPrimary onClickHandler={this.onSubmitHandler}>{this.props.submit_button_text}</BtnPrimary>;
+      let error_message = '';
+      if (this.state.error_message) {
+        error_message = <div className="rc-field-error">{this.state.error_message}</div>
+      }
+
       content = (
           <div className='rc-editable-avatar-cover'>
             <ImageUpload imagePreviewUrl={this.state.value} onSelectFileHandler={this.onSelectFileHandler}/>
+            {error_message}
             <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
             {btnSend}
           </div>
