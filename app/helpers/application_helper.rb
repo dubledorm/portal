@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def avatar_input_options(resource, field_name, url, read_only = false)
-    image_path = resource.send(field_name).attached? ? url_for(resource.send(field_name)) : asset_url('images/client2.jpg')
+    image_path = resource.send(field_name).attached? ?  UserProfilePresenter.new(resource, self).avatar : asset_url('images/client2.jpg')
 
     { name: field_name,
       name_title: resource.class.human_attribute_name(field_name),
