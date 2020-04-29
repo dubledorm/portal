@@ -23,7 +23,7 @@ class ImageUpload extends React.Component {
                 file: file,
                 imagePreviewUrl: reader.result
             });
-            this.props.onSelectFileHandler(file);
+            this.props.onSelectFileHandler(file, reader.result);
         };
 
         reader.readAsDataURL(file)
@@ -34,7 +34,7 @@ class ImageUpload extends React.Component {
 
         return (
             <div>
-                <Avatar image_path={this.state.imagePreviewUrl}/>
+                {/*<Avatar image_path={this.state.imagePreviewUrl}/>*/}
                 <form>
                     <input className="rc-file-input"
                            type="file"

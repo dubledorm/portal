@@ -16,10 +16,12 @@ class EditableAvatar extends React.Component {
     this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
     this.onSubmitError = this.onSubmitError.bind(this);
 
+
     this.state = {
       spinner: false,
       file: '',
       value: props.image_path,
+      new_value: null,
       edit_mode: false,
       error_message: '',
       read_only: 'read_only' in props ? props.read_only : false
@@ -28,12 +30,20 @@ class EditableAvatar extends React.Component {
 
 
   onChangeModeHandler(edit_mode) {
-    this.setState({edit_mode: edit_mode});
+
+    this.setState(function(state, props) {
+      if (state.edit_mode === edit_mode) {
+        return {};
+      } else {
+        return {edit_mode: edit_mode, new_value: null, file: ''};
+      }
+    });
   }
 
-  onSelectFileHandler(value) {
-    this.setState({file: value})
+  onSelectFileHandler(value, new_image) {
+    this.setState({file: value, new_value: new_image})
   }
+
 
   onSubmitHandler() {
     if (this.state.file === '') {
@@ -61,7 +71,7 @@ class EditableAvatar extends React.Component {
   }
   onSubmitSuccess(event){
     if ('avatar' in event) {
-      this.setState({value: event.avatar, file: '', edit_mode: false, error_message: ''});
+      this.setState({value: event.avatar, file: '', edit_mode: false, error_message: '', new_value: null});
     } else {
       console.error('The submit response does not have parameter avatar.')
     }
@@ -72,26 +82,29 @@ class EditableAvatar extends React.Component {
     let message = JSON.parse(error.responseText);
     console.error('Submit error. Message: ' + message);
     this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
-    this.setState({spinner: false});
+    this.setState({spinner: false, new_value: null });
   }
 
 
   render () {
     const edit_mode = !this.state.read_only && this.state.edit_mode;
     let content = null;
+    let button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.onChangeModeHandler.bind(this, true)} />;
+
+    if (this.state.spinner) {
+      button = <Spinner/>;
+    }
 
     if (edit_mode) {
       let btnSend = this.state.file === '' ? '' : <BtnPrimary onClickHandler={this.onSubmitHandler}>{this.props.submit_button_text}</BtnPrimary>;
       let error_message = '';
-      let spinner = this.state.spinner ? <Spinner/> : null;
       if (this.state.error_message) {
         error_message = <div className="rc-field-error">{this.state.error_message}</div>
       }
 
       content = (
-          <div className='rc-editable-avatar-cover'>
+          <div>
             <ImageUpload imagePreviewUrl={this.state.value} onSelectFileHandler={this.onSelectFileHandler}/>
-            {spinner}
             {error_message}
             <div className='rc-form-buttons'>
               <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
@@ -99,20 +112,17 @@ class EditableAvatar extends React.Component {
             </div>
           </div>
       );
-    } else {
-      let button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.onChangeModeHandler.bind(this, true)} />;
-      content = (
-          <div className='rc-editable-avatar-cover'>
-            <Avatar image_path={this.state.value}/>
-            {button}
-          </div>);
     }
 
     return (
       <React.Fragment>
         <div className="rc-block-item" id={`${this.props.resource_class}_` + this.state.name}>
           <div className="rc-block-content" >
-            {content}
+            <div className='rc-editable-avatar-cover'>
+              <Avatar image_path={this.state.new_value === null ? this.state.value : this.state.new_value} />
+              {button}
+              {content}
+            </div>
           </div>
         </div>
       </React.Fragment>
