@@ -85,9 +85,10 @@ class EditForm extends React.Component {
                         {error_message}
                         <div className="rc-field-hint">{this.props.field_hint}</div>
                     </div>
-                    <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
-                    <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
-
+                    <div className='rc-form-buttons'>
+                      <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
+                      <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
+                    </div>
                 </form>
             </div>);
     }

@@ -85,8 +85,10 @@ class EditableAvatar extends React.Component {
           <div className='rc-editable-avatar-cover'>
             <ImageUpload imagePreviewUrl={this.state.value} onSelectFileHandler={this.onSelectFileHandler}/>
             {error_message}
-            <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
-            {btnSend}
+            <div className='rc-form-buttons'>
+              <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
+              {btnSend}
+            </div>
           </div>
       );
     } else {

@@ -2,9 +2,9 @@
   .warning
     %h2
       = I18n.t('attention')
-    %p
+    %h3
       = I18n.t('user.show.confirm_email', days: @resource.unconfirmed_days_still_available)
     .question
-      %span
+      %span.lead
         = I18n.t('user.show.need_mail_confirmation')
       = link_to(I18n.t('user.show.resend_confirmation'), new_confirmation_path(User))

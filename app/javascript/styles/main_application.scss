@@ -1,0 +1,69 @@
+@import 'main_consts';
+@import 'rc_editable_fields';
+
+
+/* Формы */
+.required label:after{content:' *'}
+
+form input.form-control, textarea.form-control {
+    background-color: $background_input_field_color;
+    width: 100%;
+}
+
+
+/* Список с кнопками */
+
+.three_column_list {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.three_column_list li {
+    height: 40px;
+    margin: 8px;
+    font-size: 16px;
+}
+
+.three_column_list li a {
+    display: inline;
+}
+
+.three_column_list li:first-child {
+    padding-top: 0;
+}
+
+// Кнопки
+a.btn-primary {
+    color: $btn_primary_text_color;
+    margin-right: 8px;
+}
+
+
+a.btn-cancel {
+    padding: 8px 20px;
+    margin-right: 8px;
+    min-width: 140px;
+    text-align: center;
+    border: 1px solid #D0D7DD;
+    display: inline-block;
+    font-weight: 700;
+    border-radius: 4px;
+    color: $btn_cancel_text_color;
+    margin-top: 10px;
+    height: 36px;
+}
+
+/* Предупреждение */
+.warning {
+    display: block;
+    background-color: $warning_background_color;
+    border-left: 4px solid $warning_leftborder_color;
+    padding: 1.2rem 1.2rem 1.2rem calc(1rem - 4px);
+    margin-left: -1rem;
+    margin-bottom: 2rem;
+
+    .question a {
+        color: $a_color;
+    }
+}
