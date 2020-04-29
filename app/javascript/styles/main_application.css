@@ -129,10 +129,23 @@ a.btn-primary {
 
 /* Предупреждение */
 .warning {
-    color: #cb9810;
+    display: block;
+
+    background-color: rgba(255,229,100,.3);
+    border-left-color: #ffe564;
+
+    border-left: 4px solid transparent;
+    padding: 1.2rem 1.2rem 1.2rem calc(1rem - 4px);
+    margin-left: -1rem;
+    margin-bottom: 2rem;
+    /*color: #cb9810;*/
     font-size: 16px;
-    font-style: italic;
-    padding-bottom: 20px;
+    /*font-style: italic;*/
+    /*padding-bottom: 20px;*/
+}
+
+.warning .question {
+
 }
 
 .warning .question {
