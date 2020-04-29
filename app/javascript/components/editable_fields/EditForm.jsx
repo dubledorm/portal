@@ -1,5 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import BtnCancel from "./BtnCancel"
+import BtnPrimary from "./BtnPrimary"
+
 
 
 class EditForm extends React.Component {
@@ -89,8 +92,8 @@ class EditForm extends React.Component {
                         <div className="rc-field-hint">{this.props.field_hint}</div>
                     </div>
                     <div className='rc-form-buttons'>
-                      <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
-                      <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
+                      <BtnCancel onClickHandler={this.onCancel}>{this.props.cancel_button_text}</BtnCancel>
+                      <BtnPrimary onClickHandler={this.onSubmit}>{this.props.submit_button_text}</BtnPrimary>
                     </div>
                 </form>
             </div>);
