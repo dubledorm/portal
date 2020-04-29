@@ -55,9 +55,17 @@ $size_avatar_y: 100px;
   display: inline-block;
 }
 
-.rc-editable-avatar-cover .rc-fa-edit, .rc-editable-field-title .rc-fa-edit {
+%rc-marker {
   display: inline-block;
   padding-left: 10px;
+}
+
+.rc-editable-avatar-cover .rc-fa-edit, .rc-editable-field-title .rc-fa-edit {
+  @extend %rc-marker;
   cursor: pointer;
 }
 
+.rc-editable-avatar-cover .rc-spinner, .rc-editable-field-title .rc-spinner {
+  @extend %rc-marker;
+  font-size: 20px;
+}

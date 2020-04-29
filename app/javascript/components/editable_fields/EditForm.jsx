@@ -17,6 +17,7 @@ class EditForm extends React.Component {
     }
 
     onSubmit(event){
+        this.props.onToggleSpinner(true);
         $.ajax({
             type: "PUT",
             url: this.props.url,
@@ -32,11 +33,13 @@ class EditForm extends React.Component {
         this.setState({ error_message: '' });
         this.props.onChangeValue(this.input.current.value);
         this.props.onChangeMode(false);
+        this.props.onToggleSpinner(false);
     }
 
     onSubmitError(error){
         let message = JSON.parse(error.responseText)
         this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+        this.props.onToggleSpinner(false);
     }
 
     onCancel(event){
@@ -104,6 +107,7 @@ EditForm.propTypes = {
     submit_button_text: PropTypes.string,
     onChangeValue: PropTypes.func,
     onChangeMode: PropTypes.func,
+    onToggleSpinner: PropTypes.func,
     edit_element_type: PropTypes.string
 };
 

@@ -4,6 +4,7 @@ import ImageUpload from "./ImageUpload";
 import Avatar from "./Avatar"
 import BtnCancel from "./BtnCancel"
 import BtnPrimary from "./BtnPrimary";
+import Spinner from "./Spinner";
 
 
 class EditableAvatar extends React.Component {
@@ -16,6 +17,7 @@ class EditableAvatar extends React.Component {
     this.onSubmitError = this.onSubmitError.bind(this);
 
     this.state = {
+      spinner: false,
       file: '',
       value: props.image_path,
       edit_mode: false,
@@ -39,6 +41,8 @@ class EditableAvatar extends React.Component {
       return;
     }
 
+    this.setState({spinner: true});
+
     let fd = new FormData;
 
     fd.append(`${this.props.resource_class}[${this.props.name}]`, this.state.file);
@@ -61,12 +65,14 @@ class EditableAvatar extends React.Component {
     } else {
       console.error('The submit response does not have parameter avatar.')
     }
+    this.setState({spinner: false});
   }
 
   onSubmitError(error){
     let message = JSON.parse(error.responseText);
     console.error('Submit error. Message: ' + message);
     this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+    this.setState({spinner: false});
   }
 
 
@@ -77,6 +83,7 @@ class EditableAvatar extends React.Component {
     if (edit_mode) {
       let btnSend = this.state.file === '' ? '' : <BtnPrimary onClickHandler={this.onSubmitHandler}>{this.props.submit_button_text}</BtnPrimary>;
       let error_message = '';
+      let spinner = this.state.spinner ? <Spinner/> : null;
       if (this.state.error_message) {
         error_message = <div className="rc-field-error">{this.state.error_message}</div>
       }
@@ -84,6 +91,7 @@ class EditableAvatar extends React.Component {
       content = (
           <div className='rc-editable-avatar-cover'>
             <ImageUpload imagePreviewUrl={this.state.value} onSelectFileHandler={this.onSelectFileHandler}/>
+            {spinner}
             {error_message}
             <div className='rc-form-buttons'>
               <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
