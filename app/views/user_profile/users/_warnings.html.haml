@@ -1,7 +1,10 @@
 - unless @resource.user_confirmed?
   .warning
-    = I18n.t('user.show.confirm_email', days: @resource.unconfirmed_days_still_available)
+    %h2
+      = I18n.t('attention')
+    %h3
+      = I18n.t('user.show.confirm_email', days: @resource.unconfirmed_days_still_available)
     .question
-      %span
+      %span.lead
         = I18n.t('user.show.need_mail_confirmation')
-      = link_to(I18n.t('user.show.resend_confirmation'), new_confirmation_path(User), class: 'btn btn-primary')
+      = link_to(I18n.t('user.show.resend_confirmation'), new_confirmation_path(User))

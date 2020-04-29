@@ -16,7 +16,8 @@ require("channels")
  const images = require.context('../images', true)
  const imagePath = (name) => images(name, true)
 
-import('../styles/main_application.css');// Support component names relative to this directory:
+import('../styles/main_application');// Support component names relative to this directory:
+
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
 ReactRailsUJS.useContext(componentRequireContext);

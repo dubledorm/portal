@@ -95,6 +95,7 @@ EditableField.propTypes = {
   cancel_button_text: PropTypes.string,
   submit_button_text: PropTypes.string,
   edit_element_type: PropTypes.string,
+  url: PropTypes.string,
   read_only: PropTypes.bool
 };
 
