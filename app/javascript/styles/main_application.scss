@@ -28,10 +28,6 @@ form input.form-control, textarea.form-control {
     display: inline;
 }
 
-.three_column_list li:first-child {
-    padding-top: 0;
-}
-
 // Кнопки
 a.btn-primary {
     color: $btn_primary_text_color;
