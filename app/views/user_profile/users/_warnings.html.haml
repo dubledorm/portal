@@ -1,9 +1,9 @@
-- unless @resource.user_confirmed?
+- unless @user_profile_presenter.email_confirmed
   .warning
     %h2
       = I18n.t('attention')
     %h3
-      = I18n.t('user.show.confirm_email', days: @resource.unconfirmed_days_still_available)
+      = @user_profile_presenter.email_confirmed_message
     .question
       %span.lead
         = I18n.t('user.show.need_mail_confirmation')

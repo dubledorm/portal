@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile
       put :profile, on: :member, to: 'user_profile/users#update'
 
+      scope module: 'user_profile' do
+        resources :services, only: [:destroy]
+      end
+
       get :cabinet, on: :member, to: 'user_cabinet/users#show', as: :user_cabinet
 
       resources :galleries do
