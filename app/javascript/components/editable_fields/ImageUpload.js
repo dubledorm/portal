@@ -1,7 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Avatar from "./Avatar";
-
 
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -34,7 +32,6 @@ class ImageUpload extends React.Component {
 
         return (
             <div>
-                {/*<Avatar image_path={this.state.imagePreviewUrl}/>*/}
                 <form>
                     <input className="rc-file-input"
                            type="file"

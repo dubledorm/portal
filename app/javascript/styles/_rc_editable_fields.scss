@@ -5,6 +5,15 @@ $size_avatar_y: 100px;
 
 
 /* Аватар и загрузка картинки */
+
+%rc-backgroun-picture {
+  /* Картинка через background */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 .rc-file-input {
   padding: 5px;
   margin: 5px;
@@ -18,16 +27,39 @@ $size_avatar_y: 100px;
   display: inline-block;
   margin-bottom: 15px;
 
-  /* Картинка через background */
-  background-size: cover;
+  @extend %rc-backgroun-picture;
   width: $size_avatar_x;
   height: $size_avatar_y;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .rc-editable-avatar-cover {
   padding: 10px;
+}
+
+/* Загрузка картинки */
+.rc-image {
+  @extend %rc-backgroun-picture;
+  background-color: $background_input_field_color;
+  // Следующие три строчки и .rc-image:before для квадратного окна во всю ширину предка
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.rc-image:before {
+  content: "";
+  padding-top: 100%;
+  float: left;
+}
+
+// Спиннер по центру картинки
+.rc-image .rc-spinner {
+  font-size: 46px;
+  text-align: center;
+  width: 30%;
+  height: 30%;
+  margin: 35% 35%;
+  overflow: hidden;
 }
 
 /* Поля редактирования */

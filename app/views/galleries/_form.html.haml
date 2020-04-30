@@ -1,9 +1,11 @@
-= form_with(model: [@user, @resource], local: true) do |f|
+= form_with(model: [@user, @resource], local: true, multipart: true) do |f|
   = f.hidden_field(:user_id)
   .col-xs-12.col-md-4.col-md-push-8
     .form-group
-      = cover_gallery(@resource)
-      = f.file_field(:image_for_cover, class: 'form-control')
+      = f.label(:image_for_cover)
+      = rc_image_field(@resource, :image_for_cover)
+      -#= cover_gallery(@resource)
+      -#= f.file_field(:image_for_cover, class: 'form-control')
   .col-xs-12.col-md-8.col-md-pull-4
     .form-group
       = f.label(:name)
