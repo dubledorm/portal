@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       end
 
       get :cabinet, on: :member, to: 'user_cabinet/users#show', as: :user_cabinet
-
-      resources :galleries do
+      scope module: 'user_cabinet' do
+        resources :galleries
         resources :pictures
       end
 

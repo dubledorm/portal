@@ -3,9 +3,7 @@ import PropTypes from "prop-types"
 import Spinner from "./Spinner"
 
 function RcSquareImage(props) {
-    let imgStyle = {
-        backgroundImage: `url(${props.image_path})`
-    };
+    let imgStyle = props.image_path === undefined ? {} : { backgroundImage: `url(${props.image_path})` };
     let spinner = props.spinner === true ? <Spinner /> : null;
 
     return (

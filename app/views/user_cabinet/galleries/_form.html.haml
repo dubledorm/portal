@@ -4,8 +4,6 @@
     .form-group
       = f.label(:image_for_cover)
       = rc_image_field(@resource, :image_for_cover)
-      -#= cover_gallery(@resource)
-      -#= f.file_field(:image_for_cover, class: 'form-control')
   .col-xs-12.col-md-8.col-md-pull-4
     .form-group
       = f.label(:name)
