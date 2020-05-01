@@ -30,23 +30,23 @@ class GalleriesController < ApplicationController
   #   end
   # end
 
-  def update
-    super do
-      @user = User.find(params[:user_id])
-      if gallery_params[:name].blank?
-        @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
-        render :edit
-        return
-      end
-
-      @resource.update(gallery_params)
-      if @resource.errors.count > 0
-        render :edit
-        return
-      end
-      redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
-    end
-  end
+  # def update
+  #   super do
+  #     @user = User.find(params[:user_id])
+  #     if gallery_params[:name].blank?
+  #       @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
+  #       render :edit
+  #       return
+  #     end
+  #
+  #     @resource.update(gallery_params)
+  #     if @resource.errors.count > 0
+  #       render :edit
+  #       return
+  #     end
+  #     redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
+  #   end
+  # end
 
 
   private

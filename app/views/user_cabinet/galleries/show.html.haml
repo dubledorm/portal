@@ -10,7 +10,8 @@
       -# Сообщения об ошибках
       = render('shared/resource_alert_notice')
 
-    =render('show_gallery')
+    .page-blocks
+      =render('show_gallery')
     -#.row
     -#  = link_to I18n.t('gallery.show.add'), new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)
     -#
