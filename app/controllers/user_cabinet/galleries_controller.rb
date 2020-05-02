@@ -10,8 +10,8 @@ module UserCabinet
 
     def create
       super do
-        presenter = UserGalleryPresenter.new(gallery_params)
-        @resource = presenter.save(view_context)
+        presenter = UserGalleryPresenter.new(view_context, gallery_params)
+        @resource = presenter.create
         if @resource.persisted?
           redirect_to user_gallery_path(user_id: @resource.user_id, id: @resource.id)
           return
@@ -23,33 +23,16 @@ module UserCabinet
 
     def update
       super do
-        presenter = UserGalleryPresenter.new(gallery_params)
-        @resource = presenter.save(view_context)
+        presenter = UserGalleryPresenter.new(view_context, @resource.attributes.merge!(gallery_params))
+        @resource = presenter.update(@resource)
         if @resource.errors.count == 0
-          render json: Hash[*gallery_params.keys.map{|key| [key, presenter.send(key)]}.flatten],  status: :ok
+          render json: Hash[*gallery_params.keys.map{|key| [key, @resource.send(key)]}.flatten],  status: :ok
         else
           render json: @resource.errors, status: :unprocessable_entity
         end
       end
     end
 
-    # def update1
-    #   super do
-    #     @user = User.find(params[:user_id])
-    #     if gallery_params[:name].blank?
-    #       @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
-    #       render :edit
-    #       return
-    #     end
-    #
-    #     @resource.update(gallery_params)
-    #     if @resource.errors.count > 0
-    #       render :edit
-    #       return
-    #     end
-    #     redirect_to user_gallery_path(user_id: params[:user_id], id: @resource.id)
-    #   end
-    # end
 
     private
 
