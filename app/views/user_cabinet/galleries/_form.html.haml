@@ -1,5 +1,5 @@
-= form_with(model: [@user, @resource], local: true, multipart: true) do |f|
-  = f.hidden_field(:user_id)
+= form_with(model: @resource, local: true, multipart: true, url: user_galleries_path(user_id: current_user.id)) do |f|
+  -#= f.hidden_field(:user_id)
   .col-xs-12.col-md-4.col-md-push-8
     .form-group
       = f.label(:image_for_cover)
@@ -7,7 +7,7 @@
   .col-xs-12.col-md-8.col-md-pull-4
     .form-group
       = f.label(:name)
-      = f.text_field(:name, class: 'form-control', required: true)
+      = f.text_field(:name, class: 'form-control')
     .form-group
       = f.label(:description)
       = f.text_area(:description, class: 'form-control')

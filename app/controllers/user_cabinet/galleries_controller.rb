@@ -4,24 +4,18 @@ module UserCabinet
 
     def new
       super do
-        @user = User.find(params.required(:user_id))
-        @resource = Gallery.new(user_id: params.required(:user_id))
+        @resource = Gallery.new
       end
     end
 
     def create
       super do
-        @resource = Gallery.new(gallery_params.merge({ state: 'active' }))
-        if !@resource.name.blank?
-          @resource.save
-          if @resource.persisted?
-            redirect_to user_gallery_path(user_id: gallery_params[:user_id], id: @resource.id)
-            return
-          end
-        else
-          @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
+        presenter = UserGalleryPresenter.new(gallery_params)
+        @resource = presenter.save(view_context)
+        if @resource.persisted?
+          redirect_to user_gallery_path(user_id: @resource.user_id, id: @resource.id)
+          return
         end
-        @user = User.find(params[:user_id])
         render :new
       end
     end
@@ -29,21 +23,33 @@ module UserCabinet
 
     def update
       super do
-        @user = User.find(params[:user_id])
-        if gallery_params[:name].blank?
-          @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
-          render :edit
-          return
+        presenter = UserGalleryPresenter.new(gallery_params)
+        @resource = presenter.save(view_context)
+        if @resource.errors.count == 0
+          render json: Hash[*gallery_params.keys.map{|key| [key, presenter.send(key)]}.flatten],  status: :ok
+        else
+          render json: @resource.errors, status: :unprocessable_entity
         end
-
-        @resource.update(gallery_params)
-        if @resource.errors.count > 0
-          render :edit
-          return
-        end
-        redirect_to user_gallery_path(user_id: params[:user_id], id: @resource.id)
       end
     end
+
+    # def update1
+    #   super do
+    #     @user = User.find(params[:user_id])
+    #     if gallery_params[:name].blank?
+    #       @resource.errors[:name] << I18n.t('forms.gallery_new.need_name')
+    #       render :edit
+    #       return
+    #     end
+    #
+    #     @resource.update(gallery_params)
+    #     if @resource.errors.count > 0
+    #       render :edit
+    #       return
+    #     end
+    #     redirect_to user_gallery_path(user_id: params[:user_id], id: @resource.id)
+    #   end
+    # end
 
     private
 

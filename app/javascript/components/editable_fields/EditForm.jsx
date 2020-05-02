@@ -19,7 +19,7 @@ class EditForm extends React.Component {
         this.input = React.createRef();
     }
 
-    onSubmit(event){
+    onSubmit(){
         this.props.onToggleSpinner(true);
         $.ajax({
             type: "PUT",
@@ -29,7 +29,6 @@ class EditForm extends React.Component {
             success: this.onSubmitSuccess,
             error: this.onSubmitError
         });
-        event.preventDefault();
     }
 
     onSubmitSuccess(){
@@ -40,7 +39,7 @@ class EditForm extends React.Component {
     }
 
     onSubmitError(error){
-        let message = JSON.parse(error.responseText)
+        let message = JSON.parse(error.responseText);
         this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
         this.props.onToggleSpinner(false);
     }

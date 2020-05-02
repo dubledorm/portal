@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include BaseConcern
   include MenuConcern
 
-  rescue_from Exception, with: :render_500
+#  rescue_from Exception, with: :render_500
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::ParameterMissing, with: :render_400
   rescue_from ActionController::BadRequest, with: :render_400
