@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       scope module: 'user_cabinet' do
         resources :galleries
         resources :pictures
+        resources :categories, only: [:update]
       end
 
       resources :articles
