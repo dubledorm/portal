@@ -7,11 +7,11 @@ class GalleriesController < ApplicationController
   #   end
   # end
 
-  def edit
-    super do
-      @user = current_user
-    end
-  end
+  # def edit
+  #   super do
+  #     @user = current_user
+  #   end
+  # end
 
   # def create
   #   super do
@@ -49,11 +49,11 @@ class GalleriesController < ApplicationController
   # end
 
 
-  private
+#  private
 
-  def gallery_params
-    params.required(:gallery).permit(:name, :description, :user_id, :image_for_cover)
-  end
+  # def gallery_params
+  #   params.required(:gallery).permit(:name, :description, :user_id, :image_for_cover)
+  # end
 
   def menu_action_items
     ['user']
