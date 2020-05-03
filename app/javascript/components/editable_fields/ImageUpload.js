@@ -4,23 +4,19 @@ import PropTypes from "prop-types"
 class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {file: '',
-            imagePreviewUrl: this.props.imagePreviewUrl
-        };
     }
 
 
     _handleImageChange(e) {
+        if (this.props.onStartLoadFileHandler != undefined) {
+            this.props.onStartLoadFileHandler()
+        }
         e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
 
         reader.onloadend = () => {
-            this.setState({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
             this.props.onSelectFileHandler(file, reader.result);
         };
 
@@ -43,7 +39,7 @@ class ImageUpload extends React.Component {
 }
 
 ImageUpload.propTypes = {
-    imagePreviewUrl: PropTypes.string,
+    onStartLoadFileHandler: PropTypes.func,
     onSelectFileHandler: PropTypes.func
 };
 

@@ -36,7 +36,9 @@ class UserGalleryPresenter
       return gallery
     end
 
-    gallery.save
+    ActiveRecord::Base.transaction do
+      gallery.save
+    end
     gallery
   end
 
@@ -46,7 +48,9 @@ class UserGalleryPresenter
       return gallery
     end
 
-    gallery.update(attributes)
+    ActiveRecord::Base.transaction do
+      gallery.update(attributes)
+    end
     gallery
   end
 end

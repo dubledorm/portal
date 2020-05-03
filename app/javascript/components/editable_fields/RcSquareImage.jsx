@@ -7,11 +7,9 @@ function RcSquareImage(props) {
     let spinner = props.spinner === true ? <Spinner /> : null;
 
     return (
-        <div className='rc-image-cover'>
             <div className="rc-image" style={imgStyle}>
                 {spinner}
             </div>
-        </div>
     )
 }
 

@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import ImageUpload from "./ImageUpload";
-//import Avatar from "./Avatar"
 import BtnCancel from "./BtnCancel"
 import BtnPrimary from "./BtnPrimary";
 import RcSquareImage from "./RcSquareImage"
@@ -15,6 +14,7 @@ class EditableImage extends React.Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
         this.onSubmitSuccess = this.onSubmitSuccess.bind(this);
         this.onSubmitError = this.onSubmitError.bind(this);
+        this.onStartLoader = this.onStartLoader.bind(this);
 
 
         this.state = {
@@ -28,7 +28,7 @@ class EditableImage extends React.Component {
         }
     }
 
-
+    // Нажатие на кнопку Cancel или на галку редактирования
     onChangeModeHandler(edit_mode) {
 
         this.setState(function(state, props) {
@@ -40,11 +40,18 @@ class EditableImage extends React.Component {
         });
     }
 
+    // Новый файл начал грузиться в ImageUpload
+    onStartLoader() {
+        this.setState({spinner: true});
+    }
+
+    // Завершение загрузки файла в ImageUploader
     onSelectFileHandler(value, new_image) {
-        this.setState({file: value, new_value: new_image})
+        this.setState({file: value, new_value: new_image, spinner: false})
     }
 
 
+    // Нажата кнопка 'Передать'
     onSubmitHandler() {
         if (this.state.file === '') {
             console.error('this.state.file is empty');
@@ -69,6 +76,8 @@ class EditableImage extends React.Component {
             error: this.onSubmitError
         });
     }
+
+    // Файл успешно передан
     onSubmitSuccess(event){
         if (this.props.name in event) {
             this.setState({value: event[this.props.name], file: '', edit_mode: false, error_message: '', new_value: null});
@@ -78,6 +87,7 @@ class EditableImage extends React.Component {
         this.setState({spinner: false});
     }
 
+    // Ошибка передачи файла
     onSubmitError(error){
         let message = JSON.parse(error.responseText);
         console.error('Submit error. Message: ' + message);
@@ -88,19 +98,16 @@ class EditableImage extends React.Component {
 
     render () {
         const edit_mode = !this.state.read_only && this.state.edit_mode;
-        let content = null;
-        let button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.onChangeModeHandler.bind(this, true)} />;
+        let edit_panel = null;
+        let edit_button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.onChangeModeHandler.bind(this, true)} />;
 
         if (edit_mode) {
-            let btnSend = this.state.file === '' ? '' : <BtnPrimary onClickHandler={this.onSubmitHandler}>{this.props.submit_button_text}</BtnPrimary>;
-            let error_message = '';
-            if (this.state.error_message) {
-                error_message = <div className="rc-field-error">{this.state.error_message}</div>
-            }
+            let btnSend = this.state.file ? <BtnPrimary onClickHandler={this.onSubmitHandler}>{this.props.submit_button_text}</BtnPrimary> : '';
+            let error_message = this.state.error_message ? <div className="rc-field-error">{this.state.error_message}</div> : '';
 
-            content = (
+            edit_panel = (
                 <div>
-                    <ImageUpload onSelectFileHandler={this.onSelectFileHandler}/>
+                    <ImageUpload onSelectFileHandler={this.onSelectFileHandler} onStartLoadFileHandler={this.onStartLoader}/>
                     {error_message}
                     <div className='rc-form-buttons'>
                         <BtnCancel onClickHandler={this.onChangeModeHandler.bind(this, false)}>{this.props.cancel_button_text}</BtnCancel>
@@ -116,8 +123,8 @@ class EditableImage extends React.Component {
                     <div className="rc-block-content" >
                         <div className='rc-editable-avatar-cover'>
                             <RcSquareImage image_path={this.state.new_value === null ? this.state.value : this.state.new_value} spinner={this.state.spinner}/>
-                            {button}
-                            {content}
+                            {edit_button}
+                            {edit_panel}
                         </div>
                     </div>
                 </div>
