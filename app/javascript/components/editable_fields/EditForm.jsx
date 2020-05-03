@@ -1,5 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import BtnCancel from "./BtnCancel"
+import BtnPrimary from "./BtnPrimary"
+
 
 
 class EditForm extends React.Component {
@@ -16,7 +19,8 @@ class EditForm extends React.Component {
         this.input = React.createRef();
     }
 
-    onSubmit(event){
+    onSubmit(){
+        this.props.onToggleSpinner(true);
         $.ajax({
             type: "PUT",
             url: this.props.url,
@@ -25,18 +29,19 @@ class EditForm extends React.Component {
             success: this.onSubmitSuccess,
             error: this.onSubmitError
         });
-        event.preventDefault();
     }
 
     onSubmitSuccess(){
         this.setState({ error_message: '' });
         this.props.onChangeValue(this.input.current.value);
         this.props.onChangeMode(false);
+        this.props.onToggleSpinner(false);
     }
 
     onSubmitError(error){
-        let message = JSON.parse(error.responseText)
+        let message = JSON.parse(error.responseText);
         this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+        this.props.onToggleSpinner(false);
     }
 
     onCancel(event){
@@ -86,8 +91,8 @@ class EditForm extends React.Component {
                         <div className="rc-field-hint">{this.props.field_hint}</div>
                     </div>
                     <div className='rc-form-buttons'>
-                      <a className="btn btn-cancel" href="#" onClick={this.onCancel}>{this.props.cancel_button_text}</a>
-                      <button className="btn btn-primary" name= "submit" required="required" type= "submit" >{this.props.submit_button_text}</button>
+                      <BtnCancel onClickHandler={this.onCancel}>{this.props.cancel_button_text}</BtnCancel>
+                      <BtnPrimary onClickHandler={this.onSubmit}>{this.props.submit_button_text}</BtnPrimary>
                     </div>
                 </form>
             </div>);
@@ -104,6 +109,7 @@ EditForm.propTypes = {
     submit_button_text: PropTypes.string,
     onChangeValue: PropTypes.func,
     onChangeMode: PropTypes.func,
+    onToggleSpinner: PropTypes.func,
     edit_element_type: PropTypes.string
 };
 

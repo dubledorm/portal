@@ -29,8 +29,6 @@ module ApplicationHelper
   end
 
   def avatar_input_options(resource, field_name, url, read_only = false)
-    image_path = resource.send(field_name).attached? ?  UserProfilePresenter.new(resource, self).avatar : asset_url('images/client2.jpg')
-
     { name: field_name,
       name_title: resource.class.human_attribute_name(field_name),
       name_hint: I18n.t("#{resource.class.name.underscore}.show.#{field_name}_hint"),
@@ -38,7 +36,19 @@ module ApplicationHelper
       submit_button_text: I18n.t('send'),
       cancel_button_text: I18n.t('cancel'),
       url: url,
-      image_path: image_path,
+      image_path: resource.avatar,
+      read_only: read_only }
+  end
+
+  def image_input_options(resource, field_name, url, start_value, read_only = false)
+    { name: field_name,
+      name_title: resource.class.human_attribute_name(field_name),
+      name_hint: I18n.t("#{resource.class.name.underscore}.show.#{field_name}_hint"),
+      resource_class: resource.class.name.underscore,
+      submit_button_text: I18n.t('send'),
+      cancel_button_text: I18n.t('cancel'),
+      url: url,
+      image_path: start_value,
       read_only: read_only }
   end
 
@@ -57,5 +67,13 @@ module ApplicationHelper
 
   def rc_avatar_field(resource, field_name, url, read_only = false)
     react_component 'editable_fields/EditableAvatar', avatar_input_options(resource, field_name, url, read_only)
+  end
+
+  def rc_image_field(resource, field_name)
+    react_component 'editable_fields/ImageUploadField', input_options('', resource, field_name, '', false)
+  end
+
+  def rc_edit_image_field(resource, field_name, url, start_value, read_only = false)
+    react_component 'editable_fields/EditableImage', image_input_options(resource, field_name, url, start_value,  read_only)
   end
 end

@@ -1,7 +1,7 @@
 .row
   = render('header_gallery')
-.row
-  = link_to I18n.t('gallery.show.add'), new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)
+-#.row
+-#  = link_to I18n.t('gallery.show.add'), new_user_gallery_picture_path(user_id: @resource.user_id, gallery_id: @resource.id)
 .portfolio-items
   - @resource.pictures.each do |picture|
     - if picture.image.attached?

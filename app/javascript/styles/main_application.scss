@@ -21,16 +21,11 @@ form input.form-control, textarea.form-control {
 
 .three_column_list li {
     height: 40px;
-    margin: 8px;
     font-size: 16px;
 }
 
 .three_column_list li a {
     display: inline;
-}
-
-.three_column_list li:first-child {
-    padding-top: 0;
 }
 
 // Кнопки
@@ -43,7 +38,6 @@ a.btn-primary {
 a.btn-cancel {
     padding: 8px 20px;
     margin-right: 8px;
-    min-width: 140px;
     text-align: center;
     border: 1px solid #D0D7DD;
     display: inline-block;

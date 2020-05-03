@@ -1,29 +1,23 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Avatar from "./Avatar";
-
 
 class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {file: '',
-            imagePreviewUrl: this.props.imagePreviewUrl
-        };
     }
 
 
     _handleImageChange(e) {
+        if (this.props.onStartLoadFileHandler != undefined) {
+            this.props.onStartLoadFileHandler()
+        }
         e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
 
         reader.onloadend = () => {
-            this.setState({
-                file: file,
-                imagePreviewUrl: reader.result
-            });
-            this.props.onSelectFileHandler(file);
+            this.props.onSelectFileHandler(file, reader.result);
         };
 
         reader.readAsDataURL(file)
@@ -34,7 +28,6 @@ class ImageUpload extends React.Component {
 
         return (
             <div>
-                <Avatar image_path={this.state.imagePreviewUrl}/>
                 <form>
                     <input className="rc-file-input"
                            type="file"
@@ -46,7 +39,7 @@ class ImageUpload extends React.Component {
 }
 
 ImageUpload.propTypes = {
-    imagePreviewUrl: PropTypes.string,
+    onStartLoadFileHandler: PropTypes.func,
     onSelectFileHandler: PropTypes.func
 };
 

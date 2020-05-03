@@ -1,10 +1,10 @@
 .col-xs-12.col-md-6
-  = rc_avatar_field(@resource, :avatar, user_profile_user_url(id: @resource.id))
+  = rc_avatar_field(@user_profile_presenter, :avatar, user_profile_user_url(id: @user_profile_presenter.id))
   .col-xs-12.col-md-6
-    = rc_string_field(@resource, :email, user_profile_user_url(id: @resource.id), true)
+    = rc_string_field(@user_profile_presenter, :email, user_profile_user_url(id: @user_profile_presenter.id), true)
   .col-xs-12.col-md-6
-    = rc_string_field(@resource, :nick_name, user_profile_user_url(id: @resource.id))
+    = rc_string_field(@user_profile_presenter, :nick_name, user_profile_user_url(id: @user_profile_presenter.id))
 
 
 .col-xs-12.col-md-6
-  = render('shared/social_network_list', locals: { services: @resource.services })
+  = render('social_network_list')

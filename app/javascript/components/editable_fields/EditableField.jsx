@@ -1,12 +1,21 @@
 import React from "react"
 import PropTypes from "prop-types"
 import EditForm from "./EditForm";
+import Spinner from "./Spinner"
 
 
 
 class FieldTitle extends React.Component {
   render() {
-    let button = this.props.read_only ? '' : <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />;
+    let button = null;
+
+    if (!this.props.read_only) {
+      if (this.props.spinner)
+        button = <Spinner />;
+      else
+        button = <i className='fa fa-edit rc-fa-edit' onClick={this.props.onChangeMode.bind(this, true)} />;
+    }
+
     return (
       <div className="rc-editable-field-title">
         <h2>{this.props.name}</h2>
@@ -38,7 +47,9 @@ class EditableField extends React.Component {
     super(props);
     this.onChangeModeHandler = this.onChangeModeHandler.bind(this);
     this.onChangeValueHandler = this.onChangeValueHandler.bind(this);
+    this.onToggleSpinner = this.onToggleSpinner.bind(this);
     this.state = { value: props.start_value,
+        spinner: false,
         name_title: props.name_title,
         edit_mode: false,
         read_only: 'read_only' in props ? props.read_only : false
@@ -51,6 +62,10 @@ class EditableField extends React.Component {
 
   onChangeValueHandler(value) {
     this.setState({value: value});
+  }
+
+  onToggleSpinner(mode) {
+    this.setState({spinner: mode});
   }
 
   render () {
@@ -67,6 +82,7 @@ class EditableField extends React.Component {
                           url={this.props.url}
                           onChangeValue={this.onChangeValueHandler}
                           onChangeMode={this.onChangeModeHandler}
+                          onToggleSpinner={this.onToggleSpinner}
                           edit_element_type={this.props.edit_element_type} />;
 
     } else {
@@ -77,7 +93,10 @@ class EditableField extends React.Component {
       <React.Fragment>
         <div className="rc-block-item" id={`${this.props.resource_class}_` + this.state.name}>
           <div className="rc-block-content" >
-            <FieldTitle name={this.state.name_title} onChangeMode={this.onChangeModeHandler} read_only={this.state.read_only}/>
+            <FieldTitle name={this.state.name_title}
+                        onChangeMode={this.onChangeModeHandler}
+                        read_only={this.state.read_only}
+                        spinner={this.state.spinner} />
             {context}
           </div>
         </div>
