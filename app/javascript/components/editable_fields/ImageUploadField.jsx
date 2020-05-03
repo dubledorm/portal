@@ -1,19 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Spinner from "./Spinner"
-
-function RcSquareImage(props) {
-    let imgStyle = props.image_path === undefined ? {} : { backgroundImage: `url(${props.image_path})` };
-    let spinner = props.spinner === true ? <Spinner /> : null;
-
-    return (
-        <div className='rc-image-cover'>
-            <div className="rc-image" style={imgStyle}>
-                {spinner}
-            </div>
-        </div>
-    )
-}
+import RcSquareImage from "./RcSquareImage"
 
 
 class ImageUploadField extends React.Component {

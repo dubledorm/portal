@@ -70,10 +70,10 @@ class EditableAvatar extends React.Component {
     });
   }
   onSubmitSuccess(event){
-    if ('avatar' in event) {
+    if (this.props.name in event) {
       this.setState({value: event.avatar, file: '', edit_mode: false, error_message: '', new_value: null});
     } else {
-      console.error('The submit response does not have parameter avatar.')
+      console.error('The submit response does not have parameter ' + this.props.name + '.')
     }
     this.setState({spinner: false});
   }

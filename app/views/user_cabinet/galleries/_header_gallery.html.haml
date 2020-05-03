@@ -13,5 +13,7 @@
         = link_to('Изменить', edit_user_gallery_path(user_id: @resource.user_id, id: @resource.id), class: 'btn btn-success')
 
   .col-12.col-sm-12.col-md-4.hidden-sm.hidden-xs
-    .pull-right
-      = cover_gallery(@resource)
+    = rc_edit_image_field(@resource, :image_for_cover,
+    user_gallery_url(user_id: @resource.user_id, id: @resource.id),
+    url_for(@resource.image_for_cover.variant(resize_to_limit: [600, 600])))
+    -#= cover_gallery(@resource)
