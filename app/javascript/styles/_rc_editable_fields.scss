@@ -53,13 +53,20 @@ $size_avatar_y: 100px;
 }
 
 // Спиннер по центру картинки
-.rc-image .rc-spinner {
-  font-size: 46px;
+%rc-center-spinner {
   text-align: center;
   width: 30%;
   height: 30%;
   margin: 35% 35%;
   overflow: hidden;
+}
+
+.rc-image .rc-spinner {
+  @extend %rc-center-spinner;
+}
+
+.rc-avatar-image .rc-spinner {
+  @extend %rc-center-spinner;
 }
 
 /* Поля редактирования */
