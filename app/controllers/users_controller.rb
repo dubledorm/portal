@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   def menu_action_items
     ['user']
   end
