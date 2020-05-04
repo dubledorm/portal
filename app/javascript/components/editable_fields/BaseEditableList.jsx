@@ -70,7 +70,7 @@ class BaseEditableList extends React.Component {
 
 
         $.ajax({
-            type: "PUT",
+            type: "PATCH",
             url: this.props.url,
             dataType: "json",
             processData: false,
@@ -94,9 +94,9 @@ class BaseEditableList extends React.Component {
 
     // Ошибка передачи изменений
     onSubmitError(error){
-        let message = JSON.parse(error.responseText);
-        console.error('Submit error. Message: ' + message);
-        this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+        let error_message = error.responseText || error.statusText;
+        console.error(`Submit error. Status = ${error.status}. Message = ${error_message}`);
+        this.setState({ error_message: error.statusText });
         this.setState({ spinner: false });
     }
 

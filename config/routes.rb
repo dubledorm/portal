@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   authenticated(:user) do
 
-    put 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
+    patch 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
 
     resources :users, only: [:show, :edit, :update] do
       get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile

@@ -9,33 +9,43 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::ParameterMissing, with: :render_400
   rescue_from ActionController::BadRequest, with: :render_400
+  rescue_from ActionController::RoutingError, with: :render_400
   rescue_from CanCan::AccessDenied, with: :render_403
 
   # Нет прав длядоступа к объекту
   def render_403(e)
     Rails.logger.error(e.message)
-    render 'errors/403', status: :forbidden
+    respond_to do |format|
+      format.html { render 'errors/403', status: :forbidden }
+      format.json { render json: e.message, status: :forbidden }
+    end
   end
 
   # страница не найдена
   def render_404(e)
     Rails.logger.error(e.message)
-    render 'errors/404', status: :not_found
+    respond_to do |format|
+      format.html { render 'errors/404', status: :not_found }
+      format.json { render json: e.message, status: :not_found }
+    end
   end
 
   # ошибка в параметрах запроса
   def render_400(e)
     Rails.logger.error(e.message)
-    render 'errors/400', status: :bad_request
+    respond_to do |format|
+      format.html { render 'errors/400', status: :bad_request }
+      format.json { render json: e.message, status: :bad_request }
+    end
   end
 
   # внутрення ошибка сервера. не обработанная ошибка
   def render_500(e)
     Rails.logger.error(e.message)
-   respond_to do |format|
-     format.html { render 'errors/500', status: 500 }
-     format.json { render json: [e.message], status: :unprocessable_entity }
-   end
+    respond_to do |format|
+      format.html { render 'errors/500', status: 500 }
+      format.json { render json: e.message, status: :unprocessable_entity }
+    end
   end
 
 
