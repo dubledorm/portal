@@ -10,11 +10,11 @@ class UserCategorySerializer
     @categories = get_categories_list(model)
   end
 
-  # Разбирает JSON строку вида {categories:[{},{}...]}
+  # Разбирает JSON строку вида [{name:'',title:'',included:''},{}...]
   # возвращает массив хешей, содержащий только включенные категории
   def self.parse_string(json_string)
     begin
-      JSON.parse(json_string, symbolize_names: true)[:categories].find_all{ |item| item[:included] }
+      JSON.parse(json_string, symbolize_names: true).find_all{ |item| item[:included] }
     rescue Exception => e
       raise UCSerializerError, 'parseString error: ' + e.message
     end

@@ -51,7 +51,7 @@ class BaseEditableList extends React.Component {
       // Находим элемент в списке и меняем его состояние
         this.setState(function(state) {
             let listObjectItems = JSON.parse(state.new_value);
-            listObjectItems.categories = listObjectItems.categories.map((item) => key === item.name ? BaseEditableList.invertItem(item) : item );
+            listObjectItems = listObjectItems.map((item) => key === item.name ? BaseEditableList.invertItem(item) : item );
 
             return {
                 new_value: JSON.stringify(listObjectItems)
@@ -83,12 +83,8 @@ class BaseEditableList extends React.Component {
 
     // Изменения успешно переданы
     onSubmitSuccess(event){
-        if (this.props.name in event) {
-            let value = JSON.stringify(event);
-            this.setState({value: value, edit_mode: false, error_message: '', new_value: value});
-        } else {
-            console.error('The submit response does not have parameter ' + this.props.name + '.')
-        }
+        let value = JSON.stringify(event);
+        this.setState({value: value, edit_mode: false, error_message: '', new_value: value});
         this.setState({spinner: false});
     }
 

@@ -1,22 +1,2 @@
 .widget.category
-  -#%h3
-  -#  = User.human_attribute_name(:categories)
-  -#.row
-  -#.col-sm-12
   = rc_list_field(@resource, :categories, user_cabinet_category_path)
-
-  -#    - if @resource.category_tags.any?
-  -#      %ul{ class: 'three_column_list' }
-  -#        - @resource.category_tags.sort_by{ |category| category.title }.each do |category|
-  -#          %li
-  -#            = link_to category.title, '#'
-  -#    -else
-  -#      .blank_list
-  -#        %p
-  -#          Нет категорий
-  -#  .bottom
-  -#    .pull-right
-  -#      = link_to('Изменить', edit_user_path(@resource), class: 'btn btn-success')
-  -#.row
-  -#  .pull-right.bottom-comment
-      = I18n.t('user.show.categories_footer')

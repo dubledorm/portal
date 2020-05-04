@@ -29,8 +29,8 @@ class SimpleList extends React.Component {
         let listObjectItems = JSON.parse(this.props.value);
 
         let listItemsArray = this.props.edit_mode ?
-            listObjectItems.categories :
-            listObjectItems.categories.filter(item => item.included);
+            listObjectItems :
+            listObjectItems.filter(item => item.included);
 
         let listItems = listItemsArray.map((item) => <ListItem key={item.name}
                                                                id={item.name} title={item.title}

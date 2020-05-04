@@ -60,7 +60,7 @@ module ApplicationHelper
       submit_button_text: I18n.t('send'),
       cancel_button_text: I18n.t('cancel'),
       url: url,
-      start_value: UserCategorySerializer.new(resource).to_json,
+      start_value: UserCategorySerializer.new(resource).categories.to_json,
       edit_element_type: elem_type,
       read_only: read_only }
   end

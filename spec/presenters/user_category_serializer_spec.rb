@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-TEST_JSON = '{"categories":[{"name":"Anim","title":"Аниматоры","included":true},{"name":"Birthday","title":"День рождения","included":true}]}'
-TEST_WITH_OFF_LINE = '{"categories":[{"name":"Anim","title":"Аниматоры","included":true},{"name":"FalseBirthday","title":"Выключенный День рождения","included":false},{"name":"Birthday","title":"День рождения","included":true}]}'
-ERROR_TEST_JSON = '[{"name":"Anim","title":"Аниматоры","included":true},{"name":"Birthday","title":"День рождения","included":true}]'
-EMPTY_TEST_JSON = '{"categories":[]}'
+TEST_JSON = '[{"name":"Anim","title":"Аниматоры","included":true},{"name":"Birthday","title":"День рождения","included":true}]'
+TEST_WITH_OFF_LINE = '[{"name":"Anim","title":"Аниматоры","included":true},{"name":"FalseBirthday","title":"Выключенный День рождения","included":false},{"name":"Birthday","title":"День рождения","included":true}]'
+ERROR_TEST_JSON = '{"name":"Anim","title":"Аниматоры","included":true},{"name":"Birthday","title":"День рождения","included":true}]'
+EMPTY_TEST_JSON = '[]'
 
 RSpec.describe UserCategorySerializer do
   let!(:user) {FactoryGirl.create :user}
@@ -39,16 +39,16 @@ RSpec.describe UserCategorySerializer do
 
   describe 'parseString' do
 
-    it { expect{ described_class.parseString('') }.to raise_error(UserCategorySerializer::UCSerializerError)  }
-    it { expect{ described_class.parseString(ERROR_TEST_JSON) }.to raise_error(UserCategorySerializer::UCSerializerError)  }
+    it { expect{ described_class.parse_string('') }.to raise_error(UserCategorySerializer::UCSerializerError)  }
+    it { expect{ described_class.parse_string(ERROR_TEST_JSON) }.to raise_error(UserCategorySerializer::UCSerializerError)  }
 
-    it { expect{ described_class.parseString(EMPTY_TEST_JSON) }.to_not raise_error }
-    it { expect{ described_class.parseString(TEST_JSON) }.to_not raise_error }
+    it { expect{ described_class.parse_string(EMPTY_TEST_JSON) }.to_not raise_error }
+    it { expect{ described_class.parse_string(TEST_JSON) }.to_not raise_error }
 
-    it { expect(described_class.parseString(EMPTY_TEST_JSON)).to eq([])}
-    it { expect(described_class.parseString(TEST_JSON)).to eq([{name: 'Anim', title: 'Аниматоры', included: true},
+    it { expect(described_class.parse_string(EMPTY_TEST_JSON)).to eq([])}
+    it { expect(described_class.parse_string(TEST_JSON)).to eq([{name: 'Anim', title: 'Аниматоры', included: true},
                                                                {name: 'Birthday', title: 'День рождения', included: true}])}
-    it { expect(described_class.parseString(TEST_WITH_OFF_LINE)).to eq([{name: 'Anim', title: 'Аниматоры', included: true},
+    it { expect(described_class.parse_string(TEST_WITH_OFF_LINE)).to eq([{name: 'Anim', title: 'Аниматоры', included: true},
                                                                {name: 'Birthday', title: 'День рождения', included: true}])}
   end
 end
