@@ -91,10 +91,10 @@ class BaseEditableImage extends React.Component {
 
     // Ошибка передачи файла
     onSubmitError(error){
-        let message = JSON.parse(error.responseText);
-        console.error('Submit error. Message: ' + message);
-        this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
-        this.setState({spinner: false, new_value: null });
+        let error_message = error.responseText || error.statusText;
+        console.error(`Submit error. Status = ${error.status}. Message = ${error_message}`);
+        this.setState({ error_message: error.statusText });
+        this.setState({ spinner: false, new_value: null });
     }
 
 

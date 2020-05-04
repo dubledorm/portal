@@ -1,9 +1,9 @@
-- unless @user_profile_presenter.email_confirmed
+- unless @resource.email_confirmed
   .warning
     %h2
       = I18n.t('attention')
     %h3
-      = @user_profile_presenter.email_confirmed_message
+      = @resource.email_confirmed_message
     .question
       %span.lead
         = I18n.t('user.show.need_mail_confirmation')

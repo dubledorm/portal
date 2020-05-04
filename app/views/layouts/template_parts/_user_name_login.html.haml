@@ -1,4 +1,4 @@
 - if user_signed_in?
-  = link_to current_user.email, user_path(current_user)
+  = link_to current_user.email, user_profile_path
 - else
   = link_to I18n.t('main_menu.login'), new_user_session_path

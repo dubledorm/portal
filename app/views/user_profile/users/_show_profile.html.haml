@@ -1,9 +1,9 @@
 .col-xs-12.col-md-6
-  = rc_avatar_field(@user_profile_presenter, :avatar, user_profile_user_url(id: @user_profile_presenter.id))
+  = rc_avatar_field(@resource, :avatar, user_profile_url(id: @resource.id))
   .col-xs-12.col-md-6
-    = rc_string_field(@user_profile_presenter, :email, user_profile_user_url(id: @user_profile_presenter.id), true)
+    = rc_string_field(@resource, :email, user_profile_url(id: @resource.id), true)
   .col-xs-12.col-md-6
-    = rc_string_field(@user_profile_presenter, :nick_name, user_profile_user_url(id: @user_profile_presenter.id))
+    = rc_string_field(@resource, :nick_name, user_profile_url(id: @resource.id))
 
 
 .col-xs-12.col-md-6

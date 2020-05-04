@@ -2,13 +2,13 @@
   %h2
     = I18n.t('social_networks')
   %ul{ class: 'three_column_list' }
-    -@user_profile_presenter.services.each do |service|
+    -@resource.services.each do |service|
       %li
         %i{ class: "fa #{service[:icon_name]}" }
         = service[:provider_name]
         .pull-right
           - if service[:included]
-            = link_to(I18n.t('turn_off'), user_service_path(user_id: @user_profile_presenter.id, id: service[:service_id]), method: :delete, class: 'btn btn-cancel')
+            = link_to(I18n.t('turn_off'), user_profile_service_path(id: service[:service_id]), method: :delete, class: 'btn btn-cancel')
           -else
             = link_to(I18n.t('turn_on'), omniauth_authorize_path(User, service[:provider]), class: 'btn btn-primary')
   .pull-right.bottom-comment

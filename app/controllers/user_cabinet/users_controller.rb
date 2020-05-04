@@ -1,6 +1,6 @@
 # encoding: utf-8
 module UserCabinet
-  class UsersController < ApplicationController
+  class UsersController < PrivateAreaController
 
     def menu_action_items
       ['user']

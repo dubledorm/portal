@@ -39,8 +39,9 @@ class EditForm extends React.Component {
     }
 
     onSubmitError(error){
-        let message = JSON.parse(error.responseText);
-        this.setState({ error_message: this.props.field_name in message ? message[this.props.field_name] : message});
+        let error_message = error.responseText || error.statusText;
+        console.error(`Submit error. Status = ${error.status}. Message = ${error_message}`);
+        this.setState({ error_message: error.statusText });
         this.props.onToggleSpinner(false);
     }
 

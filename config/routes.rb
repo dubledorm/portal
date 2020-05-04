@@ -12,27 +12,37 @@ Rails.application.routes.draw do
 
   authenticated(:user) do
 
-    patch 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
-
-    resources :users, only: [:show, :edit, :update] do
-      get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile
-      put :profile, on: :member, to: 'user_profile/users#update'
-
-      scope module: 'user_profile' do
-        resources :services, only: [:destroy]
-      end
-
-      get :cabinet, on: :member, to: 'user_cabinet/users#show', as: :user_cabinet
-      scope module: 'user_cabinet' do
-        resources :galleries
-        resources :pictures
-      end
-
-      resources :articles
+    resource :user_profile, only: [:show, :update], controller: 'user_profile/users', as: :user_profile
+    scope module: :user_profile do
+      resources :services, only: [:destroy], as: :user_profile_services
     end
 
-    resources :grades
-    resources :articles, only: [:index, :show]
+    namespace :user_cabinet do
+      resources :galleries
+      resources :categories, only: :update
+    end
+
+    # patch 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
+    #
+    # resources :users, only: [:show, :edit, :update] do
+    #   get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile
+    #   put :profile, on: :member, to: 'user_profile/users#update'
+    #
+    #   scope module: 'user_profile' do
+    #     resources :services, only: [:destroy]
+    #   end
+    #
+    #   get :cabinet, on: :member, to: 'user_cabinet/users#show', as: :user_cabinet
+    #   scope module: 'user_cabinet' do
+    #     resources :galleries
+    #     resources :pictures
+    #   end
+    #
+    #   resources :articles
+    # end
+    #
+    # resources :grades
+    # resources :articles, only: [:index, :show]
     root to: "secret#index", as: :authenticated_root
   end
 

@@ -15,7 +15,7 @@
         <li class="<%= active_menu_item('login') %>"><%= render('layouts/template_parts/link_to_login_logout') %></li>
 
         <% if user_signed_in? %>
-          <li class="<%= active_menu_item('user') %>"><a href=<%= user_path(current_user) %>><%= I18n.t('main_menu.profile') %></a></li>
+          <li class="<%= active_menu_item('user') %>"><a href=<%= user_profile_path %>><%= I18n.t('main_menu.profile') %></a></li>
         <% end %>
 
         <li class="<%= active_menu_item('home') %>"><a href="about-us.html">About Us</a></li>
