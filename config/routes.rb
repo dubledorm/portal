@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   authenticated(:user) do
 
-    # namespace :user_profile do
-    #   resources :user_profile, only: [:show, :update], controller: 'user_profile/users', as: :user_profile
-    #   resources :services, only: [:destroy], as: :user_profile_services
-    # end
     resource :user_profile, only: [:show, :update], controller: 'user_profile/users', as: :user_profile
     scope module: :user_profile do
       resources :services, only: [:destroy], as: :user_profile_services
@@ -25,6 +21,7 @@ Rails.application.routes.draw do
     namespace :user_cabinet do
       resources :galleries
       resource :category, only: :update
+      resources :articles
     end
 
     # patch 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
