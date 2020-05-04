@@ -3,7 +3,7 @@
   -#  = User.human_attribute_name(:categories)
   -#.row
   -#.col-sm-12
-  = rc_list_field(@resource, :categories, user_update_category_path(id: @resource.id))
+  = rc_list_field(@resource, :categories, user_cabinet_category_path)
 
   -#    - if @resource.category_tags.any?
   -#      %ul{ class: 'three_column_list' }

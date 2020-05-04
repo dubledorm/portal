@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module UserProfile
-  class UsersController < PrivateAreaController
+  class UsersController < PrivateUserController
 
     def show
       super do

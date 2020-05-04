@@ -5,12 +5,14 @@ class ApplicationController < ActionController::Base
   include BaseConcern
   include MenuConcern
 
-  rescue_from Exception, with: :render_500
-  rescue_from ActiveRecord::RecordNotFound, with: :render_404
-  rescue_from ActionController::ParameterMissing, with: :render_400
-  rescue_from ActionController::BadRequest, with: :render_400
-  rescue_from ActionController::RoutingError, with: :render_400
-  rescue_from CanCan::AccessDenied, with: :render_403
+  unless Rails.env.development?
+    rescue_from Exception, with: :render_500
+    rescue_from ActiveRecord::RecordNotFound, with: :render_404
+    rescue_from ActionController::ParameterMissing, with: :render_400
+    rescue_from ActionController::BadRequest, with: :render_400
+    rescue_from ActionController::RoutingError, with: :render_400
+    rescue_from CanCan::AccessDenied, with: :render_403
+  end
 
   # Нет прав длядоступа к объекту
   def render_403(e)

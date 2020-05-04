@@ -1,10 +1,10 @@
 # encoding: utf-8
 module UserProfile
-  class ServicesController < ApplicationController
+  class ServicesController < PrivateAreaController
 
     def destroy
       super
-      redirect_to(user_profile_user_path(id: params.required(:user_id)))
+      redirect_to(user_profile_path)
     end
   end
 end

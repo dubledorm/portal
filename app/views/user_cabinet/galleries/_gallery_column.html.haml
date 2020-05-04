@@ -4,7 +4,7 @@
   %ul.sidebar-gallery.clearfix
     - locals[:galleries].each do |gallery|
       %li
-        = link_to user_gallery_path(user_id: gallery.user_id, id: gallery.id) do
+        = link_to user_cabinet_gallery_path(id: gallery.id) do
           = cover_gallery_small(gallery)
   = link_to 'blog-item.html', class: :readmore do
     Read More
