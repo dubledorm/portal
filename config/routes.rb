@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
 
   authenticated(:user) do
+
+    put 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
+
     resources :users, only: [:show, :edit, :update] do
       get :profile, on: :member, to: 'user_profile/users#show', as: :user_profile
       put :profile, on: :member, to: 'user_profile/users#update'
@@ -23,7 +26,6 @@ Rails.application.routes.draw do
       scope module: 'user_cabinet' do
         resources :galleries
         resources :pictures
-        resources :categories, only: [:update]
       end
 
       resources :articles

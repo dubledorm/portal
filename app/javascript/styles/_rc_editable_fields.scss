@@ -69,6 +69,24 @@ $size_avatar_y: 100px;
   @extend %rc-center-spinner;
 }
 
+/* Редактируемый список */
+.rc-simple-list {
+  padding-top: 10px;
+  list-style: none outside none;
+  min-height: 100px;
+  background-color: $background_input_field_color;
+
+  li {
+    list-style-type: none; /* Убираем маркеры */
+    height: 40px;
+    font-size: 16px;
+  }
+
+  li.rc-editable i {
+    cursor: pointer;
+  }
+}
+
 /* Поля редактирования */
 
 .rc-field-hint {
