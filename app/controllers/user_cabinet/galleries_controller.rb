@@ -1,6 +1,6 @@
 # encoding: utf-8
 module UserCabinet
-  class GalleriesController < ApplicationController
+  class GalleriesController < PrivateAreaController
 
     def new
       super do
@@ -13,7 +13,7 @@ module UserCabinet
         presenter = UserGalleryPresenter.new(view_context, gallery_params)
         @resource = presenter.create
         if @resource.persisted?
-          redirect_to user_gallery_path(user_id: @resource.user_id, id: @resource.id)
+          redirect_to user_cabinet_gallery_path(id: @resource.id)
           return
         end
         render :new

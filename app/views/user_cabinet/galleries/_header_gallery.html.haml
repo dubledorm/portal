@@ -1,18 +1,18 @@
 #header-gallery
   .col-12.col-sm-12.col-md-8
     .col-12
-      = rc_string_field(@resource, :name, user_gallery_url(user_id: @resource.user_id, id: @resource.id))
+      = rc_string_field(@resource, :name, user_cabinet_gallery_path(id: @resource.id))
     .col-12
-      = rc_text_field(@resource, :description, user_gallery_url(user_id: @resource.user_id, id: @resource.id))
+      = rc_text_field(@resource, :description, user_cabinet_gallery_path(id: @resource.id))
     .col-12
     %h2
       = Gallery.human_attribute_name(:tags)
     = render('shared/show_tags_panel', locals: { resource: @resource })
     .bottom
       .pull-right
-        = link_to('Изменить', edit_user_gallery_path(user_id: @resource.user_id, id: @resource.id), class: 'btn btn-success')
+        = link_to('Изменить', edit_user_cabinet_gallery_path(id: @resource.id), class: 'btn btn-success')
 
   .col-12.col-sm-12.col-md-4.hidden-sm.hidden-xs
     = rc_edit_image_field(@resource, :image_for_cover,
-    user_gallery_url(user_id: @resource.user_id, id: @resource.id),
+    user_cabinet_gallery_path(id: @resource.id),
     @resource.decorate.image_for_cover)
