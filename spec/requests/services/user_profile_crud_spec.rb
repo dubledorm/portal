@@ -15,8 +15,8 @@ RSpec.describe 'Service', type: :request do
       service.save
     end
 
-    it { expect{ delete(user_service_path(user_id: @user.id, id: service.id)) }.to change(Service, :count).by(-1) }
-    it { expect{ delete(user_service_path(user_id: @user.id, id: service1.id)) }.to change(Grade, :count).by(0) }
-    it { expect{ delete(user_service_path(user_id: user1.id, id: service1.id)) }.to change(Grade, :count).by(0) }
+    it { expect{ delete(user_profile_service_path(id: service.id)) }.to change(Service, :count).by(-1) }
+    it { expect{ delete(user_profile_service_path(id: service1.id)) }.to change(Grade, :count).by(0) }
+    it { expect{ delete(user_profile_service_path(id: service1.id)) }.to change(Grade, :count).by(0) }
   end
 end

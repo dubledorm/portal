@@ -50,7 +50,7 @@ Rails.application.routes.draw do
 
   resources :grades, only: [:index, :show]
   resources :articles, only: [:index, :show]
-#  resources :galleries, only: [:index, :show]
+  resources :galleries, only: [:index, :show]
   root to: 'home#index'
 end
 
