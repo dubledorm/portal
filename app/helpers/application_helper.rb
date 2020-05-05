@@ -9,6 +9,20 @@ module ApplicationHelper
     @active_menu_items.include?(name) ? 'active' : ''
   end
 
+  def image_wrapper(image_attachment, resize_to_limit = [])
+    begin
+      if resize_to_limit == []
+        return Rails.application.routes.url_helpers.rails_representation_url(image_attachment.processed,
+                                                                             only_path: true) if image_attachment.attached?
+      end
+      return Rails.application.routes.url_helpers.rails_representation_url(image_attachment.variant(resize_to_limit: resize_to_limit).processed,
+                                                                           only_path: true) if image_attachment.attached?
+    rescue Exception => e
+      Rails.logger.error('GalleryDecorator.image_for_cover.error: ' + e.message)
+    end
+    ActionController::Base.helpers.asset_path('images/sidebar-g-1.png')
+  end
+
   def divide_for_two_columns(records)
     half_records_count = records.count / 2
     i = -1
