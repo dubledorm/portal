@@ -5,14 +5,15 @@ module UserCabinet
 
     def update
       super do
-       categories = UserCategorySerializer.parse_string(user_categories_params[:categories])
-        @resource.clear_categories
-        categories.each do |category|
-          @resource.add_category(category[:name])
+        presenter = UserCategoryPresenter.new.from_json_string(user_categories_params[:categories])
+        ActiveRecord::Base.transaction do
+          @resource.clear_categories
+          presenter.categories.each do |category|
+            @resource.add_category(category[:name])
+          end
         end
 
-        presenter = UserCategorySerializer.new(@resource)
-        render json: presenter.categories.to_json,  status: :ok
+        render json: presenter.to_json,  status: :ok
       end
     end
 

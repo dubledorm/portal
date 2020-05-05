@@ -7,5 +7,5 @@ class Gallery < ApplicationRecord
 
   has_one_attached :image_for_cover
 
-  validates :image_for_cover, content_type: ["image/png", "image/jpeg"]
+  validates :image_for_cover, content_type: IMAGE_CONTENT_TYPES
 end

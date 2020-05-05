@@ -1,0 +1,1 @@
+IMAGE_CONTENT_TYPES = %w(image/png image/jpeg)

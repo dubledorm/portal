@@ -6,4 +6,6 @@ class Picture < ApplicationRecord
   validates :state, presence: true, inclusion: { in: PICTURE_STATES }
 
   has_one_attached :image
+
+  validates :image, content_type: IMAGE_CONTENT_TYPES
 end

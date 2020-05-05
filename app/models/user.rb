@@ -17,4 +17,6 @@ class User < ApplicationRecord
 
 
   has_one_attached :avatar
+
+  validates :avatar, content_type: IMAGE_CONTENT_TYPES
 end
