@@ -10,8 +10,8 @@ module UserCabinet
 
     def create
       super do
-        presenter = UserGalleryPresenter.new(view_context, gallery_params)
-        @resource = presenter.create
+        presenter = UserGalleryPresenter.new
+        @resource = presenter.create(view_context)
         if @resource.persisted?
           redirect_to user_cabinet_gallery_path(id: @resource.id)
           return
@@ -23,8 +23,8 @@ module UserCabinet
 
     def update
       super do
-        presenter = UserGalleryPresenter.new(view_context, @resource.attributes.merge!(gallery_params))
-        @resource = presenter.update(@resource)
+        presenter = UserGalleryPresenter.new(gallery_params)
+        @resource = presenter.update(@resource, view_context)
         if @resource.errors.count == 0
           render json: attributes_mask_to_json(@resource, gallery_params),  status: :ok
         else

@@ -2,62 +2,70 @@ class UserGalleryPresenter
 
   include ActiveModel::Model
 
-  attr_reader :h
+  # Выполняет создание и обновление gallery
+  # Выполняет проверки и предоставляет список ошибок
+
+
   attr_accessor :id, :user_id, :name, :description, :state, :image_for_cover, :updated_at, :created_at
-  validates :name, presence: true
-
-  def initialize(context, attributes = {})
-    # Следующие две строчки нужны только по тому, что мы вызываем initialize с доп параметром view_context
-    # Если ьы параметром было только attributes = {}, то достаточно было бы просто super
-    assign_attributes(attributes) if attributes
-    super()
-
-    @h = context
-    @user_id = h.current_user.id if @user_id.nil?
-    @state = :active if @state.nil?
-  end
+  validates :name, presence: true, allow_nil: true
 
   def errors_to_json
     errors.full_messages.join(', ')
   end
 
   def attributes
-    {id: id,
-     user_id: user_id,
-     name: name,
-     description: description,
-     state: state,
-     image_for_cover: image_for_cover
+    {'id': id,
+     'user_id': user_id,
+     'name': name,
+     'description': description,
+     'state': state,
+     'image_for_cover': image_for_cover
     }
   end
 
-  def create
+  def create(context)
+    set_attributes(context)
     gallery = Gallery.new(attributes)
 
-    unless valid?
-      gallery.errors.merge!(self.errors)
-      return gallery
-    end
+    if make_validation?(gallery)
+      ActiveRecord::Base.transaction do
+        gallery.save
+      end
 
-    ActiveRecord::Base.transaction do
-      gallery.save
+      self.errors.merge!(gallery.errors)
     end
-
-    self.errors.merge!(gallery.errors)
     gallery
   end
 
-  def update(gallery)
+  def update(gallery, context)
+    set_attributes(context)
+
+    if make_validation?(gallery)
+      ActiveRecord::Base.transaction do
+        gallery.update(attributes_compact)
+      end
+
+      self.errors.merge!(gallery.errors)
+    end
+    gallery
+  end
+
+  private
+
+  def set_attributes(context)
+    @user_id = context.current_user.id if @user_id.nil?
+    @state = :active if @state.nil?
+  end
+
+  def attributes_compact
+    Hash[*attributes.find_all{ |key, value| !value.nil?}.flatten]
+  end
+
+  def make_validation?(gallery)
     unless valid?
       gallery.errors.merge!(self.errors)
-      return gallery
+      return false
     end
-
-    ActiveRecord::Base.transaction do
-      gallery.update(attributes)
-    end
-
-    self.errors.merge!(gallery.errors)
-    gallery
+    true
   end
 end
