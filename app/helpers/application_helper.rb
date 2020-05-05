@@ -17,10 +17,11 @@ module ApplicationHelper
       end
       return Rails.application.routes.url_helpers.rails_representation_url(image_attachment.variant(resize_to_limit: resize_to_limit).processed,
                                                                            only_path: true) if image_attachment.attached?
+      return ActionController::Base.helpers.asset_pack_path('media/images/nothing.jpg')
     rescue Exception => e
       Rails.logger.error('GalleryDecorator.image_for_cover.error: ' + e.message)
     end
-    ActionController::Base.helpers.asset_path('images/sidebar-g-1.png')
+    ActionController::Base.helpers.asset_pack_path('media/images/oops.jpg')
   end
 
   def divide_for_two_columns(records)
