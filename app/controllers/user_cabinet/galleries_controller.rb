@@ -28,7 +28,7 @@ module UserCabinet
         if @resource.errors.count == 0
           render json: Hash[*gallery_params.keys.map{|key| [key, @resource.decorate.send(key)]}.flatten],  status: :ok
         else
-          render json: @resource.errors, status: :unprocessable_entity
+          render json: @resource.errors.full_messages, status: :unprocessable_entity
         end
       end
     end

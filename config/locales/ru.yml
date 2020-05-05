@@ -114,6 +114,7 @@ ru:
     errors:
       messages:
         record_invalid: Record Invalid - попытка создать запись с ошибоными значениями полей
+        content_type: Не верный формат файла
       models:
         grade:
           attributes:
