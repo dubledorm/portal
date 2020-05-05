@@ -1,7 +1,6 @@
 class UserGalleryPresenter
 
   include ActiveModel::Model
-#  include ActiveModel::Serializers::JSON
 
   attr_reader :h
   attr_accessor :id, :user_id, :name, :description, :state, :image_for_cover, :updated_at, :created_at
@@ -16,6 +15,10 @@ class UserGalleryPresenter
     @h = context
     @user_id = h.current_user.id if @user_id.nil?
     @state = :active if @state.nil?
+  end
+
+  def errors_to_json
+    errors.full_messages.join(', ')
   end
 
   def attributes
@@ -39,6 +42,8 @@ class UserGalleryPresenter
     ActiveRecord::Base.transaction do
       gallery.save
     end
+
+    self.errors.merge!(gallery.errors)
     gallery
   end
 
@@ -51,6 +56,8 @@ class UserGalleryPresenter
     ActiveRecord::Base.transaction do
       gallery.update(attributes)
     end
+
+    self.errors.merge!(gallery.errors)
     gallery
   end
 end

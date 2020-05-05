@@ -24,6 +24,11 @@ module ApplicationHelper
     ActionController::Base.helpers.asset_pack_path('media/images/oops.jpg')
   end
 
+  def attributes_mask_to_json(resource, hash_mask)
+    Hash[*hash_mask.keys.map{|key| [key, resource.decorate.send(key)]}.flatten].to_json
+  end
+
+
   def divide_for_two_columns(records)
     half_records_count = records.count / 2
     i = -1

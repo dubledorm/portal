@@ -26,9 +26,9 @@ module UserCabinet
         presenter = UserGalleryPresenter.new(view_context, @resource.attributes.merge!(gallery_params))
         @resource = presenter.update(@resource)
         if @resource.errors.count == 0
-          render json: Hash[*gallery_params.keys.map{|key| [key, @resource.decorate.send(key)]}.flatten],  status: :ok
+          render json: attributes_mask_to_json(@resource, gallery_params),  status: :ok
         else
-          render json: @resource.errors.full_messages, status: :unprocessable_entity
+          render json: presenter.errors_to_json, status: :unprocessable_entity
         end
       end
     end

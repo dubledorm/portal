@@ -41,7 +41,7 @@ class EditForm extends React.Component {
     onSubmitError(error){
         let error_message = error.responseText || error.statusText;
         console.error(`Submit error. Status = ${error.status}. Message = ${error_message}`);
-        this.setState({ error_message: error.statusText });
+        this.setState({ error_message: error_message });
         this.props.onToggleSpinner(false);
     }
 
