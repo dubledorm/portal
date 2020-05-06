@@ -4,11 +4,12 @@ module UserCabinet
 
     def update
       super do
-        @resource.update(user_cabinet_params)
-        if @resource.errors.count == 0
+        presenter = UserCabinetPresenter.new(user_cabinet_params)
+        presenter.update(@resource)
+        if presenter.errors.count == 0
           render json: attributes_mask_to_json(@resource, user_cabinet_params),  status: :ok
         else
-          render json: @resource.errors.full_messages.joins(', '), status: :unprocessable_entity
+          render json: presenter.errors_to_json, status: :unprocessable_entity
         end
       end
     end
@@ -18,7 +19,7 @@ module UserCabinet
     end
 
     def user_cabinet_params
-      params.required(:user).permit(:main_image)
+      params.required(:user).permit(:main_image, :main_description)
     end
   end
 end
