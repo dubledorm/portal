@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_134409) do
+ActiveRecord::Schema.define(version: 2020_05_06_071322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,14 @@ ActiveRecord::Schema.define(version: 2020_04_06_134409) do
     t.index ["taggable_id", "taggable_type", "tag_id"], name: "taggable_tag_id"
   end
 
+  create_table "user_parameters", force: :cascade do |t|
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_parameters_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -210,4 +218,5 @@ ActiveRecord::Schema.define(version: 2020_04_06_134409) do
   add_foreign_key "blogs", "users"
   add_foreign_key "grades", "users"
   add_foreign_key "pictures", "galleries"
+  add_foreign_key "user_parameters", "users"
 end

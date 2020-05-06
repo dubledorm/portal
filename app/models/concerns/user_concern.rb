@@ -23,4 +23,8 @@ module UserConcern
   def has_service?(provider_name)
     self.services.by_provider(provider_name).any?
   end
+
+  def main_description
+    user_parameter.try(:description)
+  end
 end

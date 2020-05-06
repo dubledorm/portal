@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :pictures, through: :galleries
   has_many :articles, dependent: :destroy
   has_many :blogs, dependent: :destroy
+  has_one :user_parameter, dependent: :destroy
 
 
   has_one_attached :avatar

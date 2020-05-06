@@ -11,4 +11,8 @@ FactoryGirl.define do
   factory :user_with_categories, parent: :user do |au|
     tags { [ FactoryGirl.create(:tag), FactoryGirl.create(:tag_category) ] }
   end
+
+  factory :user_with_parameters, parent: :user do |au|
+    user_parameter #{ FactoryGirl.create(:user_parameter) }
+  end
 end

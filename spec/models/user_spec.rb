@@ -3,9 +3,12 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'factory' do
     let!(:user) {FactoryGirl.create :user}
+    let!(:user_with_parameters) {FactoryGirl.create :user_with_parameters}
+
 
     # Factories
     it { expect(user).to be_valid }
+    it { expect(user_with_parameters).to be_valid }
 
     # Validations
     it { should validate_presence_of(:email) }
@@ -18,6 +21,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:articles) }
     it { should have_many(:grades) }
     it { should have_many(:blogs) }
+    it { should have_one(:user_parameter)}
   end
 
   describe 'cascade delete of services' do
@@ -100,6 +104,18 @@ RSpec.describe User, type: :model do
     it { expect(user.has_service?('github')).to eq(true) }
     it { expect(user.has_service?('facebook')).to eq(true) }
     it { expect(user.has_service?('vkontakte')).to eq(false) }
+
+  end
+
+  describe 'user_parameter' do
+    let!(:user_with_parameters) {FactoryGirl.create :user_with_parameters}
+    let!(:user) {FactoryGirl.create :user}
+
+    it { expect{ user_with_parameters.destroy }.to change(User, :count).by(-1) }
+    it { expect{ user_with_parameters.destroy }.to change(UserParameter, :count).by(-1) }
+
+    it { expect(user.main_description).to eq(nil) }
+    it { expect(user_with_parameters.main_description).to eq('description') }
 
   end
 end
