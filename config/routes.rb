@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :services, only: [:destroy], as: :user_profile_services
     end
 
-    resource :user_cabinet, only: :show, controller: 'user_cabinet/users', as: :user_cabinet
+    resource :user_cabinet, only: [:show, :update], controller: 'user_cabinet/users', as: :user_cabinet
     namespace :user_cabinet do
       resources :galleries
       resource :category, only: :update

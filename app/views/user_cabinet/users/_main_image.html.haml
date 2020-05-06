@@ -1,5 +1,7 @@
 .blog-item
-  = link_to asset_path('images/blog1.png') do
-    = image_tag('images/blog1.png', class: 'img-responsive img-blog', width: "100%", alt: "")
-  .blog-content
-    = render('change_image')
+  = rc_edit_image_field(@resource, :main_image, user_cabinet_path, @resource.decorate.main_image_cover)
+  -#= link_to asset_path('images/blog1.png') do
+  -#  = rc_edit_image_field(@resource, :main_image, user_cabinet_path, @resource.decorate.main_image_cover)
+  -#  = image_tag('images/blog1.png', class: 'img-responsive img-blog', width: "100%", alt: "")
+  -#.blog-content
+  -#  = render('change_image')

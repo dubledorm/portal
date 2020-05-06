@@ -16,7 +16,7 @@ module UserProfile
           presenter = UserProfilePresenter.new(@resource, view_context)
           render json: Hash[*user_profile_params.keys.map{|key| [key, presenter.send(key)]}.flatten],  status: :ok
         else
-          render json: @resource.errors.full_messages, status: :unprocessable_entity
+          render json: @resource.errors.full_messages.joins(', '), status: :unprocessable_entity
         end
       end
     end

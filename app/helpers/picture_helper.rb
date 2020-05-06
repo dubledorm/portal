@@ -5,11 +5,7 @@ module PictureHelper
   end
 
   def cover_gallery_small(gallery)
-    # if gallery.image_for_cover.attached?
-    #   background_image = url_for(gallery.image_for_cover.variant(resize_to_limit: [600, 600]))
-    # else
-      background_image = asset_path('images/sidebar-g-1.png')
-    # end
+    background_image = url_for(gallery.decorate.image_for_cover)
     content_tag(:div, class: :cover_gallery_small, style: "background-image: url('#{ background_image }');" ) {}
   end
 

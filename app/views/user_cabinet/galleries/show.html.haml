@@ -3,7 +3,7 @@
 %section#gallery
   .container
     = render('layouts/template_parts/large_title',
-    locals: { title: @resource.name.blank? ? I18n.t('gallery.show.large_title') :  @resource.name,
+    locals: { title: @resource.name.blank? ? I18n.t('gallery.show.large_title') :  I18n.t('gallery.show.title'),
     text: '' })
 
     .row.contact-wrap
