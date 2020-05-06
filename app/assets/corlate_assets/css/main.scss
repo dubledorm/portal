@@ -1003,7 +1003,7 @@ a.accordion-toggle i {
 }
 
 #partner {
-    background-image: url(../images/partner-bg.png);
+    background-image: image-url('../images/partner-bg.png');
     background-size: cover;
     background-position: center center;
 }
@@ -1035,7 +1035,7 @@ a.accordion-toggle i {
 }
 
 #conatcat-info {
-    background: #fff url(../images/contact.png) no-repeat 90% 0;
+    background: #fff image-url('../images/contact.png') no-repeat 90% 0;
     padding: 30px 0;
 }
 
@@ -1258,7 +1258,7 @@ a.accordion-toggle i {
 }
 
 .clients-comments {
-    background-image: url("../images/image_bg.png");
+    background-image: image-url("../images/image_bg.png");
     background-position: center 118px;
     background-repeat: no-repeat;
     margin-bottom: 100px;
@@ -1928,7 +1928,7 @@ ul.pagination>li:last-child > a{
 }
 
 .search_box {
-    background-image: url("../images/search_icon.png");
+    background-image: image-url("../images/search_icon.png");
     background-position: 314px 15px;
     background-repeat: no-repeat;
     border-color: #DEDEDE;

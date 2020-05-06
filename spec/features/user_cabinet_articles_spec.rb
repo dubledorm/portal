@@ -25,7 +25,7 @@ RSpec.feature 'UserCabinetArticles', js: true do
 
       context 'when new record' do
         it 'should field name available for new' do
-          expect(page.has_field?(id: 'instance_name')).to be(true)
+          expect(page.has_field?(id: 'article_name')).to be(true)
         end
       end
     end

@@ -12,8 +12,8 @@ module FeatureHelper
   def user_login
     init_user_defaults
     visit new_user_session_path
-    fill_in I18n.t('activerecord.attributes.user.email'), with: user.email
-    fill_in I18n.t('activerecord.attributes.user.password'), with: user.password
+    fill_in I18n.t('activerecord.attributes.user.email'), with: @user.email
+    fill_in I18n.t('activerecord.attributes.user.password'), with: @user.password
 
     click_button I18n.t('forms.login.login_word')
   end
@@ -23,6 +23,6 @@ module FeatureHelper
   end
 
   def init_user_defaults
-    @user ||= FactoryGirl.create(:_user, email: 'user@example.com', password: 'password')
+    @user ||= FactoryGirl.create(:user, email: 'user@example.com', password: 'password')
   end
 end
