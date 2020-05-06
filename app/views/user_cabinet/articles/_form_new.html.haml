@@ -1,7 +1,7 @@
-= form_with(model: [@user, @resource], local: true) do |f|
-  = f.hidden_field(:user_id)
-  = f.hidden_field(:article_type, value: :service)
-  = f.hidden_field(:state, value: :draft)
+= form_with(model: @resource, local: true, url: user_cabinet_articles_path) do |f|
+  -#= f.hidden_field(:user_id)
+  -#= f.hidden_field(:article_type, value: :service)
+  -#= f.hidden_field(:state, value: :draft)
 
   .col-md-5.col-md-offset-1
     .form-group.required

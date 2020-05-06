@@ -4,50 +4,37 @@ module UserCabinet
 
     def new
       super do
-        @user = User.find(params.required(:user_id))
-        @resource = Article.new(user_id: params.required(:user_id))
+        @resource = Article.new(user_id: current_user.id)
       end
     end
 
     def create
       super do
-        @user = User.find(params.required(:user_id))
-        @resource = Article.create(article_params)
+        @resource = Article.create(article_params.merge!(user_id: current_user.id,
+                                                         state: :draft,
+                                                         article_type: :service))
         unless @resource.persisted?
           render :new
           return
         end
-        redirect_to user_article_path(user_id: @user.id, id: @resource.id)
+        redirect_to user_cabinet_article_path(id: @resource.id)
       end
     end
 
     def update
       super do
-        @user = User.find(params.required(:user_id))
         @resource.update(article_params)
-
-        respond_to do |format|
-          if @resource.errors.count == 0
-            format.html { redirect_to user_article_path(user_id: @user.id, id: @resource.id) }
-            format.js
-            format.json { render json: @resource, status: :ok, location: @resource }
-          else
-            format.html { render action: :edit }
-            format.json { render json: @resource.errors, status: :unprocessable_entity }
-          end
+        if @resource.errors.count == 0
+          render json: attributes_mask_to_json(@resource, article_params),  status: :ok
+        else
+          render json: @resource.errors.full_messages.join(', '), status: :unprocessable_entity
         end
-      end
-    end
-
-    def show
-      super do
-        @user = User.find(params.required(:user_id))
       end
     end
 
     private
 
-    def aricles_params
+    def article_params
       params.required(:article).permit(:name, :main_description, :short_description, :state, :article_type,
                                        :min_quantity, :max_quantity, :min_age, :max_age, :seo_description,
                                        :seo_keywords, :duration_minutes, :gallery_id, :user_id)

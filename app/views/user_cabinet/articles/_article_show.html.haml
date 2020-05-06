@@ -1,0 +1,18 @@
+.col-md-12
+  = rc_string_field(@resource, :name, user_cabinet_article_path(id: @resource.id))
+.col-md-12
+  = rc_text_field(@resource, :main_description, user_cabinet_article_path(id: @resource.id))
+.col-md-12
+  = rc_text_field(@resource, :short_description, user_cabinet_article_path(id: @resource.id))
+.col-xs-12.col-md-3
+  = rc_number_field(@resource, :min_quantity, user_cabinet_article_path(id: @resource.id))
+.col-xs-12.col-md-3
+  = rc_number_field(@resource, :max_quantity, user_cabinet_article_path(id: @resource.id))
+.col-xs-12.col-md-3
+  = rc_number_field(@resource, :min_age, user_cabinet_article_path(id: @resource.id))
+.col-xs-12.col-md-3
+  = rc_number_field(@resource, :max_age, user_cabinet_article_path(id: @resource.id))
+.col-md-12
+  = rc_string_field(@resource, :seo_keywords, user_cabinet_article_path(id: @resource.id))
+.col-md-12
+  = rc_text_field(@resource, :seo_description, user_cabinet_article_path(id: @resource.id))
