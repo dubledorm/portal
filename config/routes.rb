@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post '/users/auth/create_user_and_service', to: 'omniauth_callbacks#create_user_and_service', as: :create_user_and_service
   end
 
-  authenticated(:user) do
+#  authenticated(:user) do
 
     resource :user_profile, only: [:show, :update], controller: 'user_profile/users', as: :user_profile
     scope module: :user_profile do
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resource :category, only: :update
       resources :articles
     end
+
 
     # patch 'users/:id/update_category', to: 'user_cabinet/users#update_category', as: :user_update_category
     #
@@ -45,12 +46,16 @@ Rails.application.routes.draw do
     #
     # resources :grades
     # resources :articles, only: [:index, :show]
-    root to: "secret#index", as: :authenticated_root
-  end
+#    root to: "secret#index", as: :authenticated_root
+#  end
 
   resources :grades, only: [:index, :show]
   resources :articles, only: [:index, :show]
   resources :galleries, only: [:index, :show]
   root to: 'home#index'
+
+  def authenticated_root
+    user_profile
+  end
 end
 

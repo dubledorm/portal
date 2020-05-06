@@ -82,8 +82,12 @@ class ApplicationController < ActionController::Base
   def destroy
     get_resource
     raise CanCan::AccessDenied unless can? :destroy, @resource
-    ActiveRecord::Base.transaction do
-      @resource.destroy!
+    if block_given?
+      yield
+    else
+      ActiveRecord::Base.transaction do
+        @resource.destroy!
+      end
     end
   end
 

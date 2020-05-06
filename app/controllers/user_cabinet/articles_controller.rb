@@ -32,12 +32,21 @@ module UserCabinet
       end
     end
 
+    def destroy
+      super do
+        ActiveRecord::Base.transaction do
+          @resource.destroy!
+        end
+        redirect_to user_cabinet_path
+      end
+    end
+
     private
 
     def article_params
       params.required(:article).permit(:name, :main_description, :short_description, :state, :article_type,
                                        :min_quantity, :max_quantity, :min_age, :max_age, :seo_description,
-                                       :seo_keywords, :duration_minutes, :gallery_id, :user_id)
+                                       :seo_keywords, :duration_minutes, :gallery_id)
     end
 
     def menu_action_items
