@@ -10,6 +10,7 @@ class Article < ApplicationRecord
 
   has_one_attached :main_image        # Может иметь одну основную картинку
 
+  validates :main_image, content_type: IMAGE_CONTENT_TYPES
   validates :article_type, :state, :name, presence: true
   validates :article_type, inclusion: { in: ARTICLE_TYPES }
   validates :state, inclusion: { in: ARTICLE_STATES }

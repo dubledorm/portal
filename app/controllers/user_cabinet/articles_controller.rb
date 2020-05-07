@@ -46,7 +46,7 @@ module UserCabinet
     def article_params
       params.required(:article).permit(:name, :main_description, :short_description, :state, :article_type,
                                        :min_quantity, :max_quantity, :min_age, :max_age, :seo_description,
-                                       :seo_keywords, :duration_minutes, :gallery_id)
+                                       :seo_keywords, :duration_minutes, :main_image)
     end
 
     def menu_action_items

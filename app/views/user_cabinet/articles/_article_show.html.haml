@@ -1,18 +1,21 @@
-.col-md-12
+.col-xs-12.col-md-8
+  = rc_edit_image_field(@resource, :main_image,
+    user_cabinet_article_path(id: @resource.id),
+    @resource.decorate.main_image)
   = rc_string_field(@resource, :name, user_cabinet_article_path(id: @resource.id))
-.col-md-12
-  = rc_text_field(@resource, :main_description, user_cabinet_article_path(id: @resource.id))
-.col-md-12
   = rc_text_field(@resource, :short_description, user_cabinet_article_path(id: @resource.id))
-.col-xs-12.col-md-3
+  = rc_text_field(@resource, :main_description, user_cabinet_article_path(id: @resource.id))
+.col-xs-12.col-md-4
+  %h2
+    Параметры
   = rc_number_field(@resource, :min_quantity, user_cabinet_article_path(id: @resource.id))
-.col-xs-12.col-md-3
   = rc_number_field(@resource, :max_quantity, user_cabinet_article_path(id: @resource.id))
-.col-xs-12.col-md-3
   = rc_number_field(@resource, :min_age, user_cabinet_article_path(id: @resource.id))
-.col-xs-12.col-md-3
   = rc_number_field(@resource, :max_age, user_cabinet_article_path(id: @resource.id))
-.col-md-12
+  %h2
+    SEO
   = rc_string_field(@resource, :seo_keywords, user_cabinet_article_path(id: @resource.id))
-.col-md-12
   = rc_text_field(@resource, :seo_description, user_cabinet_article_path(id: @resource.id))
+
+  %h2
+    Картинки

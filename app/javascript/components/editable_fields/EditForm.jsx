@@ -45,9 +45,8 @@ class EditForm extends React.Component {
         this.props.onToggleSpinner(false);
     }
 
-    onCancel(event){
+    onCancel(){
         this.props.onChangeMode(false);
-        event.preventDefault();
     }
 
     onlocalChangeValue(event){

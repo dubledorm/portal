@@ -19,7 +19,7 @@ RSpec.feature 'UserCabinetArticles', js: true do
         visit new_user_cabinet_article_path
       end
 
-      it 'should available new_admin_instance_path' do
+      it 'should available new_user_cabinet_article_path' do
         expect(current_path).to eq(new_user_cabinet_article_path)
       end
 

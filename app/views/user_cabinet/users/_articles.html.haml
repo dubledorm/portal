@@ -1,1 +1,76 @@
-dcxvxcvfsv sdgsdg sfdg df
+%ul.portfolio-filter.text-center
+  %li
+    %a.btn.btn-default.active{"data-filter" => "*", :href => "#"} All Works
+  %li
+    %a.btn.btn-default{"data-filter" => ".bootstrap", :href => "#"} Creative
+  %li
+    %a.btn.btn-default{"data-filter" => ".html", :href => "#"} Photography
+  %li
+    %a.btn.btn-default{"data-filter" => ".wordpress", :href => "#"} Web Development
+    / /#portfolio-filter
+  .row
+    .portfolio-items
+      .portfolio-item.apps.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-1.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-1.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.joomla.bootstrap.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-2.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-2.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.bootstrap.wordpress.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-3.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-3.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.joomla.wordpress.apps.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-4.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-4.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.joomla.html.bootstrap.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-5.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-5.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.wordpress.html.apps.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-1.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-1.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.joomla.html.bootstrap.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-6.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-6.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
+      .portfolio-item.wordpress.html.apps.col-xs-12.col-sm-4.col-md-3.single-work
+        .recent-work-wrap
+          =image_tag('images/portfolio/item-2.png', class: 'img-responsive', alt: '')
+          .overlay
+            .recent-work-inner
+              = link_to(asset_url('images/portfolio/item-2.png'), class: 'preview', rel: 'prettyPhoto') do
+                %i.fa.fa-plus
+        / /.portfolio-item
