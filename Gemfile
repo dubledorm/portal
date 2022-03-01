@@ -87,7 +87,7 @@ gem 'whenever', require: false
 gem 'awesome_print'
 
 # Обработка изображения для active_storage
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # Авторизация через сторонние системы
 gem 'omniauth'
